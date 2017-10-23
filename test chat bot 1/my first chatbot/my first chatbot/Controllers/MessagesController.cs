@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using my_first_chatbot.Helper;
 
 namespace my_first_chatbot
 {
@@ -18,8 +19,25 @@ namespace my_first_chatbot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                //await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
                 //return activity.CreateReply($""+activity.Text);
+                string botresp = "";
+                Rootobject obj = await LUIS.GetEntityFromLUIS(activity.Text);
+
+                if (obj.intents[0].intent!= "None" && obj.intents.Length > 0)
+                {
+                    switch (obj.intents[0].intent)
+                    {
+                        case "Greeting": { botresp = "Hello, Welcome to AAR service!"; break; }
+                        case "Goodbye": { botresp = "Thanks, have a good day!"; break; }
+                    }
+                }
+                else {
+                    botresp  = "Sorry, I am not getting you...";
+                }
+                activity.Text= botresp;
+                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+
             }
             else
             {
