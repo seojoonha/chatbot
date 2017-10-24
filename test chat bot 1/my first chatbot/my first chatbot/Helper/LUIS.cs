@@ -14,7 +14,7 @@ namespace my_first_chatbot.Helper
         public string query { get; set; }
         public Topscoringintent topScoringIntent { get; set; }
         public Intent[] intents { get; set; }
-        public object[] entities { get; set; }
+        public Entity[] entities { get; set; }
     }
 
     public class Topscoringintent
@@ -29,7 +29,17 @@ namespace my_first_chatbot.Helper
         public float score { get; set; }
     }
 
-    public class LUIS {
+    public class Entity
+    {
+        public string entity { get; set; }
+        public string type { get; set; }
+        public int startIndex { get; set; }
+        public int endIndex { get; set; }
+        public float score { get; set; }
+    }
+
+    public class LUIS
+    {
 
         //public static async Task<Rootobject> parseUserInput(string strInput)
         //{

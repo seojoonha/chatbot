@@ -24,12 +24,21 @@ namespace my_first_chatbot
                 string botresp = "";
                 Rootobject obj = await LUIS.GetEntityFromLUIS(activity.Text);
 
-                if (obj.intents[0].intent!= "None" && obj.intents.Length > 0)
+                if (obj.intents[0].score>0.5 && obj.intents[0].intent!= "None" && obj.intents.Length > 0)
                 {
                     switch (obj.intents[0].intent)
                     {
                         case "Greeting": { botresp = "Hello, Welcome to AAR service!"; break; }
                         case "Goodbye": { botresp = "Thanks, have a good day!"; break; }
+                        case "Registration": {
+                                foreach (var entity in obj.entities){
+
+                                    if (entity.entity == "electronics") botresp += " You can not take "+entity.entity+" course at this time. first you need to take prerequisite course which is Fundamentals of circuit.\n";
+                                    else { botresp += " you can take " + entity.entity + " at this time.\n"; }
+                                }
+
+                                break; }
+                        case "Course schedule": { break; }
                     }
                 }
                 else {
