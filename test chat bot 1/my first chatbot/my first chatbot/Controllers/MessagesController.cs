@@ -24,7 +24,7 @@ namespace my_first_chatbot
                 string botresp = "";
                 Rootobject obj = await LUIS.GetEntityFromLUIS(activity.Text);
 
-                if (obj.intents[0].score>0.5 && obj.intents[0].intent!= "None" && obj.intents.Length > 0)
+                if (obj.intents[0].score > 0.5 && obj.intents[0].intent!= "None" && obj.intents.Length > 0)
                 {
                     switch (obj.intents[0].intent)
                     {
@@ -38,7 +38,8 @@ namespace my_first_chatbot
                                 }
 
                                 break; }
-                        case "Course schedule": { break; }
+                        case "Course schedule": { botresp = "Yes, you have class today"; break; }
+                        case "Identity": { botresp = "I’m chatbot and I’ll be an acadamic assistant for you :)"; break; }
                     }
                 }
                 else {
