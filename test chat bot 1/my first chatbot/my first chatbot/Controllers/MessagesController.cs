@@ -5,6 +5,7 @@ using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using my_first_chatbot.Helper;
+using System;
 
 namespace my_first_chatbot
 {
@@ -17,6 +18,9 @@ namespace my_first_chatbot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+
+            StateClient stateClient = activity.GetStateClient();
+
             if (activity.Type == ActivityTypes.Message)
             {
                 //await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
@@ -24,29 +28,77 @@ namespace my_first_chatbot
                 string botresp = "";
                 Rootobject obj = await LUIS.GetEntityFromLUIS(activity.Text);
 
-                if (obj.intents[0].score > 0.5 && obj.intents[0].intent!= "None" && obj.intents.Length > 0)
+
+                BotData userData = await stateClient.BotState.GetUserDataAsync(activity.ChannelId, activity.From.Id);
+
+
+                if (obj.intents[0].score > 0.5 && obj.intents[0].intent != "None" && obj.intents.Length > 0)
                 {
                     switch (obj.intents[0].intent)
                     {
-                        case "Greeting": { botresp = "Hello, Welcome to AAR service!"; break; }
-                        case "Goodbye": { botresp = "Thanks, have a good day!"; break; }
-                        case "Registration": {
-                                foreach (var entity in obj.entities){
+                        case "Greeting":
+                            {
+                                botresp = @"Hello, Welcome to AAR service! 안녕하세요 AAR을 이용해 주셔서 감사합니다.";
+                                activity.Text = botresp;
+                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                            }
+                        case "Goodbye":
+                            {
+                                botresp = "Thanks, have a good day!";
+                                activity.Text = botresp;
+                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                            }
+                        case "Registration":
+                            {
+                                // store last intet data
+                                try
+                                {
+                                    userData.SetProperty<Rootobject>("UserData", obj);
+                                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                                }
+                                catch (Exception e) { }
 
-                                    if (entity.entity == "electronics") botresp += " You can not take "+entity.entity+" course at this time. first you need to take prerequisite course which is Fundamentals of circuit.\n";
+                                foreach (var entity in obj.entities)
+                                {
+
+                                    if (entity.entity == "electronics") botresp += " You can not take " + entity.entity + " course at this time. first you need to take prerequisite course which is Fundamentals of circuit.\n";
                                     else { botresp += " you can take " + entity.entity + " at this time.\n"; }
                                 }
 
-                                break; }
-                        case "Course schedule": { botresp = "Yes, you have class today"; break; }
-                        case "Identity": { botresp = "I’m chatbot and I’ll be an acadamic assistant for you :)"; break; }
+
+                                activity.Text = botresp;
+                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                            }
+                        case "Course schedule":
+                            {
+                                botresp = "Yes, you have class today";
+                                activity.Text = botresp;
+                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                            }
+                        case "Identity":
+                            {
+                                botresp = @"I’m chatbot and I’ll be an acadamic assistant for you :)
+                                안녕하세요 수강신청을 도와드리는 AAR 챗봇입니다.";
+                                activity.Text = botresp;
+                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                            }
                     }
                 }
-                else {
-                    botresp  = "Sorry, I am not getting you...";
+                else
+                {
+                    botresp = "Sorry, I am not getting you...";
+                    activity.Text = botresp;
+                    await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); 
                 }
-                activity.Text= botresp;
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+
+
+                try
+                {
+                    string myUserData = userData.GetProperty<string>("UserData");
+                }
+                catch (Exception e) { }
+
+
 
             }
             else

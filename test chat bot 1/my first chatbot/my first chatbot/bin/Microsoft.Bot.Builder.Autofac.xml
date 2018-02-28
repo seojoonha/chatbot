@@ -81,6 +81,19 @@
             <param name="token"> The cancellation token.</param>
             <returns> A task that represent the message to send back to the user after resumption of the conversation.</returns>
         </member>
+        <member name="M:Microsoft.Bot.Builder.Dialogs.Conversation.Disable(System.Type,Autofac.ContainerBuilder)">
+            <summary>
+            Disable a specific service type by replacing it with a pass through implementation.
+            </summary>
+            <param name="type">The service type.</param>
+            <param name="builder">The container builder.</param>
+        </member>
+        <member name="M:Microsoft.Bot.Builder.Dialogs.Conversation.Disable(System.Type)">
+            <summary>
+            Disable a specific service type by replacing it with a pass through implementation.
+            </summary>
+            <param name="type">The service type.</param>
+        </member>
         <member name="T:Microsoft.Bot.Builder.Dialogs.Internals.DialogModule">
             <summary>
             Autofac module for Dialog components.
@@ -91,9 +104,9 @@
             Autofac module for Fiber components.
             </summary>
         </member>
-        <member name="M:Microsoft.Bot.Builder.Internals.Fibers.FiberModule.DoNotSerialize(Autofac.IComponentContext,System.Collections.Generic.IEnumerable{Autofac.Core.Parameter})">
+        <member name="F:Microsoft.Bot.Builder.Internals.Fibers.FiberModule.Key_DoNotSerialize">
             <summary>
-            Eagerly enumerate the services keyed with <see cref="F:Microsoft.Bot.Builder.Internals.Fibers.FiberModule.Key_DoNotSerialize"/> that will not be serialized.
+            Services keyed with <see cref="F:Microsoft.Bot.Builder.Internals.Fibers.FiberModule.Key_DoNotSerialize"/> will not be serialized.
             </summary>
             <remarks>
             Services marked with <see cref="F:Microsoft.Bot.Builder.Internals.Fibers.FiberModule.Key_DoNotSerialize"/> will not serialize their dependencies either.

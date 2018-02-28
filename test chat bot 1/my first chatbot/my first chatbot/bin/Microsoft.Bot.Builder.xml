@@ -212,6 +212,13 @@
             </summary>
             <returns>The <see cref="T:Microsoft.Bot.Connector.IStateClient"/> implementation.</returns>
         </member>
+        <member name="M:Microsoft.Bot.Builder.Dialogs.Internals.ConnectorClientFactory.GetSettingsStateApiUrl(System.String)">
+            <summary>
+            Get the state api endpoint from settings. 
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The state api endpoint from settings.</returns>
+        </member>
         <member name="T:Microsoft.Bot.Builder.Dialogs.Internals.IDialogStack">
             <summary>
             The stack of dialogs in the conversational process.
@@ -1864,9 +1871,9 @@
             <param name="attempts"> The number of times to retry. </param>
             <param name="promptStyle"> Style of the prompt <see cref="T:Microsoft.Bot.Builder.Dialogs.PromptStyle" /> </param>
             <param name="descriptions">Descriptions to display for choices.</param>
-            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
+            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
             <param name="minScore">(Optional) minimum score from 0.0 - 1.0 needed for a recognized choice to be considered a match. The default value is "0.4".</param>
         </member>
         <member name="M:Microsoft.Bot.Builder.Dialogs.PromptDialog.Choice``1(Microsoft.Bot.Builder.Dialogs.IDialogContext,Microsoft.Bot.Builder.Dialogs.ResumeAfter{``0},Microsoft.Bot.Builder.Dialogs.IPromptOptions{``0},System.Boolean,System.Boolean,System.Boolean,System.Double)">
@@ -1878,9 +1885,9 @@
             <param name="context"> The dialog context.</param>
             <param name="resume"> Resume handler.</param>
             <param name="promptOptions"> The prompt options.</param>
-            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
+            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
             <param name="minScore">(Optional) minimum score from 0.0 - 1.0 needed for a recognized choice to be considered a match. The default value is "0.4".</param>
         </member>
         <member name="M:Microsoft.Bot.Builder.Dialogs.PromptDialog.Attachment(Microsoft.Bot.Builder.Dialogs.IDialogContext,Microsoft.Bot.Builder.Dialogs.ResumeAfter{System.Collections.Generic.IEnumerable{Microsoft.Bot.Connector.Attachment}},System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Int32)">
@@ -2018,9 +2025,9 @@
             <param name="attempts"> Maximum number of attempts. </param>
             <param name="promptStyle"> Style of the prompt <see cref="T:Microsoft.Bot.Builder.Dialogs.PromptStyle" /> </param>
             <param name="descriptions">Descriptions to show for each option.</param>
-            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
+            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
             <param name="minScore">(Optional) minimum score from 0.0 - 1.0 needed for a recognized choice to be considered a match. The default value is "0.4".</param>
         </member>
         <member name="M:Microsoft.Bot.Builder.Dialogs.PromptDialog.PromptChoice`1.#ctor(System.Collections.Generic.IDictionary{`0,System.Collections.Generic.IEnumerable{`0}},System.String,System.String,System.Int32,Microsoft.Bot.Builder.Dialogs.PromptStyle,System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean,System.Boolean,System.Double)">
@@ -2031,9 +2038,9 @@
             <param name="attempts"> Maximum number of attempts. </param>
             <param name="promptStyle"> Style of the prompt <see cref="T:Microsoft.Bot.Builder.Dialogs.PromptStyle" /> </param>
             <param name="descriptions">Descriptions to show for each option.</param>
-            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
+            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
             <param name="minScore">(Optional) minimum score from 0.0 - 1.0 needed for a recognized choice to be considered a match. The default value is "0.4".</param>
         </member>
         <member name="M:Microsoft.Bot.Builder.Dialogs.PromptDialog.PromptChoice`1.#ctor(Microsoft.Bot.Builder.Dialogs.IPromptOptions{`0},System.Boolean,System.Boolean,System.Boolean,System.Double)">
@@ -2041,9 +2048,9 @@
             Constructs a choice dialog.
             </summary>
             <param name="promptOptions"> The prompt options</param>s
-            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
-            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeChoices">(Optional) if true, the prompt will attempt to recognize the selected value using the choices themselves. The default value is "true".</param>
+            <param name="recognizeNumbers">(Optional) if true, the prompt will attempt to recognize numbers in the users utterance as the index of the choice to return. The default value is "true".</param>
+            <param name="recognizeOrdinals">(Optional) if true, the prompt will attempt to recognize ordinals like "the first one" or "the second one" as the index of the choice to return. The default value is "true".</param>
             <param name="minScore">(Optional) minimum score from 0.0 - 1.0 needed for a recognized choice to be considered a match. The default value is "0.4".</param>
         </member>
         <member name="T:Microsoft.Bot.Builder.Dialogs.PromptDialog.PromptAttachment">
@@ -4043,11 +4050,11 @@
             </summary>
             <returns>Help on what the recognizer accepts.</returns>
         </member>
-        <member name="M:Microsoft.Bot.Builder.FormFlow.Advanced.IRecognize`1.Matches(System.String,System.Object)">
+        <member name="M:Microsoft.Bot.Builder.FormFlow.Advanced.IRecognize`1.Matches(Microsoft.Bot.Connector.IMessageActivity,System.Object)">
             <summary>
             Return the matches found in the input.
             </summary>
-            <param name="input">The input string being matched.</param>
+            <param name="input">The input activity being matched.</param>
             <param name="defaultValue">The default value or null if none.</param>
             <returns>Match records.</returns>
         </member>
@@ -5345,25 +5352,30 @@
         </member>
         <member name="P:Microsoft.Bot.Builder.Luis.LuisModelAttribute.Log">
             <summary>
-            Indicates if this query can be logged by LUIS.
+            Indicates if logging of queries to LUIS is allowed.
             </summary>
         </member>
         <member name="P:Microsoft.Bot.Builder.Luis.LuisModelAttribute.SpellCheck">
             <summary>
-            Control spell checking.
+            Turn on spell checking.
             </summary>
         </member>
         <member name="P:Microsoft.Bot.Builder.Luis.LuisModelAttribute.Staging">
             <summary>
-            Whether to use staging or production endpoint.
+            Use the staging endpoint.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisModelAttribute.TimezoneOffset">
+            <summary>
+            The time zone offset.
             </summary>
         </member>
         <member name="P:Microsoft.Bot.Builder.Luis.LuisModelAttribute.Verbose">
             <summary>
-            Return verbose results from a query.
+            The verbose flag.
             </summary>
         </member>
-        <member name="M:Microsoft.Bot.Builder.Luis.LuisModelAttribute.#ctor(System.String,System.String,Microsoft.Bot.Builder.Luis.LuisApiVersion,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Microsoft.Bot.Builder.Luis.LuisModelAttribute.#ctor(System.String,System.String,Microsoft.Bot.Builder.Luis.LuisApiVersion,System.String)">
             <summary>
             Construct the LUIS model information.
             </summary>
@@ -5371,10 +5383,36 @@
             <param name="subscriptionKey">The LUIS subscription key.</param>
             <param name="apiVersion">The LUIS API version.</param>
             <param name="domain">Domain where LUIS model is located.</param>
-            <param name="log">Allow LUIS to log query.</param>
-            <param name="spellCheck">Control spell checking.</param>
-            <param name="staging">Control whether or not to use staging endpoint.</param>
-            <param name="verbose">Control verbose results.</param>
+        </member>
+        <member name="T:Microsoft.Bot.Builder.Luis.ILuisOptions">
+            <summary>
+            Interface containing optional parameters for a LUIS request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Bot.Builder.Luis.ILuisOptions.Log">
+            <summary>
+            Indicates if logging of queries to LUIS is allowed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Bot.Builder.Luis.ILuisOptions.SpellCheck">
+            <summary>
+            Turn on spell checking.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Bot.Builder.Luis.ILuisOptions.Staging">
+            <summary>
+            Use the staging endpoint.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Bot.Builder.Luis.ILuisOptions.TimezoneOffset">
+            <summary>
+            The time zone offset.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Bot.Builder.Luis.ILuisOptions.Verbose">
+            <summary>
+            The verbose flag.
+            </summary>
         </member>
         <member name="T:Microsoft.Bot.Builder.Luis.Models.CompositeChild">
             <summary>
@@ -5691,64 +5729,56 @@
             Object that contains all the possible parameters to build Luis request.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.Query">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.Query">
             <summary>
             The text query.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.Log">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.Log">
             <summary>
             Indicates if logging of queries to LUIS is allowed.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.SpellCheck">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.SpellCheck">
             <summary>
             Turn on spell checking.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.Staging">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.Staging">
             <summary>
             Use the staging endpoint.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.TimezoneOffset">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.TimezoneOffset">
             <summary>
             The time zone offset.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.Verbose">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.Verbose">
             <summary>
             The verbose flag.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.ExtraParameters">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.ExtraParameters">
             <summary>
             Any extra query parameters for the URL.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.ContextId">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.ContextId">
             <summary>
             The context id.
             </summary>
         </member>
-        <member name="F:Microsoft.Bot.Builder.Luis.LuisRequest.ForceSet">
+        <member name="P:Microsoft.Bot.Builder.Luis.LuisRequest.ForceSet">
             <summary>
             Force setting the parameter when using action binding.
             </summary>
         </member>
-        <member name="M:Microsoft.Bot.Builder.Luis.LuisRequest.#ctor(System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Double},System.Nullable{System.Boolean},System.String,System.String,System.String)">
+        <member name="M:Microsoft.Bot.Builder.Luis.LuisRequest.#ctor(System.String)">
             <summary>
             Constructs an instance of the LuisReqeuest.
             </summary>
             <param name="query"> The text query.</param>
-            <param name="log"> Allow queries to be logged by LUIS.</param>
-            <param name="spellCheck">Turn on spell checking.</param>
-            <param name="staging">Whether or not to use staging.</param>
-            <param name="timezoneOffset"> The time zone offset used for resolving time expressions.</param>
-            <param name="verbose"> Indicates if the <see cref="T:Microsoft.Bot.Builder.Luis.Models.LuisResult"/> should be verbose.</param>
-            <param name="contextId"> The context id for Luis dialog.</param>
-            <param name="forceSet"> Force setting the parameter when using action binding.</param>
-            <param name="extraParameters">Extra URL query parameters.</param>
         </member>
         <member name="M:Microsoft.Bot.Builder.Luis.LuisRequest.BuildUri(Microsoft.Bot.Builder.Luis.ILuisModel)">
             <summary>
