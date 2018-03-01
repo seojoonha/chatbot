@@ -53,7 +53,7 @@ namespace my_first_chatbot
                                 // store last intet data
                                 try
                                 {
-                                    userData.SetProperty<Rootobject>("UserData", obj);
+                                    userData.SetProperty<string>("henock", "working on chatbot");
                                     await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                                 }
                                 catch (Exception e) { }
@@ -94,7 +94,7 @@ namespace my_first_chatbot
 
                 try
                 {
-                    string myUserData = userData.GetProperty<string>("UserData");
+                    string myUserData = userData.GetProperty<string>("henock");
                 }
                 catch (Exception e) { }
 
