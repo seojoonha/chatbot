@@ -6,6 +6,9 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using my_first_chatbot.Helper;
 using System;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace my_first_chatbot
 {
@@ -38,9 +41,12 @@ namespace my_first_chatbot
                     {
                         case "Greeting":
                             {
-                                botresp = @"Hello, Welcome to AAR service! 안녕하세요 AAR을 이용해 주셔서 감사합니다.";
-                                activity.Text = botresp;
-                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                                //botresp = @"Hello, Welcome to AAR service! 안녕하세요 AAR을 이용해 주셔서 감사합니다.";
+                                //activity.Text = botresp;
+                                //await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                                
+                                await Conversation.SendAsync(activity, () => new Dialogs.EchoDialog()); break;
+
                             }
                         case "Goodbye":
                             {
