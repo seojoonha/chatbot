@@ -21,9 +21,7 @@ namespace my_first_chatbot.Dialogs
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-
-
-
+            
             var data = new gifObject().data;
             using (HttpClient client = new HttpClient())
             {
