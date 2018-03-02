@@ -30,17 +30,27 @@ namespace my_first_chatbot.Dialogs
 
             if (message.Text.ToLower().Equals("add", StringComparison.InvariantCultureIgnoreCase))
             {
-                await context.PostAsync("Provider number one: ");
-                context.Wait(MessageRecivedAddNumber1);
+                //await context.PostAsync("Provider number one: ");
+                //context.Wait(MessageRecivedAddNumber1);
+
+                context.Call<Object>(new AddDialog(), AfterChildDialogIsDone);
+
             }
             else if (message.Text.ToLower().Equals("square root", StringComparison.InvariantCultureIgnoreCase))
             {
-                await context.PostAsync("Provider number one: ");
-                context.Wait(MessageRecivedSquareRoot);
+                //await context.PostAsync("Provider number one: ");
+                //context.Wait(MessageRecivedSquareRoot);
+
+                context.Call<Object>(new Squart(), AfterChildDialogIsDone);
             }
             else {
                 context.Wait(MessageReceivedStart);
             }
+        }
+
+        private async Task AfterChildDialogIsDone(IDialogContext context, IAwaitable<object> result)
+        {
+            context.Wait(MessageReceivedStart);
         }
 
         private async Task MessageRecivedSquareRoot(IDialogContext context, IAwaitable<IMessageActivity> result)
