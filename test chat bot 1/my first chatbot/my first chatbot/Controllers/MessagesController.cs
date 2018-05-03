@@ -77,8 +77,13 @@ namespace my_first_chatbot
                             }
                         case "Identity":
                             {
-                                botresp = @"I’m chatbot and I’ll be an acadamic assistant for you :)
-                                안녕하세요 수강신청을 도와드리는 AAR 챗봇입니다.";
+                                botresp = @"I’m chatbot and I’ll be an acadamic assistant for you :) \n 안녕하세요 수강신청을 도와드리는 AAR 챗봇입니다.";
+                                activity.Text = botresp;
+                                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
+                            }
+                        case "State":
+                            {
+                                botresp = @"Thanks for asking, I'm doing fine.";
                                 activity.Text = botresp;
                                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog()); break;
                             }
