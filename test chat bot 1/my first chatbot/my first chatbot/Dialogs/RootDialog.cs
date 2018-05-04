@@ -2,79 +2,63 @@
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System.Collections.Generic;
+using my_first_chatbot.Helper;
 
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private string name;
-        private int age;
-
-        public Task StartAsync(IDialogContext context)
+        public async Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
-
-            return Task.CompletedTask;
+           context.Wait(MessageReceivedAsync);
         }
+
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            /* When MessageReceivedAsync is called, it's passed an IAwaitable<IMessageActivity>. To get the message,
-             *  await the result. */
-            var message = await result;
+            //await context.PostAsync("test 2");
+            ////context.Wait(MessageReceivedAsync);
+            //context.Call(new FirstOptionDialog(), this.FirstOptionDialogResumeAfter);
 
-            //await this.SendWelcomeMessageAsync(context);
+            PromptDialog.Choice<string>(
+                context,
+                this.DisplaySelectedCard,
+                StoredValues.firstOptionsList,
+                "Welcome to AAR service. What can i help you?",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
 
-            context.Call(new FirstOptionDialog(), this.FirstOptionDialogResumeAfter);
+        }
+
+        private async Task DisplaySelectedCard(IDialogContext context, IAwaitable<string> result)
+        {
+            var selectedOption = await result;
+            await context.PostAsync("You said: " + selectedOption);
+
+            await context.PostAsync("Thanks for using AAR!!!. See u soon");
+
+
+            //var message = context.MakeMessage();
+            //var attachment = GetHeroCard();
+            //message.Attachments.Add(attachment);
+
+            //await context.PostAsync(message);
+
+
         }
 
         private async Task FirstOptionDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
-            //await this.SendWelcomeMessageAsync(context);
-            context.Wait(MessageReceivedAsync);
+            //context.Wait(MessageReceivedAsync);
+            //context.Done(this);
+
+            context.PostAsync("on the call back");
+
         }
+        
 
-        private async Task SendWelcomeMessageAsync(IDialogContext context)
-        {
-            await context.PostAsync("Hi, I'm the Basic Multi Dialog bot. Let's get started.");
-
-            context.Call(new NameDialog(), this.NameDialogResumeAfter);
-        }
-
-        private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
-        {
-            try
-            {
-                this.name = await result;
-
-                context.Call(new AgeDialog(this.name), this.AgeDialogResumeAfter);
-            }
-            catch (TooManyAttemptsException)
-            {
-                await context.PostAsync("I'm sorry, I'm having issues understanding you. Let's try again.");
-
-                await this.SendWelcomeMessageAsync(context);
-            }
-        }
-
-        private async Task AgeDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
-        {
-            try
-            {
-                this.age = await result;
-
-                await context.PostAsync($"Your name is { name } and your age is { age }.");
-
-            }
-            catch (TooManyAttemptsException)
-            {
-                await context.PostAsync("I'm sorry, I'm having issues understanding you. Let's try again.");
-            }
-            finally
-            {
-                await this.SendWelcomeMessageAsync(context);
-            }
-        }
     }
 }
