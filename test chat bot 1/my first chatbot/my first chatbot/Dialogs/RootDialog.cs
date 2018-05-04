@@ -12,53 +12,86 @@ namespace my_first_chatbot.Dialogs
     {
         public async Task StartAsync(IDialogContext context)
         {
-           context.Wait(MessageReceivedAsync);
+            context.Wait(MessageReceivedAsync);
         }
 
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            //await context.PostAsync("test 2");
-            ////context.Wait(MessageReceivedAsync);
-            //context.Call(new FirstOptionDialog(), this.FirstOptionDialogResumeAfter);
+            await this.showOptions(context);
+        }
 
+        private async Task showOptions(IDialogContext context)
+        {
             PromptDialog.Choice<string>(
                 context,
-                this.DisplaySelectedCard,
+                this.handelFirstOptionSelection,
                 StoredValues.firstOptionsList,
                 "Welcome to AAR service. What can i help you?",
                 "Ooops, what you wrote is not a valid option, please try again",
                 3,
                 PromptStyle.Auto);
-
         }
 
-        private async Task DisplaySelectedCard(IDialogContext context, IAwaitable<string> result)
+        private async Task handelFirstOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var selectedOption = await result;
-            await context.PostAsync("You said: " + selectedOption);
-
-            await context.PostAsync("Thanks for using AAR!!!. See u soon");
-
-
-            //var message = context.MakeMessage();
-            //var attachment = GetHeroCard();
-            //message.Attachments.Add(attachment);
-
-            //await context.PostAsync(message);
-
-
+            switch (selectedOption)
+            {
+                case StoredValues.course_registraion: { await courseRegistraionOptionsSelected(context); break; }
+                case StoredValues.graduation_requirement: { await for_unimplemented_options(context, StoredValues.graduation_requirement); break; }
+                case StoredValues.graduate_school_info: { await for_unimplemented_options(context, StoredValues.graduate_school_info); break; }
+                case StoredValues.phase_complete_subject: { await for_unimplemented_options(context, StoredValues.phase_complete_subject); break; }
+                case StoredValues.syllabus: { await for_unimplemented_options(context, StoredValues.syllabus); break; }
+                case StoredValues.aggrement_of_terms: { await for_unimplemented_options(context, StoredValues.aggrement_of_terms); break; }
+                case StoredValues.cancel_criteria: { await for_unimplemented_options(context, StoredValues.cancel_criteria); break; }
+            }
         }
 
+        private async Task for_unimplemented_options(IDialogContext context, string selectedOption)
+        {
+            await context.PostAsync("You said: " + selectedOption);
+            await context.PostAsync("Thanks for using AAR!!!. See u soon");
+            await this.showOptions(context);
+        }
+
+        private async Task courseRegistraionOptionsSelected(IDialogContext context)
+        {
+
+            PromptDialog.Choice<string>(
+                context,
+                this.handelCourseRegistrationOptionsSelection,
+                StoredValues.course_registration_options,
+                "Course Registration",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
+        }
+
+        private async Task handelCourseRegistrationOptionsSelection(IDialogContext context, IAwaitable<string> result)
+        {
+            var selectedOption = await result;
+            await context.PostAsync("wow on the second stage =>" + selectedOption);
+
+            switch (selectedOption)
+            {
+                case StoredValues.course_registraion_period: { handelCourseRegistrationPeriodOptionSelection(context); break; }
+                case StoredValues.how_to_enroll: break;
+                case StoredValues.enroll: break;
+                case StoredValues.course_change_period: break;
+                case StoredValues.withdrawal: break;
+            }
+
+        }
+        private async Task handelCourseRegistrationPeriodOptionSelection(IDialogContext context)
+        {
+            await context.PostAsync("Course registration period starts in sep 14 and end on oct 2");
+        }
         private async Task FirstOptionDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
-            //context.Wait(MessageReceivedAsync);
-            //context.Done(this);
-
-            context.PostAsync("on the call back");
-
+            await context.PostAsync("on the call back");
         }
-        
+
 
     }
 }
