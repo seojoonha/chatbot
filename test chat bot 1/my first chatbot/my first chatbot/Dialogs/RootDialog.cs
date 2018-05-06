@@ -86,7 +86,28 @@ namespace my_first_chatbot.Dialogs
         private async Task handelCourseRegistrationPeriodOptionSelection(IDialogContext context)
         {
             await context.PostAsync("Course registration period starts in sep 14 and end on oct 2");
+
+            var message = context.MakeMessage();
+
+            var attachment = getRegistrationInfoCard();
+            message.Attachments.Add(attachment);
+            await context.PostAsync(message);
         }
+
+        private Attachment getRegistrationInfoCard()
+        {
+            var heroCard = new HeroCard
+            {
+                Title = "MJU Registration Period",
+                Subtitle = "Course registration is open for summer semester",
+                Text = "The course registration peroid lasts for only 10 days. It starts from Aug - 15 to Aug - 25",
+                Images = new List<CardImage> { new CardImage("http://www.mju.ac.kr/mbs/mjukr/images/newdesign/img_01_on.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Read More", value: "http://www.mju.ac.kr/mbs/mjukr/index.jsp?SWIFT_SESSION_CHK=false") }
+            };
+
+            return heroCard.ToAttachment();
+        }
+
         private async Task FirstOptionDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
             await context.PostAsync("on the call back");
