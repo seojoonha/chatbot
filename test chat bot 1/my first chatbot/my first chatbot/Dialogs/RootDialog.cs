@@ -4,6 +4,8 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System.Collections.Generic;
 using my_first_chatbot.Helper;
+using my_first_chatbot.Forms;
+using Microsoft.Bot.Builder.FormFlow;
 
 namespace my_first_chatbot.Dialogs
 {
@@ -77,12 +79,13 @@ namespace my_first_chatbot.Dialogs
             {
                 case StoredValues.course_registraion_period: { handelCourseRegistrationPeriodOptionSelection(context); break; }
                 case StoredValues.how_to_enroll: { handelHowToEnrollOptionSelection(context); break; }
-                case StoredValues.enroll: break;
+                case StoredValues.enroll: { handelEnrollOptionSelection(context); break;}
                 case StoredValues.course_change_period: break;
                 case StoredValues.withdrawal: break;
             }
 
         }
+        
         private async Task handelCourseRegistrationPeriodOptionSelection(IDialogContext context)
         {
            
@@ -129,6 +132,17 @@ namespace my_first_chatbot.Dialogs
         private async Task FirstOptionDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
             await context.PostAsync("on the call back");
+        }
+
+
+        private void handelEnrollOptionSelection(IDialogContext context)
+        {
+            //Chain.From(() => FormDialog.FromForm(CourseEnrollForm.BuildEnquiryForm));
+            var myform = new FormDialog<CourseEnrollForm>(new CourseEnrollForm(), CourseEnrollForm.BuildEnquiryForm, FormOptions.PromptInStart, null);
+
+            context.Call<CourseEnrollForm>(myform, FirstOptionDialogResumeAfter);
+
+            //context.Call(form, this.FirstOptionDialogResumeAfter);
         }
 
 
