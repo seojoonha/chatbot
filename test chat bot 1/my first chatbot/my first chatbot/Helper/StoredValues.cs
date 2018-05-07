@@ -17,7 +17,7 @@ namespace my_first_chatbot.Helper
         public const string cancel_criteria = "Cancel class criteria";
 
         // course registration options
-        public const string course_registraion_period = "Course Registration Period";
+        public const string course_registraion_period = "Period";
         public const string how_to_enroll = "How to enroll";
         public const string enroll = "register course";
         public const string course_change_period = "Course Change Period";

@@ -71,12 +71,12 @@ namespace my_first_chatbot.Dialogs
         private async Task handelCourseRegistrationOptionsSelection(IDialogContext context, IAwaitable<string> result)
         {
             var selectedOption = await result;
-            await context.PostAsync("wow on the second stage =>" + selectedOption);
+            //await context.PostAsync("wow on the second stage =>" + selectedOption);
 
             switch (selectedOption)
             {
                 case StoredValues.course_registraion_period: { handelCourseRegistrationPeriodOptionSelection(context); break; }
-                case StoredValues.how_to_enroll: break;
+                case StoredValues.how_to_enroll: { handelHowToEnrollOptionSelection(context); break; }
                 case StoredValues.enroll: break;
                 case StoredValues.course_change_period: break;
                 case StoredValues.withdrawal: break;
@@ -85,13 +85,21 @@ namespace my_first_chatbot.Dialogs
         }
         private async Task handelCourseRegistrationPeriodOptionSelection(IDialogContext context)
         {
+           
+            try
+            {
+                var reply = context.MakeMessage();
+                var attachment = getRegistrationInfoCard();
+                reply.Attachments.Add(attachment);
+                await context.PostAsync(reply);
+            }
+            catch (Exception ee)
+            {
+                string mys = ee.Message;
+                await context.PostAsync("error found on redering =>"+ ee.Message);
+            }
             await context.PostAsync("Course registration period starts in sep 14 and end on oct 2");
 
-            var message = context.MakeMessage();
-
-            var attachment = getRegistrationInfoCard();
-            message.Attachments.Add(attachment);
-            await context.PostAsync(message);
         }
 
         private Attachment getRegistrationInfoCard()
@@ -106,6 +114,16 @@ namespace my_first_chatbot.Dialogs
             };
 
             return heroCard.ToAttachment();
+        }
+
+        private async Task handelHowToEnrollOptionSelection(IDialogContext context)
+        {
+            string howtoenroll = "1. login to myiweb" + Environment.NewLine;
+            howtoenroll += "2. goto course selection page" + Environment.NewLine;
+            howtoenroll += "3. Select the course you want to register and add it to the course list" + Environment.NewLine;
+            howtoenroll += "4. save and exit the webpage" + Environment.NewLine;
+
+            await context.PostAsync(howtoenroll);
         }
 
         private async Task FirstOptionDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
