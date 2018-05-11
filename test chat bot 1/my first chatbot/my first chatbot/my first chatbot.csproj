@@ -156,6 +156,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\AgeDialog.cs" />
+    <Compile Include="Dialogs\CourseRegistrationDialog.cs" />
     <Compile Include="Dialogs\FirstOptions.cs" />
     <Compile Include="Dialogs\NameDialog.cs" />
     <Compile Include="Dialogs\FirstOptionDialog.cs" />

@@ -20,9 +20,127 @@ namespace my_first_chatbot.Dialogs
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            await this.showOptions(context);
+            await showWelcomeOptions(context);
         }
 
+        private async Task showWelcomeOptions(IDialogContext context) {
+            PromptDialog.Choice<string>(
+                context,
+                handelWelcomeOptionSelected,
+                StoredValues._welcomeOptionsList,
+                "Welcome to the ICT department bot service. What can i help you?",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
+        }
+        private async Task handelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        {
+            var value = await result;
+
+            switch (value.ToString()) {
+                case StoredValues._courseRegistration: await courseRegistraionOptionSelected(context); break;
+                case StoredValues._courseInformation: await courseInfoOptionSelected(context); break;
+                case StoredValues._credits: await creditsOptionSelected(context); break;
+                case StoredValues._others: await otherOptionSelected(context); break;
+            }
+
+        }
+
+        private async Task otherOptionSelected(IDialogContext context)
+        {
+            PromptDialog.Choice<string>(
+                context,
+                handelOtherOptionSelection,
+                StoredValues._othersOption,
+                "Others",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
+        }
+
+        private async Task handelOtherOptionSelection(IDialogContext context, IAwaitable<string> result)
+        {
+            var value = await result;
+            await context.PostAsync("the selected value is " + value.ToString() + "information will be added latter");
+            await showWelcomeOptions(context);
+        }
+
+        private async Task creditsOptionSelected(IDialogContext context)
+        {
+            PromptDialog.Choice<string>(
+                context,
+                handelCreditOptionSelection,
+                StoredValues._creditsOptions,
+                "Credits Info.",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
+        }
+        private async Task handelCreditOptionSelection(IDialogContext context, IAwaitable<string> result)
+        {
+            var value = await result;
+            await context.PostAsync("the selected value is " + value.ToString() + "information will be added latter");
+            await showWelcomeOptions(context);
+        }
+
+        private async Task courseInfoOptionSelected(IDialogContext context)
+        {
+            try
+            {
+                PromptDialog.Choice<string>(
+                context,
+                handelCourseInfoOptionSelection,
+                StoredValues._courseInfoOptions,
+                "Course Info.",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
+            }
+            catch (Exception eeee) {
+                string message = eeee.Message;
+            }
+        }
+        private async Task handelCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
+        {
+            var value = await result;
+            await context.PostAsync("the selected value is " + value.ToString() + "information will be added latter");
+            await showWelcomeOptions(context);
+        }
+                        
+        private async Task courseRegistraionOptionSelected(IDialogContext context)
+        {
+            PromptDialog.Choice<string>(
+                context,
+                handelCourseRegistrationOptionSelection,
+                StoredValues._courseRegistrationOptions,
+                "Course Registration",
+                "Ooops, what you wrote is not a valid option, please try again",
+                3,
+                PromptStyle.Auto);
+
+        }        
+        private async Task handelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
+        {
+            var value = await result;
+            await context.PostAsync("the selected value is " + value.ToString()+"information will be added latter");           
+            await showWelcomeOptions(context);          
+        }
+
+        private async Task forUnimplementedOptions(IDialogContext context, string selectedOption)
+        {
+            await context.PostAsync("You said: " + selectedOption);
+            await context.PostAsync("Thanks for using AAR!!!. See u soon");
+
+            await showWelcomeOptions(context);
+            //context.Wait(MessageReceivedAsync);
+        }
+
+
+        //=================================================================================================================
+        //=================================================================================================================
+        //=================================================================================================================
+        //=================================================================================================================
+        //=================================================================================================================
         private async Task showOptions(IDialogContext context)
         {
             PromptDialog.Choice<string>(
