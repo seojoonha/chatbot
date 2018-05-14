@@ -5,6 +5,7 @@ using Microsoft.Bot.Connector;
 using System.Collections.Generic;
 using my_first_chatbot.Helper;
 using my_first_chatbot.Forms;
+using my_first_chatbot.MessageReply;
 using Microsoft.Bot.Builder.FormFlow;
 
 namespace my_first_chatbot.Dialogs
@@ -23,7 +24,7 @@ namespace my_first_chatbot.Dialogs
             await showWelcomeOptions(context);
         }
 
-        private async Task showWelcomeOptions(IDialogContext context) {
+        public static async Task showWelcomeOptions(IDialogContext context) {
             PromptDialog.Choice<string>(
                 context,
                 handelWelcomeOptionSelected,
@@ -33,15 +34,15 @@ namespace my_first_chatbot.Dialogs
                 3,
                 PromptStyle.Auto);
         }
-        private async Task handelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task handelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 
             switch (value.ToString()) {
-                case StoredValues._courseRegistration: await courseRegistraionOptionSelected(context); break;
-                case StoredValues._courseInformation: await courseInfoOptionSelected(context); break;
-                case StoredValues._credits: await creditsOptionSelected(context); break;
-                case StoredValues._others: await otherOptionSelected(context); break;
+                case StoredValues._courseRegistration: await aboutCourseRegistration.courseRegistraionOptionSelected(context); break;
+                //case StoredValues._courseInformation: await courseInfoOptionSelected(context); break;
+                //case StoredValues._credits: await creditsOptionSelected(context); break;
+                //case StoredValues._others: await otherOptionSelected(context); break;
             }
 
         }
@@ -107,24 +108,7 @@ namespace my_first_chatbot.Dialogs
             await showWelcomeOptions(context);
         }
                         
-        private async Task courseRegistraionOptionSelected(IDialogContext context)
-        {
-            PromptDialog.Choice<string>(
-                context,
-                handelCourseRegistrationOptionSelection,
-                StoredValues._courseRegistrationOptions,
-                "Course Registration",
-                "Ooops, what you wrote is not a valid option, please try again",
-                3,
-                PromptStyle.Auto);
-
-        }        
-        private async Task handelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
-        {
-            var value = await result;
-            await context.PostAsync("the selected value is " + value.ToString()+"information will be added latter");           
-            await showWelcomeOptions(context);          
-        }
+        
 
         private async Task forUnimplementedOptions(IDialogContext context, string selectedOption)
         {
