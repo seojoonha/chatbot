@@ -169,6 +169,8 @@
     </Compile>
     <Compile Include="Helper\LUIS.cs" />
     <Compile Include="Helper\StoredValues.cs" />
+    <Compile Include="MessageReply\aboutOthers.cs" />
+    <Compile Include="MessageReply\aboutCredits.cs" />
     <Compile Include="MessageReply\aboutCourseRegistration.cs" />
     <Compile Include="MessageReply\aboutCourseInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
