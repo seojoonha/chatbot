@@ -24,10 +24,10 @@ namespace my_first_chatbot.Helper
         // 과목 정보 선택시 메뉴     course info options
         public const string _openedCourses = "이번학기 개설과목";   //myiweb에 있는데 우짜지..
         public const string _syllabus = "강의계획서";                //이것도..
-        public const string _lectureInfo = "강의 정보";             //이것도..
+        public const string _lecturerInfo = "강사 정보";             //이것도..
         public const string _mandatorySubject = "필수과목 정보";      //이건 어떻게 가능
         public const string _prerequisite = "선수과목 정보";          //이것도 탐색
-        public static List<string> _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lectureInfo, _mandatorySubject, _prerequisite };
+        public static List<string> _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite };
 
         // 학점 관리 선택시 메뉴     credit options
         public const string _currentCredits = "나의 이수학점";        //개인별 정보 필요

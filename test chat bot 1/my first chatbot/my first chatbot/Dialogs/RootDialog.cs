@@ -21,37 +21,37 @@ namespace my_first_chatbot.Dialogs
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            await showWelcomeOptions(context);
+            await ShowWelcomeOptions(context);
         }
 
-        public static async Task showWelcomeOptions(IDialogContext context) {
+        public static async Task ShowWelcomeOptions(IDialogContext context) {
             PromptDialog.Choice<string>(
                 context,
-                handelWelcomeOptionSelected,
+                HandelWelcomeOptionSelected,
                 StoredValues._welcomeOptionsList,
                 "Welcome to the ICT department bot service. What can i help you?",
                 "Ooops, what you wrote is not a valid option, please try again",
                 3,
                 PromptStyle.Auto);
         }
-        public static async Task handelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 
             switch (value.ToString()) {
-                case StoredValues._courseRegistration: await aboutCourseRegistration.courseRegistraionOptionSelected(context); break;
-                //case StoredValues._courseInformation: await courseInfoOptionSelected(context); break;
-                //case StoredValues._credits: await creditsOptionSelected(context); break;
-                //case StoredValues._others: await otherOptionSelected(context); break;
+                case StoredValues._courseRegistration:  await aboutCourseRegistration.CourseRegistraionOptionSelected(context);     break;
+                case StoredValues._courseInformation:   await aboutCourseInfo.CourseInfoOptionSelected(context);                    break;
+                //case StoredValues._credits:           await CreditsOptionSelected(context); break;
+                //case StoredValues._others:            await OtherOptionSelected(context); break;
             }
 
         }
 
-        private async Task otherOptionSelected(IDialogContext context)
+        private async Task OtherOptionSelected(IDialogContext context)
         {
             PromptDialog.Choice<string>(
                 context,
-                handelOtherOptionSelection,
+                HandelOtherOptionSelection,
                 StoredValues._othersOption,
                 "Others",
                 "Ooops, what you wrote is not a valid option, please try again",
@@ -59,38 +59,38 @@ namespace my_first_chatbot.Dialogs
                 PromptStyle.Auto);
         }
 
-        private async Task handelOtherOptionSelection(IDialogContext context, IAwaitable<string> result)
+        private async Task HandelOtherOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
             await context.PostAsync("the selected value is " + value.ToString() + "information will be added latter");
-            await showWelcomeOptions(context);
+            await ShowWelcomeOptions(context);
         }
 
-        private async Task creditsOptionSelected(IDialogContext context)
+        private async Task CreditsOptionSelected(IDialogContext context)
         {
             PromptDialog.Choice<string>(
                 context,
-                handelCreditOptionSelection,
+                HandelCreditOptionSelection,
                 StoredValues._creditsOptions,
                 "Credits Info.",
                 "Ooops, what you wrote is not a valid option, please try again",
                 3,
                 PromptStyle.Auto);
         }
-        private async Task handelCreditOptionSelection(IDialogContext context, IAwaitable<string> result)
+        private async Task HandelCreditOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
             await context.PostAsync("the selected value is " + value.ToString() + "information will be added latter");
-            await showWelcomeOptions(context);
+            await ShowWelcomeOptions(context);
         }
 
-        private async Task courseInfoOptionSelected(IDialogContext context)
+        private async Task CourseInfoOptionSelected(IDialogContext context)
         {
             try
             {
                 PromptDialog.Choice<string>(
                 context,
-                handelCourseInfoOptionSelection,
+                HandelCourseInfoOptionSelection,
                 StoredValues._courseInfoOptions,
                 "Course Info.",
                 "Ooops, what you wrote is not a valid option, please try again",
@@ -101,21 +101,21 @@ namespace my_first_chatbot.Dialogs
                 string message = eeee.Message;
             }
         }
-        private async Task handelCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
+        private async Task HandelCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
             await context.PostAsync("the selected value is " + value.ToString() + "information will be added latter");
-            await showWelcomeOptions(context);
+            await ShowWelcomeOptions(context);
         }
                         
         
 
-        private async Task forUnimplementedOptions(IDialogContext context, string selectedOption)
+        private async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)
         {
             await context.PostAsync("You said: " + selectedOption);
             await context.PostAsync("Thanks for using AAR!!!. See u soon");
 
-            await showWelcomeOptions(context);
+            await ShowWelcomeOptions(context);
             //context.Wait(MessageReceivedAsync);
         }
 

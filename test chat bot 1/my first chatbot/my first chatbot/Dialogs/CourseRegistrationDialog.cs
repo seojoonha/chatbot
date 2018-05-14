@@ -21,7 +21,7 @@ namespace my_first_chatbot.Dialogs
         {
             PromptDialog.Choice(
                 context,
-                this.handelCourseRegistrationOptionSelection,
+                this.HandelCourseRegistrationOptionSelection,
                 StoredValues._courseRegistrationOptions,
                 "Course Registration",
                 "Ooops, what you wrote is not a valid option, please try again",
@@ -29,7 +29,7 @@ namespace my_first_chatbot.Dialogs
                 PromptStyle.Auto);
         }
 
-        private async Task handelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
+        private async Task HandelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 

@@ -12,19 +12,19 @@ namespace my_first_chatbot.MessageReply
 {
     public static class aboutCourseRegistration
     {
-        public static async Task courseRegistraionOptionSelected(IDialogContext context)
+        public static async Task CourseRegistraionOptionSelected(IDialogContext context)
         {
             PromptDialog.Choice<string>(
                 context,
-                handelCourseRegistrationOptionSelection,
+                HandelCourseRegistrationOptionSelection,
                 StoredValues._courseRegistrationOptions,
                 "수강 신청",                                                                                        //Course Registration
-                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : courseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
                 PromptStyle.Auto);
             
         }
-        public static async Task handelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
             switch (value.ToString())                                                               //ToString이 없어도 되려나..?
@@ -35,7 +35,7 @@ namespace my_first_chatbot.MessageReply
                 case StoredValues._terms:           await Reply_terms(context);         break;
             }
 
-            await RootDialog.showWelcomeOptions(context);                                           //Return To Start
+            await RootDialog.ShowWelcomeOptions(context);                                           //Return To Start
         }
 
         
