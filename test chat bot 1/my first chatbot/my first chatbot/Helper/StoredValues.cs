@@ -7,40 +7,41 @@ namespace my_first_chatbot.Helper
 {
     public static class StoredValues
     {
-        // welcome options
-        public const string _courseRegistration = "Course Registration";
-        public const string _courseInformation = "Course Information";
-        public const string _credits = "Credits";
-        public const string _others = "Others";
-        public static List<string> _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation , _credits, _others };
+        // 기본 메뉴    welcome options
+        public const string _courseRegistration = "수강 신청";
+        public const string _courseInformation = "과목 정보";
+        public const string _credits = "학점 관리";
+        public const string _others = "기타 정보";
+        public static List<string> _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others };
 
-        // course registration options
-        public const string _howToDoIt = "How to register";
-        public const string _schedule = "Schedule";
-        public const string _regulation = "Regulation";
-        public const string _terms = "Terms";
-        public static List<string> _courseRegistrationOptions = new List<string> {_howToDoIt,_schedule,_regulation,_terms };
+        // 수강 신청 선택시 메뉴     course registration options
+        public const string _howToDoIt = "수강신청 방법";             //웹 연결
+        public const string _schedule = "수강신청 일정";              //웹 연결
+        public const string _regulation = "수강신청 규정";            //웹 연결
+        public const string _terms = "수강신청 용어";                 //우리가 정의? 혹은 웹 연결?
+        public static List<string> _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms };
 
-        // course info options
-        public const string _openedCourses = "Opened Courses";
-        public const string _syllabus = "Syllabus";
-        public const string _lectureInfo = "Lecture info";
-        public const string _mandatorySubject = "Mandatory Subject";
-        public const string _prerequisite = "Prerequisite";
-        public static List<string> _courseInfoOptions = new List<string> { _openedCourses,_syllabus,_lectureInfo,_mandatorySubject,_prerequisite };
+        // 과목 정보 선택시 메뉴     course info options
+        public const string _openedCourses = "이번학기 개설과목";   //myiweb에 있는데 우짜지..
+        public const string _syllabus = "강의계획서";                //이것도..
+        public const string _lectureInfo = "강의 정보";             //이것도..
+        public const string _mandatorySubject = "필수과목 정보";      //이건 어떻게 가능
+        public const string _prerequisite = "선수과목 정보";          //이것도 탐색
+        public static List<string> _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lectureInfo, _mandatorySubject, _prerequisite };
 
-        // credit options
-        public const string _currentCredits = "Current Credits";
-        public const string _majorCredits = "Major Credits";
-        public const string _electiveCredits = "Elective Credits";
+        // 학점 관리 선택시 메뉴     credit options
+        public const string _currentCredits = "나의 이수학점";        //개인별 정보 필요
+        public const string _majorCredits = "전공 학점";
+        public const string _electiveCredits = "선택 학점";
         public static List<string> _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits };
 
-        //others options
-        public const string _leaveOrRejoin = "Leave Or Rejoin";
-        public const string _scholarship = "Scholarship";
-        public static List<string> _othersOption = new List<string> { _leaveOrRejoin,_scholarship};
+        // 기타 정보 선택시 메뉴     others options
+        public const string _leaveOrRejoin = "휴학 및 복학";         //웹 연결
+        public const string _scholarship = "장학금 관련";            //웹 연결
+        public static List<string> _othersOption = new List<string> { _leaveOrRejoin, _scholarship };
 
         //======================================================================================================
+
 
         public const string course_registraion = "Course Reg.";
         public const string graduation_requirement = "Graduation Requirement";
