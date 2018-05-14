@@ -30,8 +30,8 @@ namespace my_first_chatbot.Dialogs
                 context,
                 HandelWelcomeOptionSelected,
                 StoredValues._welcomeOptionsList,
-                "Welcome to the ICT department bot service. What can i help you?",
-                "Ooops, what you wrote is not a valid option, please try again",
+                "안녕하세요 AAR3입니다. 무엇을 도와드릴까요?",           //선택시 출력되는 메시지 정의
+                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 3,
                 PromptStyle.Auto);
         }
