@@ -18,7 +18,7 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandelOtherOptionSelection,
                 StoredValues._othersOption,
-                "기타 정보",                                                                                 //Course Registration
+                "기타 정보를 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                 //Course Registration
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : OtherOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
                 PromptStyle.Auto);
@@ -33,7 +33,7 @@ namespace my_first_chatbot.MessageReply
                 case StoredValues._scholarship:            await Reply_scholarship(context);          break;    
             }
 
-            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
         }
 
 

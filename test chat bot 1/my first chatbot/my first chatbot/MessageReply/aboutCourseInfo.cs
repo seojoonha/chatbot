@@ -18,7 +18,7 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandelCourseInfoOptionSelection,
                 StoredValues._courseInfoOptions,
-                "강의 정보",                                                                                 //Course Registration
+                "강의 정보를 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                 //Course Registration
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
                 PromptStyle.Auto);
@@ -36,7 +36,7 @@ namespace my_first_chatbot.MessageReply
                 case StoredValues._prerequisite:        await Reply_prerequisite(context);      break;
             }
 
-            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
         }
 
 
