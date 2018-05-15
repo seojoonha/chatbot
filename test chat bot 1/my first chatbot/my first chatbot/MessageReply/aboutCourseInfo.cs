@@ -29,11 +29,13 @@ namespace my_first_chatbot.MessageReply
             var value = await result;
             switch (value.ToString())                                                              
             {
-                case StoredValues._openedCourses:       await Reply_openedCourses(context);     break;      
-                case StoredValues._syllabus:            await Reply_syllabus(context);          break;    
-                case StoredValues._lecturerInfo:         await Reply_lecturerInfo(context);       break;
-                case StoredValues._mandatorySubject:    await Reply_mandatorySubject(context);  break;
-                case StoredValues._prerequisite:        await Reply_prerequisite(context);      break;
+                case StoredValues._openedCourses:       await Reply_openedCourses(context);             break;      
+                case StoredValues._syllabus:            await Reply_syllabus(context);                  break;    
+                case StoredValues._lecturerInfo:        await Reply_lecturerInfo(context);              break;
+                case StoredValues._mandatorySubject:    await Reply_mandatorySubject(context);          break;
+                case StoredValues._prerequisite:        await Reply_prerequisite(context);              break;
+                case StoredValues._gotostart:           await RootDialog.ShowWelcomeOptions(context);   break;
+                case StoredValues._help:                await aboutHelp.HelpOptionSelected(context);    break;
             }
 
             //await RootDialog.ShowWelcomeOptions(context);           //Return To Start

@@ -34,6 +34,7 @@ namespace my_first_chatbot.MessageReply
                 case StoredValues._introduction:                    await Reply_introduction(context);                  break;
                 case StoredValues._requestInformationCorrection:    await Reply_requestInformationCorrection(context);  break;
                 case StoredValues._contactMaster:                   await Reply_contactMaster(context);                 break;
+                case StoredValues._gotostart:                       await RootDialog.ShowWelcomeOptions(context);       break;
             }
 
         }
@@ -46,10 +47,9 @@ namespace my_first_chatbot.MessageReply
         {
             var activity = context.MakeMessage();
             activity.Text = $"AAR3에 대한 안내입니다.\n" +
-                            $"AAR3에 대한 안내입니다.\n" +
-                            $"AAR3에 대한 안내입니다.\n" +
-                            $"AAR3에 대한 안내입니다.\n" +
-                            $"AAR3에 대한 안내입니다.\n" +
+                            $"AAR3는 학생들의 수강신청 및 학점관리를 도울 수 있습니다..\n" +
+                            $"궁금하신 정보를 선택하시면 해당 정보페이지로 연결됩니다.\n" +
+                            $"선택 도중에 처음으로 돌아가고 싶으시면 처음으로를 눌러주세요.\n" +
                             $"추후 추가예정 입니다.\n";
             await context.PostAsync(activity);
         }

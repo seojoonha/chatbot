@@ -29,9 +29,11 @@ namespace my_first_chatbot.MessageReply
             var value = await result;
             switch (value.ToString())                                                              
             {
-                case StoredValues._currentCredits:          await Reply_currentCredits(context);        break;      
-                case StoredValues._majorCredits:            await Reply_majorCredits(context);          break;    
-                case StoredValues._electiveCredits:         await Reply_electiveCredits(context);       break;
+                case StoredValues._currentCredits:          await Reply_currentCredits(context);            break;      
+                case StoredValues._majorCredits:            await Reply_majorCredits(context);              break;    
+                case StoredValues._electiveCredits:         await Reply_electiveCredits(context);           break;
+                case StoredValues._gotostart:               await RootDialog.ShowWelcomeOptions(context);   break;
+                case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
             }
 
             //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
