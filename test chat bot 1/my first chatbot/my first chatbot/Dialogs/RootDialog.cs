@@ -21,7 +21,19 @@ namespace my_first_chatbot.Dialogs
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            await ShowWelcomeOptions(context);
+            //This is from webapp code
+            //buttons = new string[] { "처음으로", "도움말" },           //goto start, help
+
+            var value = await result;
+
+            switch (value.Text.ToString())
+            {
+                case StoredValues._gotostart:   await ShowWelcomeOptions(context);          break;
+                case StoredValues._help:        await aboutHelp.HelpOptionSelected(context);             break;
+                default:                        await ShowWelcomeOptions(context);          break;
+            }
+
+            //await ShowWelcomeOptions(context);
         }
 
 
@@ -30,7 +42,7 @@ namespace my_first_chatbot.Dialogs
                 context,
                 HandelWelcomeOptionSelected,
                 StoredValues._welcomeOptionsList,
-                "안녕하세요 AAR3입니다. 무엇을 도와드릴까요?",           //선택시 출력되는 메시지 정의
+                "안녕하세요 AAR3입니다. 원하시는 정보를 선택해 주세요",           //선택시 출력되는 메시지 정의
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 3,
                 PromptStyle.Auto);
@@ -52,6 +64,7 @@ namespace my_first_chatbot.Dialogs
         }
         
 
+
         private static async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)       //그 외 말을 했을 때
         {
             var activity = context.MakeMessage();
@@ -61,6 +74,7 @@ namespace my_first_chatbot.Dialogs
         }
 
 
+        
 
 
 

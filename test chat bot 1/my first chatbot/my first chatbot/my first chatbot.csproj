@@ -157,7 +157,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\AgeDialog.cs" />
-    <Compile Include="Dialogs\CourseRegistrationDialog.cs" />
     <Compile Include="Dialogs\FirstOptions.cs" />
     <Compile Include="Dialogs\NameDialog.cs" />
     <Compile Include="Dialogs\FirstOptionDialog.cs" />
@@ -169,6 +168,7 @@
     </Compile>
     <Compile Include="Helper\LUIS.cs" />
     <Compile Include="Helper\StoredValues.cs" />
+    <Compile Include="MessageReply\aboutHelp.cs" />
     <Compile Include="MessageReply\aboutOthers.cs" />
     <Compile Include="MessageReply\aboutCredits.cs" />
     <Compile Include="MessageReply\aboutCourseRegistration.cs" />
@@ -183,6 +183,7 @@
     <Content Include="apiapp.json" />
     <None Include="Properties\PublishProfiles\aar-mju-af5b - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\aar-mju-af5b - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\aar3 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\myfirstchatbot20171021102052 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
