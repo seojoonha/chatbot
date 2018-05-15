@@ -29,8 +29,10 @@ namespace my_first_chatbot.MessageReply
             var value = await result;
             switch (value.ToString())                                                              
             {
-                case StoredValues._leaveOrRejoin:          await Reply_leaveOrRejoin(context);        break;      
-                case StoredValues._scholarship:            await Reply_scholarship(context);          break;    
+                case StoredValues._leaveOrRejoin:           await Reply_leaveOrRejoin(context);             break;      
+                case StoredValues._scholarship:             await Reply_scholarship(context);               break;
+                case StoredValues._gotostart:               await RootDialog.ShowWelcomeOptions(context);   break;
+                case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
             }
 
             //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
