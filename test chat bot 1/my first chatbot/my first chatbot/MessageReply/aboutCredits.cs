@@ -36,7 +36,7 @@ namespace my_first_chatbot.MessageReply
                 case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
             }
 
-            //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
         }
 
 

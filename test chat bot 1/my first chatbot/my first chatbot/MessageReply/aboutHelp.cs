@@ -36,7 +36,7 @@ namespace my_first_chatbot.MessageReply
                 case StoredValues._contactMaster:                   await Reply_contactMaster(context);                 break;
                 case StoredValues._gotostart:                       await RootDialog.ShowWelcomeOptions(context);       break;
             }
-
+            await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
         }
 
 

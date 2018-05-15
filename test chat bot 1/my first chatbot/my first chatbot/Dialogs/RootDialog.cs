@@ -28,16 +28,17 @@ namespace my_first_chatbot.Dialogs
 
             switch (value.Text.ToString())
             {
-                case StoredValues._gotostart:   await ShowWelcomeOptions(context);          break;
-                case StoredValues._help:        await aboutHelp.HelpOptionSelected(context);             break;
-                default:                        await ShowWelcomeOptions(context);          break;
+                case StoredValues._gotostart: await ShowWelcomeOptions(context); break;
+                case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
+                default: await ShowWelcomeOptions(context); break;
             }
 
             //await ShowWelcomeOptions(context);
         }
 
 
-        public static async Task ShowWelcomeOptions(IDialogContext context) {
+        public static async Task ShowWelcomeOptions(IDialogContext context)
+        {
             PromptDialog.Choice<string>(
                 context,
                 HandelWelcomeOptionSelected,
@@ -53,17 +54,18 @@ namespace my_first_chatbot.Dialogs
         {
             var value = await result;
 
-            switch (value.ToString()) {
-                case StoredValues._courseRegistration:  await aboutCourseRegistration.CourseRegistraionOptionSelected(context);     break;
-                case StoredValues._courseInformation:   await aboutCourseInfo.CourseInfoOptionSelected(context);                    break;
-                case StoredValues._credits:             await aboutCredits.CreditsOptionSelected(context);                          break;
-                case StoredValues._others:              await aboutOthers.OtherOptionSelected(context);                             break;
-                case StoredValues._help:                await aboutHelp.HelpOptionSelected(context);                                break;
-                default:                                await ForUnimplementedOptions(context, value);                              break;
+            switch (value.ToString())
+            {
+                case StoredValues._courseRegistration: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
+                case StoredValues._courseInformation: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
+                case StoredValues._credits: await aboutCredits.CreditsOptionSelected(context); break;
+                case StoredValues._others: await aboutOthers.OtherOptionSelected(context); break;
+                case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
+                default: await ForUnimplementedOptions(context, value); break;
             }
 
         }
-        
+
 
 
         private static async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)       //그 외 말을 했을 때
@@ -74,8 +76,8 @@ namespace my_first_chatbot.Dialogs
             await context.PostAsync(activity);
         }
 
-
         
+
 
 
 

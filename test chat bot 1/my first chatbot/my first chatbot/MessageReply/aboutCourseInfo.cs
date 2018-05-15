@@ -27,18 +27,18 @@ namespace my_first_chatbot.MessageReply
         public static async Task HandelCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
-            switch (value.ToString())                                                              
+            switch (value.ToString())
             {
-                case StoredValues._openedCourses:       await Reply_openedCourses(context);             break;      
-                case StoredValues._syllabus:            await Reply_syllabus(context);                  break;    
-                case StoredValues._lecturerInfo:        await Reply_lecturerInfo(context);              break;
-                case StoredValues._mandatorySubject:    await Reply_mandatorySubject(context);          break;
-                case StoredValues._prerequisite:        await Reply_prerequisite(context);              break;
-                case StoredValues._gotostart:           await RootDialog.ShowWelcomeOptions(context);   break;
-                case StoredValues._help:                await aboutHelp.HelpOptionSelected(context);    break;
+                case StoredValues._openedCourses: await Reply_openedCourses(context); break;
+                case StoredValues._syllabus: await Reply_syllabus(context); break;
+                case StoredValues._lecturerInfo: await Reply_lecturerInfo(context); break;
+                case StoredValues._mandatorySubject: await Reply_mandatorySubject(context); break;
+                case StoredValues._prerequisite: await Reply_prerequisite(context); break;
+                case StoredValues._gotostart: await RootDialog.ShowWelcomeOptions(context); break;
+                case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
             }
 
-            //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
         }
 
 
@@ -113,7 +113,7 @@ namespace my_first_chatbot.MessageReply
             var activity = context.MakeMessage();
             activity.Text = $"필수과목 정보에 대한 안내입니다.\n" +
                             $"추후 추가예정 입니다.\n";
-            
+
             await context.PostAsync(activity);
         }
 
