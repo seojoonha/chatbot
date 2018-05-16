@@ -5,7 +5,8 @@ using System.Web;
 
 namespace my_first_chatbot.Helper
 {
-    public static class StoredValues
+    [Serializable]
+    public  class StoredValues2
     {
         // 기본 메뉴    welcome options
         public const string _courseRegistration                 = "수강 신청";
