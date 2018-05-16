@@ -17,7 +17,7 @@ namespace my_first_chatbot.MessageReply
             PromptDialog.Choice<string>(
                 context,
                 HandelCreditsOptionSelection,
-                StoredValues._creditsOptions,
+                RootDialog._storedvalues._creditsOptions,
                 "학점 관리를 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                 //Course Registration
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
@@ -27,14 +27,21 @@ namespace my_first_chatbot.MessageReply
         public static async Task HandelCreditsOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
-            switch (value.ToString())                                                              
-            {
-                case StoredValues._currentCredits:          await Reply_currentCredits(context);            break;      
-                case StoredValues._majorCredits:            await Reply_majorCredits(context);              break;    
-                case StoredValues._electiveCredits:         await Reply_electiveCredits(context);           break;
-                case StoredValues._gotostart:               await RootDialog.ShowWelcomeOptions(context);   break;
-                case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
-            }
+
+            if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
+            else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
+            else if (value.ToString() == RootDialog._storedvalues._electiveCredits) await Reply_electiveCredits(context);
+            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+
+            //switch (value.ToString())                                                              
+            //{
+            //    case StoredValues._currentCredits:          await Reply_currentCredits(context);            break;      
+            //    case StoredValues._majorCredits:            await Reply_majorCredits(context);              break;    
+            //    case StoredValues._electiveCredits:         await Reply_electiveCredits(context);           break;
+            //    case StoredValues._gotostart:               await RootDialog.ShowWelcomeOptions(context);   break;
+            //    case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
+            //}
 
             await RootDialog.ShowWelcomeOptions(context);           //Return To Start
         }
@@ -69,6 +76,6 @@ namespace my_first_chatbot.MessageReply
             await context.PostAsync(activity);
         }
 
-        
+
     }
 }

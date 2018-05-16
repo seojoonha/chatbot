@@ -17,7 +17,7 @@ namespace my_first_chatbot.MessageReply
             PromptDialog.Choice<string>(
                 context,
                 HandelHelpOptionSelected,
-                StoredValues._helpOptionsList,
+                RootDialog._storedvalues._helpOptionsList,
                 "AAR3 도움말입니다. 무엇을 도와드릴까요?",           //선택시 출력되는 메시지 정의
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : ShowHelpOptions",    //오류시 표시될 메시지 정의
                 3,
@@ -29,13 +29,18 @@ namespace my_first_chatbot.MessageReply
         {
             var value = await result;
 
-            switch (value.ToString())
-            {
-                case StoredValues._introduction:                    await Reply_introduction(context);                  break;
-                case StoredValues._requestInformationCorrection:    await Reply_requestInformationCorrection(context);  break;
-                case StoredValues._contactMaster:                   await Reply_contactMaster(context);                 break;
-                case StoredValues._gotostart:                       await RootDialog.ShowWelcomeOptions(context);       break;
-            }
+            if(value.ToString()==RootDialog._storedvalues._introduction) await Reply_introduction(context); 
+            else if (value.ToString() == RootDialog._storedvalues._requestInformationCorrection) await Reply_requestInformationCorrection(context);
+            else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context); 
+            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+
+            //switch (value.ToString())
+            //{
+            //    case StoredValues._introduction:                    await Reply_introduction(context);                  break;
+            //    case StoredValues._requestInformationCorrection:    await Reply_requestInformationCorrection(context);  break;
+            //    case StoredValues._contactMaster:                   await Reply_contactMaster(context);                 break;
+            //    case StoredValues._gotostart:                       await RootDialog.ShowWelcomeOptions(context);       break;
+            //}
             await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
         }
 

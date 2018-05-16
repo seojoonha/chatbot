@@ -7,15 +7,25 @@ using my_first_chatbot.Helper;
 using my_first_chatbot.Forms;
 using my_first_chatbot.MessageReply;
 using Microsoft.Bot.Builder.FormFlow;
+using my_first_chatbot.Helper.StoredStringValues;
 
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        public static StoredStringValuesMaster _storedvalues ;
         public async Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
+            try
+            {
+                context.Wait(MessageReceivedAsync);
+                //_storedvalues = new StoredValues_kr();
+                _storedvalues = new StoredValues_en();
+            }
+            catch (Exception ee) {
+                string msg = ee.Message;
+            }
         }
 
 
@@ -24,15 +34,24 @@ namespace my_first_chatbot.Dialogs
             //This is from webapp code
             //buttons = new string[] { "처음으로", "도움말" },           //goto start, help
 
-            var value = await result;
-
-            switch (value.Text.ToString())
+            try
             {
-                case StoredValues._gotostart: await ShowWelcomeOptions(context); break;
-                case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
-                default: await ShowWelcomeOptions(context); break;
-            }
+                var value = await result;
 
+                if (value.Text.ToString() == _storedvalues._gotostart) await ShowWelcomeOptions(context);
+                else if (value.Text.ToString() == _storedvalues._help) await ShowWelcomeOptions(context);
+                else await ShowWelcomeOptions(context);
+
+                //switch (value.Text.ToString())
+                //{
+                //    case _storedvalues._gotostart: await ShowWelcomeOptions(context); break;
+                //    case _storedvalues._help: await aboutHelp.HelpOptionSelected(context); break;
+                //    default: await ShowWelcomeOptions(context); break;
+                //}
+            }
+            catch (Exception ee) {
+                string msg = ee.Message;
+            }
             //await ShowWelcomeOptions(context);
         }
 
@@ -42,7 +61,7 @@ namespace my_first_chatbot.Dialogs
             PromptDialog.Choice<string>(
                 context,
                 HandelWelcomeOptionSelected,
-                StoredValues._welcomeOptionsList,
+                _storedvalues._welcomeOptionsList,
                 "안녕하세요 AAR3입니다. 원하시는 정보를 선택해 주세요",                          //선택시 출력되는 메시지 정의
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 3,
@@ -54,15 +73,23 @@ namespace my_first_chatbot.Dialogs
         {
             var value = await result;
 
-            switch (value.ToString())
-            {
-                case StoredValues._courseRegistration: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
-                case StoredValues._courseInformation: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                case StoredValues._credits: await aboutCredits.CreditsOptionSelected(context); break;
-                case StoredValues._others: await aboutOthers.OtherOptionSelected(context); break;
-                case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
-                default: await ForUnimplementedOptions(context, value); break;
-            }
+            if(value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+            else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
+            else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
+            else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
+            else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+            else await ForUnimplementedOptions(context, value);
+            
+
+            //switch (value.ToString())
+            //{
+            //    case _storedvalues._courseRegistration: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
+            //    case _storedvalues._courseInformation: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
+            //    case _storedvalues._credits: await aboutCredits.CreditsOptionSelected(context); break;
+            //    case _storedvalues._others: await aboutOthers.OtherOptionSelected(context); break;
+            //    case _storedvalues._help: await aboutHelp.HelpOptionSelected(context); break;
+            //    default: await ForUnimplementedOptions(context, value); break;
+            //}
 
         }
 

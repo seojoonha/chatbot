@@ -167,6 +167,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\LUIS.cs" />
+    <Compile Include="Helper\StoredStringValues\StoredStringValuesMaster.cs" />
+    <Compile Include="Helper\StoredStringValues\StoredValues_kr.cs" />
+    <Compile Include="Helper\StoredStringValues\StoredValues_en.cs" />
     <Compile Include="Helper\StoredValues.cs" />
     <Compile Include="MessageReply\aboutHelp.cs" />
     <Compile Include="MessageReply\aboutOthers.cs" />
@@ -192,6 +195,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

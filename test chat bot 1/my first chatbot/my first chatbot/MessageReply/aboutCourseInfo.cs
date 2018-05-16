@@ -17,7 +17,7 @@ namespace my_first_chatbot.MessageReply
             PromptDialog.Choice<string>(
                 context,
                 HandelCourseInfoOptionSelection,
-                StoredValues._courseInfoOptions,
+                RootDialog._storedvalues._courseInfoOptions,
                 "강의 정보를 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                 //Course Registration
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
@@ -27,16 +27,25 @@ namespace my_first_chatbot.MessageReply
         public static async Task HandelCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
-            switch (value.ToString())
-            {
-                case StoredValues._openedCourses: await Reply_openedCourses(context); break;
-                case StoredValues._syllabus: await Reply_syllabus(context); break;
-                case StoredValues._lecturerInfo: await Reply_lecturerInfo(context); break;
-                case StoredValues._mandatorySubject: await Reply_mandatorySubject(context); break;
-                case StoredValues._prerequisite: await Reply_prerequisite(context); break;
-                case StoredValues._gotostart: await RootDialog.ShowWelcomeOptions(context); break;
-                case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
-            }
+
+            if (value.ToString() == RootDialog._storedvalues._openedCourses) await Reply_openedCourses(context);
+            else if (value.ToString() == RootDialog._storedvalues._syllabus) await Reply_syllabus(context);
+            else if (value.ToString() == RootDialog._storedvalues._lecturerInfo) await Reply_lecturerInfo(context);
+            else if (value.ToString() == RootDialog._storedvalues._mandatorySubject) await Reply_mandatorySubject(context);
+            else if (value.ToString() == RootDialog._storedvalues._prerequisite) await Reply_prerequisite(context);
+            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+
+            //switch (value.ToString())
+            //{
+            //    case StoredValues._openedCourses: await Reply_openedCourses(context); break;
+            //    case StoredValues._syllabus: await Reply_syllabus(context); break;
+            //    case StoredValues._lecturerInfo: await Reply_lecturerInfo(context); break;
+            //    case StoredValues._mandatorySubject: await Reply_mandatorySubject(context); break;
+            //    case StoredValues._prerequisite: await Reply_prerequisite(context); break;
+            //    case StoredValues._gotostart: await RootDialog.ShowWelcomeOptions(context); break;
+            //    case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
+            //}
 
             await RootDialog.ShowWelcomeOptions(context);           //Return To Start
         }
