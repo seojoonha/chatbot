@@ -14,18 +14,14 @@ namespace my_first_chatbot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        public static StoredStringValuesMaster _storedvalues ;
+        public static StoredStringValuesMaster _storedvalues;
+        public static StudentInfoService studentinfo = new StudentInfoService();
         public async Task StartAsync(IDialogContext context)
         {
-            try
-            {
-                context.Wait(MessageReceivedAsync);
-                //_storedvalues = new StoredValues_kr();
-                _storedvalues = new StoredValues_en();
-            }
-            catch (Exception ee) {
-                string msg = ee.Message;
-            }
+            context.Wait(MessageReceivedAsync);
+            //_storedvalues = new StoredValues_kr();
+            _storedvalues = new StoredValues_en();
+
         }
 
 
@@ -49,7 +45,8 @@ namespace my_first_chatbot.Dialogs
                 //    default: await ShowWelcomeOptions(context); break;
                 //}
             }
-            catch (Exception ee) {
+            catch (Exception ee)
+            {
                 string msg = ee.Message;
             }
             //await ShowWelcomeOptions(context);
@@ -62,7 +59,7 @@ namespace my_first_chatbot.Dialogs
                 context,
                 HandelWelcomeOptionSelected,
                 _storedvalues._welcomeOptionsList,
-                "안녕하세요 AAR3입니다. 원하시는 정보를 선택해 주세요",                          //선택시 출력되는 메시지 정의
+                "안녕하세요 AAR3입니다. 원하시는 정보를 선택해 주세요" + studentinfo.totalMajorCredits("60131937"),                          //선택시 출력되는 메시지 정의
                 "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 3,
                 PromptStyle.Auto);
@@ -73,13 +70,13 @@ namespace my_first_chatbot.Dialogs
         {
             var value = await result;
 
-            if(value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+            if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
             else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
             else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
             else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
             else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
             else await ForUnimplementedOptions(context, value);
-            
+
 
             //switch (value.ToString())
             //{
@@ -102,150 +99,7 @@ namespace my_first_chatbot.Dialogs
                             $"추후 추가예정 입니다.\n";                                   //"Thanks for using AAR!!!. See u soon"
             await context.PostAsync(activity);
         }
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //=================================================================================================================
-        //=================================================================================================================
-        //=================================================================================================================
-        //=================================================================================================================
-        //=================================================================================================================
-        /*
-        private async Task showOptions(IDialogContext context)
-        {
-            PromptDialog.Choice<string>(
-                context,
-                this.handelFirstOptionSelection,
-                StoredValues.firstOptionsList,
-                "Welcome to AAR service. What can i help you?",
-                "Ooops, what you wrote is not a valid option, please try again",
-                3,
-                PromptStyle.Auto);
-        }
-
-        private async Task handelFirstOptionSelection(IDialogContext context, IAwaitable<string> result)
-        {
-            var selectedOption = await result;
-            switch (selectedOption)
-            {
-                case StoredValues.course_registraion: { await courseRegistraionOptionsSelected(context); break; }
-                case StoredValues.graduation_requirement: { await for_unimplemented_options(context, StoredValues.graduation_requirement); break; }
-                case StoredValues.graduate_school_info: { await for_unimplemented_options(context, StoredValues.graduate_school_info); break; }
-                case StoredValues.phase_complete_subject: { await for_unimplemented_options(context, StoredValues.phase_complete_subject); break; }
-                case StoredValues.syllabus: { await for_unimplemented_options(context, StoredValues.syllabus); break; }
-                case StoredValues.aggrement_of_terms: { await for_unimplemented_options(context, StoredValues.aggrement_of_terms); break; }
-                case StoredValues.cancel_criteria: { await for_unimplemented_options(context, StoredValues.cancel_criteria); break; }
-            }
-        }
-
-        private async Task for_unimplemented_options(IDialogContext context, string selectedOption)
-        {
-            await context.PostAsync("You said: " + selectedOption);
-            await context.PostAsync("Thanks for using AAR!!!. See u soon");
-            await this.showOptions(context);
-        }
-
-        private async Task courseRegistraionOptionsSelected(IDialogContext context)
-        {
-
-            PromptDialog.Choice<string>(
-                context,
-                this.handelCourseRegistrationOptionsSelection,
-                StoredValues.course_registration_options,
-                "Course Registration",
-                "Ooops, what you wrote is not a valid option, please try again",
-                3,
-                PromptStyle.Auto);
-        }
-
-        private async Task handelCourseRegistrationOptionsSelection(IDialogContext context, IAwaitable<string> result)
-        {
-            var selectedOption = await result;
-            //await context.PostAsync("wow on the second stage =>" + selectedOption);
-
-            switch (selectedOption)
-            {
-                case StoredValues.course_registraion_period: { handelCourseRegistrationPeriodOptionSelection(context); break; }
-                case StoredValues.how_to_enroll: { handelHowToEnrollOptionSelection(context); break; }
-                case StoredValues.enroll: { handelEnrollOptionSelection(context); break;}
-                case StoredValues.course_change_period: break;
-                case StoredValues.withdrawal: break;
-            }
-
-        }
-        
-        private async Task handelCourseRegistrationPeriodOptionSelection(IDialogContext context)
-        {
-           
-            try
-            {
-                var reply = context.MakeMessage();
-                var attachment = getRegistrationInfoCard();
-                reply.Attachments.Add(attachment);
-                await context.PostAsync(reply);
-            }
-            catch (Exception ee)
-            {
-                string mys = ee.Message;
-                await context.PostAsync("error found on redering =>"+ ee.Message);
-            }
-            await context.PostAsync("Course registration period starts in sep 14 and end on oct 2");
-
-        }
-
-        private Attachment getRegistrationInfoCard()
-        {
-            var heroCard = new HeroCard
-            {
-                Title = "MJU Registration Period",
-                Subtitle = "Course registration is open for summer semester",
-                Text = "The course registration peroid lasts for only 10 days. It starts from Aug - 15 to Aug - 25",
-                Images = new List<CardImage> { new CardImage("http://www.mju.ac.kr/mbs/mjukr/images/newdesign/img_01_on.jpg") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Read More", value: "http://www.mju.ac.kr/mbs/mjukr/index.jsp?SWIFT_SESSION_CHK=false") }
-            };
-
-            return heroCard.ToAttachment();
-        }
-
-        private async Task handelHowToEnrollOptionSelection(IDialogContext context)
-        {
-            string howtoenroll = "1. login to myiweb" + Environment.NewLine;
-            howtoenroll += "2. goto course selection page" + Environment.NewLine;
-            howtoenroll += "3. Select the course you want to register and add it to the course list" + Environment.NewLine;
-            howtoenroll += "4. save and exit the webpage" + Environment.NewLine;
-
-            await context.PostAsync(howtoenroll);
-        }
-
-        private async Task FirstOptionDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
-        {
-            await context.PostAsync("on the call back");
-        }
-
-
-        private void handelEnrollOptionSelection(IDialogContext context)
-        {
-            //Chain.From(() => FormDialog.FromForm(CourseEnrollForm.BuildEnquiryForm));
-            var myform = new FormDialog<CourseEnrollForm>(new CourseEnrollForm(), CourseEnrollForm.BuildEnquiryForm, FormOptions.PromptInStart, null);
-
-            context.Call<CourseEnrollForm>(myform, FirstOptionDialogResumeAfter);
-
-            //context.Call(form, this.FirstOptionDialogResumeAfter);
-        }
-        */
-
+                
 
 
     }
