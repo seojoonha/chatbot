@@ -14,8 +14,10 @@ namespace my_first_chatbot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        public static string stuNum = "";
         public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
         public static StudentInfoService studentinfo = new StudentInfoService();
+        
         public async Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
@@ -47,18 +49,41 @@ namespace my_first_chatbot.Dialogs
         }
 
 
+        private static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
+        {
+            try
+            {
+                var message = await result;
+                stuNum = message.ToString();
+                await aboutCredits.CreditsOptionSelected(context);
+
+            }
+            catch (TooManyAttemptsException)
+            {
+                await context.PostAsync("I'm sorry, I'm having issues understanding you. Let's try again.");
+
+                await ShowWelcomeOptions(context);
+            }
+            //throw new NotImplementedException();
+        }
+
+
+
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
+            
+            
             PromptDialog.Choice<string>(
                 context,
                 HandelWelcomeOptionSelected,
                 _storedvalues._welcomeOptionsList,
-                _storedvalues._welcomeMessage + studentinfo.totalMajorCredits("60131937"),                          //선택시 출력되는 메시지 정의
+                _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
                 _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 3,
                 PromptStyle.Auto);
         }
 
+        
 
         public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
@@ -66,7 +91,15 @@ namespace my_first_chatbot.Dialogs
 
             if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
             else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
-            else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
+            else if (value.ToString() == _storedvalues._credits)
+            {
+                if (stuNum == "")
+                {
+                    await context.PostAsync(_storedvalues._getStudentNumMessage);
+                    context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);                //get student number
+                }
+                else await aboutCredits.CreditsOptionSelected(context);
+            }
             else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
             else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
             else await ForUnimplementedOptions(context, value);

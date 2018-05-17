@@ -156,6 +156,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Dialogs\GetInfoDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Forms\CourseEnrollForm.cs" />
     <Compile Include="Global.asax.cs">

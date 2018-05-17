@@ -8,17 +8,17 @@ namespace my_first_chatbot.Helper
 {
         public class StudentInfo
     {
-            private string _fullName { get; set; }
-            private string _studentNumber { get; set; }
-            private string _yearOfRegistration { get; set; }
-            private string _yearCourseTaken { get; set; }
-            private string _semesterCourseTake { get; set; }
-            private string _courseType { get; set; }
-            private string _courseName { get; set; }
-            private string _koreanCourseNumber { get; set; }
-            private string _courseNumber { get; set; }
-            private double _credit { get; set; }
-            private string _isStuding { get; set; }
+            private string _fullName { get; set; }                  //이름
+            private string _studentNumber { get; set; }             //학번
+            private string _yearOfRegistration { get; set; }        //입학년도
+            private string _yearCourseTaken { get; set; }           //해당강의 수강년도
+            private string _semesterCourseTake { get; set; }        //해당강의 수강학기
+            private string _courseType { get; set; }                //강의 구분
+            private string _courseName { get; set; }                //강의명
+            private string _koreanCourseNumber { get; set; }        //한국어 강의코드
+            private string _courseNumber { get; set; }              //강의코드
+            private double _credit { get; set; }                    //강의학점
+            private string _isStuding { get; set; }                 //재학 휴학 여부
 
             public StudentInfo() { }
 

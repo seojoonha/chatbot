@@ -35,7 +35,8 @@ namespace my_first_chatbot.Helper
             // 학점 관리 선택시 메뉴     credit options
             _currentCredits = "Current Credits";        //개인별 정보 필요
             _majorCredits = "Major Credits";
-            _electiveCredits = "Elective Credits";
+            _electiveCredits = "Cultural credits";
+            _changeStuNum = "Resetting StuNum";
 
             // 기타 정보 선택시 메뉴     others options
             _leaveOrRejoin = "Leave Or Rejoin";         //웹 연결
@@ -54,7 +55,7 @@ namespace my_first_chatbot.Helper
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
             _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
-            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _gotostart, _help };
+            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
@@ -63,7 +64,14 @@ namespace my_first_chatbot.Helper
             //for diffrent reply from language select
 
             //RootDialog + General
-            _welcomeMessage = "Hello this is AAR3. Please select the information you want.";
+            _getStudentNumMessage = $"Hello, Myongji University AAR3.\n" +
+                                $"Please enter your student ID for personalized information\n" +
+                            $"The student number you entered is not saved.\n" +
+                            $"Test number: 60131937.\n";
+            _welcomeMessage = $"Hello, Myongji University AAR3.\n" +
+                                $"Please select the information you are interested in.\n" +
+                            $"Credits management entry requires student number\n" +
+                            $"메뉴에서 [Help] -> [한국어]를 선택하시면 언어변환이 가능합니다 :).\n";
             _invalidSelectionMessage = "You have chosen the wrong option.";
             _goToButton = "Goto Info";
 
@@ -119,15 +127,19 @@ namespace my_first_chatbot.Helper
 
 
             _reply_CurrentCredits = $"Guide to my graduation.\n" +
-                                $"We plan to add it later.\n";
+                            $"Total credits earned are : ";
 
 
             _reply_MajorCredits = $"Guide to major credit.\n" +
-                                $"We plan to add it later. \n";
+                                $"Specialization credits for the undergraduate courses are : ";
 
 
-            _reply_ElectiveCredits = $"Guides for selected credits.\n" +
-                                $"We plan to add it later.\n";
+            _reply_ElectiveCredits = $"Guidance on Cultural credits.\n" +
+                                $"Liberal Arts credits are : ";
+
+
+            _reply_ChangeStuNum = $"The student ID information has been initialized.\n" +
+                            $"Please choose your grade management again.\n";
 
 
             //aboutOthers

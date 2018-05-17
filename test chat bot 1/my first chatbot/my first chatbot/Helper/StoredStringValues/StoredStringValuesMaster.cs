@@ -34,7 +34,8 @@ namespace my_first_chatbot.Helper.StoredStringValues
         // 학점 관리 선택시 메뉴     credit options
         public string _currentCredits = "나의 이수학점";        //개인별 정보 필요
         public string _majorCredits = "전공 학점";
-        public string _electiveCredits = "선택 학점";
+        public string _electiveCredits = "교양 학점";
+        public string _changeStuNum = "학번 재설정";
         public List<string> _creditsOptions = new List<string>();
 
         // 기타 정보 선택시 메뉴     others options
@@ -59,7 +60,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
             _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
-            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _gotostart, _help };
+            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
@@ -69,7 +70,15 @@ namespace my_first_chatbot.Helper.StoredStringValues
         //for diffrent reply from language select
 
         //RootDialog + General
-        public string _welcomeMessage = "안녕하세요 AAR3입니다. 원하시는 정보를 선택해 주세요";
+        public string _getStudentNumMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
+                                $"맞춤형 정보제공을 위해 학번을 입력해 주세요.\n" +
+                            $"입력하신 학번은 저장되지 않습니다.\n" +
+                            $"테스트용 학번 : 60131937.\n";
+        public string _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
+                                $"궁금하신 정보를 선택해 주세요.\n" +
+                            $"학점 관리항목은 학번입력이 필요합니다.\n" +
+                            $"If you go to [도움말] -> [English]\n" + 
+                            $"You can convert language :).\n";
         public string _invalidSelectionMessage = "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.";
         public string _goToButton = "정보로 이동";
 
@@ -125,15 +134,19 @@ namespace my_first_chatbot.Helper.StoredStringValues
 
 
         public string _reply_CurrentCredits = $"나의 이수학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+                            $"이수하신 총 학점은 : ";
 
 
         public string _reply_MajorCredits = $"전공 학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+                            $"이수하신 전공 학점은 : ";
 
 
-        public string _reply_ElectiveCredits = $"선택 학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+        public string _reply_ElectiveCredits = $"선택 학점에 대한 안내입니다.\n" + 
+                            $"이수하신 교양 학점은 : ";
+
+
+        public string _reply_ChangeStuNum = $"학번정보가 초기화 되었습니다.\n" +
+                            $"다시한번 학점관리를 선택해 주세요.\n";
 
 
         //aboutOthers
@@ -165,6 +178,6 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _reply_ContactMaster = $"관리자와 상담을 요청하실 수 있습니다.\n" +
                             $"추후 추가예정 입니다.\n";
 
-        
+
     }
 }
