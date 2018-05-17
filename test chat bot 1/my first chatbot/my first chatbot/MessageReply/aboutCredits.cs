@@ -18,8 +18,8 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandelCreditsOptionSelection,
                 RootDialog._storedvalues._creditsOptions,
-                "학점 관리를 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                 //Course Registration
-                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                RootDialog._storedvalues._creditsOptionSelected,                                                                                 //Course Registration
+                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
                 PromptStyle.Auto);
 
@@ -49,17 +49,15 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_currentCredits(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"나의 이수학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_CurrentCredits;
             await context.PostAsync(activity);
         }
 
         public static async Task Reply_majorCredits(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            
-            activity.Text = $"전공 학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n"+RootDialog.studentinfo.totalMajorCredits("60131937");
+
+            activity.Text = RootDialog._storedvalues._reply_MajorCredits + RootDialog.studentinfo.totalMajorCredits("60131937");
 
             await context.PostAsync(activity);
         }
@@ -67,8 +65,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_electiveCredits(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"선택 학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_ElectiveCredits;
 
             await context.PostAsync(activity);
         }

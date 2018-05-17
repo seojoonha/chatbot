@@ -11,7 +11,7 @@ namespace my_first_chatbot.Helper
     {
 
 
-        public StoredValues_en()
+        public StoredValues_en()        //생성자로 멤버 초기화
         {
             // 기본 메뉴    welcome options
             _courseRegistration = "Course Registration";
@@ -43,8 +43,9 @@ namespace my_first_chatbot.Helper
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
-            _requestInformationCorrection = "정보수정요청";
-            _contactMaster = "관리자 연결";
+            _requestInformationCorrection = "requestInformationCorrection";
+            _contactMaster = "Contact to Master";
+            _convertLanguage = "한국어";
 
             // 처음으로 혹은 도움말      goto start and help
             _gotostart = "Go To Start";
@@ -55,8 +56,108 @@ namespace my_first_chatbot.Helper
             _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
-            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _gotostart };
+            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
+
+            //모든 정보를 언어에 따라 다르게 주기 위해서
+            //for diffrent reply from language select
+
+            //RootDialog + General
+            _welcomeMessage = "Hello this is AAR3. Please select the information you want.";
+            _invalidSelectionMessage = "You have chosen the wrong option.";
+            _goToButton = "Goto Info";
+
+            //aboutCourseInfo
+            _courseInfoSelected = "You have selected lecture information.\nPlease select details.";
+
+            _reply_OpenedCourses = $"This is a guide for this semester.\n" +
+                                $"This is information in Myiweb, so login is required.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Syllabus = $"This is a guide for syllabus.\n" +
+                                $"This is information in Myiweb, so login is required.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_LecturerInfo = $"This is a guide for LecturerInfo.\n" +
+                                $"This is information in Myiweb, so login is required.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_MandatorySubject = $"This is a guide for required course information \n" +
+                                $"We plan to add it later. \n";
+
+
+            _reply_Prerequisite = $"This is a guide for prerequisite information \n" +
+                                $"We plan to add it later. \n";
+
+
+            //aboutCourseRegistration
+            _courseRegistrationSelected = "You have selected to enroll.\nPlease select the details.";
+
+
+            _reply_HowToDoIt = $"Instructions on how to enroll\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Schedule = $"Instructions for the course registration.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Regulation = $"Instructions for course registration\n" +
+                                $"Please check page 3, section 5, article 26 of this page.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Terms = $"This is a guide to information about course registration.\n" +
+                                $"We plan to add it later.\n";
+
+
+            //aboutCredits
+            _creditsOptionSelected = "You have selected credit management.\nPlease select the details.";
+
+
+            _reply_CurrentCredits = $"Guide to my graduation.\n" +
+                                $"We plan to add it later.\n";
+
+
+            _reply_MajorCredits = $"Guide to major credit.\n" +
+                                $"We plan to add it later. \n";
+
+
+            _reply_ElectiveCredits = $"Guides for selected credits.\n" +
+                                $"We plan to add it later.\n";
+
+
+            //aboutOthers
+            _otherOptionSelected = "You have selected other information.\nPlease select the details.";
+
+
+            _reply_LeaveOrRejoin = $"This is information about the leave and returning information. \n" +
+                                $"We plan to add it later.\n";
+
+
+            _reply_Scholarship = $"Information on scholarship information. \n" +
+                                $"We plan to add it later. \n";
+
+
+            //aboutHelp
+            _helpOptionSelected = "AAR3 help, what can I do for you?";
+
+
+            _reply_Introduction = $"A guide to AAR3\n" +
+                                $"AAR3 can help you to apply for water and manage your credit.\n" +
+                                $"Select the data in the archive.\n" +
+                                $"The selection has now returned to the beginning.\n" +
+                                $"Added later \n";
+
+
+            _reply_RequestInformationCorrection = $"Information on scholarship information.\n" +
+                                    $"We plan to add it later.\n";
+
+            _reply_ContactMaster = $"You can ask for a consultation with the administrator.\n" +
+                                     $"We plan to add it later.\n";
         }
 
     }

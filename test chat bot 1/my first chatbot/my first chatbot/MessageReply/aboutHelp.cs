@@ -18,8 +18,8 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandelHelpOptionSelected,
                 RootDialog._storedvalues._helpOptionsList,
-                "AAR3 도움말입니다. 무엇을 도와드릴까요?",           //선택시 출력되는 메시지 정의
-                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : ShowHelpOptions",    //오류시 표시될 메시지 정의
+                RootDialog._storedvalues._helpOptionSelected,           //선택시 출력되는 메시지 정의
+                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : ShowHelpOptions",    //오류시 표시될 메시지 정의
                 3,
                 PromptStyle.Auto);
         }
@@ -35,20 +35,15 @@ namespace my_first_chatbot.MessageReply
                 if (value.ToString() == RootDialog._storedvalues._introduction) await Reply_introduction(context);     //이거 룻다이알로그에 스토얼 가져와서 인듯
                 else if (value.ToString() == RootDialog._storedvalues._requestInformationCorrection) await Reply_requestInformationCorrection(context);
                 else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context);
-
+                else if (value.ToString() == RootDialog._storedvalues._convertLanguage)
+                {
+                    if(RootDialog._storedvalues._convertLanguage == "한국어") RootDialog._storedvalues = new StoredValues_kr();   //for convert en to kr
+                    else RootDialog._storedvalues = new StoredValues_en();                                  //for convert kr to en
+                }
+                
                 await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
             }
             
-            
-
-            //switch (value.ToString())
-            //{
-            //    case StoredValues._introduction:                    await Reply_introduction(context);                  break;
-            //    case StoredValues._requestInformationCorrection:    await Reply_requestInformationCorrection(context);  break;
-            //    case StoredValues._contactMaster:                   await Reply_contactMaster(context);                 break;
-            //    case StoredValues._gotostart:                       await RootDialog.ShowWelcomeOptions(context);       break;
-            //}
-           
         }
 
 
@@ -58,19 +53,14 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_introduction(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"AAR3에 대한 안내입니다.\n" +
-                            $"AAR3는 학생들의 수강신청 및 학점관리를 도울 수 있습니다..\n" +
-                            $"궁금하신 정보를 선택하시면 해당 정보페이지로 연결됩니다.\n" +
-                            $"선택 도중에 처음으로 돌아가고 싶으시면 처음으로를 눌러주세요.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_Introduction;
             await context.PostAsync(activity);
         }
 
         public static async Task Reply_requestInformationCorrection(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"정보수정을 요청하실 수 있습니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_RequestInformationCorrection;
 
             await context.PostAsync(activity);
         }
@@ -78,8 +68,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_contactMaster(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"관리자와 상담을 요청하실 수 있습니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_ContactMaster;
 
             await context.PostAsync(activity);
         }

@@ -14,12 +14,12 @@ namespace my_first_chatbot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        public static StoredStringValuesMaster _storedvalues;
+        public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
         public static StudentInfoService studentinfo = new StudentInfoService();
         public async Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
-            _storedvalues = new StoredValues_kr();
+            _storedvalues = new StoredValues_kr();          //Default is korean
             //_storedvalues = new StoredValues_en();
 
         }
@@ -30,18 +30,14 @@ namespace my_first_chatbot.Dialogs
             
             try
             {
-                var value = await result;                           //storedvalue가 static이 아니게 되어 스위치에서 이프엘스로 수정
+                var value = await result;                           
+                if (value.Text.ToString() == "English") _storedvalues = new StoredValues_en();      //if you choose english at first keyboard convert to english
 
+                                                                                                            //storedvalue가 static이 아니게 되어 스위치에서 이프엘스로 수정
                 if (value.Text.ToString() == _storedvalues._gotostart) await ShowWelcomeOptions(context);    //첫 단계에서 처음으로 일 경우   
                 else if (value.Text.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);    //첫 단게에서 도움말 일 경우
                 else await ShowWelcomeOptions(context);                                                     //그외엔 웰컴 옵션 출력
-
-                //switch (value.Text.ToString())
-                //{
-                //    case _storedvalues._gotostart: await ShowWelcomeOptions(context); break;
-                //    case _storedvalues._help: await aboutHelp.HelpOptionSelected(context); break;
-                //    default: await ShowWelcomeOptions(context); break;
-                //}
+                
             }
             catch (Exception ee)                                        //Exception 잡아주기
             {
@@ -57,8 +53,8 @@ namespace my_first_chatbot.Dialogs
                 context,
                 HandelWelcomeOptionSelected,
                 _storedvalues._welcomeOptionsList,
-                "안녕하세요 AAR3입니다. 원하시는 정보를 선택해 주세요" + studentinfo.totalMajorCredits("60131937"),                          //선택시 출력되는 메시지 정의
-                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : showWelcomeOptions",    //오류시 표시될 메시지 정의
+                _storedvalues._welcomeMessage + studentinfo.totalMajorCredits("60131937"),                          //선택시 출력되는 메시지 정의
+                _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 3,
                 PromptStyle.Auto);
         }
@@ -86,7 +82,5 @@ namespace my_first_chatbot.Dialogs
             await context.PostAsync(activity);
         }
                 
-
-
     }
 }

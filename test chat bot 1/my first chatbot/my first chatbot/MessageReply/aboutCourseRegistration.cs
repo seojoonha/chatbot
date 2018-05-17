@@ -18,8 +18,8 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandelCourseRegistrationOptionSelection,
                 RootDialog._storedvalues._courseRegistrationOptions,
-                "수강 신청을 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                        //Course Registration
-                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                RootDialog._storedvalues._courseRegistrationSelected,                                                                                        //Course Registration
+                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
                 PromptStyle.Auto);
 
@@ -50,8 +50,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_howToDoIt(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"수강신청 방법에 대한 안내입니다.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_HowToDoIt;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -60,7 +59,7 @@ namespace my_first_chatbot.MessageReply
                 Text = "수강신청 방법",
                 Images = new List<CardImage> { new CardImage("http://www.mju.ac.kr/mbs/mjukr/images/title/tle5_5_4.gif") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-                                                "정보로 이동",
+                                                RootDialog._storedvalues._goToButton,
                                                 value: "http://www.mju.ac.kr/mbs/mjukr/subview.jsp?id=mjukr_050504000000") }
             }.ToAttachment());
 
@@ -70,8 +69,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_schedule(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"수강신청 일정에 대한 안내입니다.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_Schedule;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -80,7 +78,7 @@ namespace my_first_chatbot.MessageReply
                 Text = "수강신청 일정",
                 Images = new List<CardImage> { new CardImage("http://www.mju.ac.kr/upload/board/11294/editor/20180130_094627346_91111.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-                                                "정보로 이동",
+                                                RootDialog._storedvalues._goToButton,
                                                 value: "http://www.mju.ac.kr/mbs/mjukr/jsp/board/view.jsp?spage=1&boardId=11294&boardSeq=79712853&mcategoryId=&id=mjukr_050101000000&search=%EC%88%98%EA%B0%95%EC%8B%A0%EC%B2%AD&column=TITLE&categoryDepth=&categoryId=0") }
             }.ToAttachment());
 
@@ -90,9 +88,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_regulation(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"수강신청 규정에 대한 안내입니다.\n" +
-                            $"해당 페이지 3장 5절 제26조를 확인하십시오.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_Regulation;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -101,7 +97,7 @@ namespace my_first_chatbot.MessageReply
                 Text = "명지대학교 학칙 [ 2018.05.01 ]",
                 Images = new List<CardImage> { new CardImage("http://search.mju.ac.kr/RSA/front/images/logo.gif") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-                                                "정보로 이동",
+                                                RootDialog._storedvalues._goToButton,
                                                 value: "http://law.mju.ac.kr/lmxsrv/law/lawviewer.srv?lawseq=69&hseq=1571&refid=undefined") }
             }.ToAttachment());
 
@@ -110,7 +106,7 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task Reply_terms(IDialogContext context)
         {
-            await context.PostAsync("수강신청 용어정보가 없습니다.ㅠㅠ\n얼른 추가할게요!");
+            await context.PostAsync(RootDialog._storedvalues._reply_Terms);
         }
     }
 }

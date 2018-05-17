@@ -18,8 +18,8 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandelCourseInfoOptionSelection,
                 RootDialog._storedvalues._courseInfoOptions,
-                "강의 정보를 선택하셨습니다.\n세부항목을 선택해주세요.",                                                                                 //Course Registration
-                "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.   [위치] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                RootDialog._storedvalues._courseInfoSelected,                                                                                 //Course Registration
+                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 3,
                 PromptStyle.Auto);
 
@@ -51,9 +51,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_openedCourses(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"이번학기 개설강의에 대한 안내입니다.\n" +
-                            $"Myiweb내에 존재하는 정보이므로 로그인이 필요합니다.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_OpenedCourses;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -62,7 +60,7 @@ namespace my_first_chatbot.MessageReply
                 Text = "이번학기 개설강의정보",
                 Images = new List<CardImage> { new CardImage("https://myiweb.mju.ac.kr/images/title/sue/t_sue335.gif") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-                                                "정보로 이동",
+                                                RootDialog._storedvalues._goToButton,
                                                 value: "https://myiweb.mju.ac.kr/servlet/MyLocationPage?link=/su/sue/sue01/w_sue337pr.jsp#") }
             }.ToAttachment());
 
@@ -72,9 +70,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_syllabus(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"강의계획서에 대한 안내입니다.\n" +
-                            $"Myiweb내에 존재하는 정보이므로 로그인이 필요합니다.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_Syllabus;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -83,7 +79,7 @@ namespace my_first_chatbot.MessageReply
                 Text = "강의계획서정보",
                 Images = new List<CardImage> { new CardImage("https://myiweb.mju.ac.kr/images/title/sue/t_sue390.gif") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-                                                "정보로 이동",
+                                                RootDialog._storedvalues._goToButton,
                                                 value: "https://myiweb.mju.ac.kr/servlet/MyLocationPage?link=/su/sue/sue07/w_sue390Main.jsp") }
             }.ToAttachment());
 
@@ -93,9 +89,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_lecturerInfo(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"강사 정보에 대한 안내입니다.\n" +
-                            $"Eclass내에 존재하는 정보이므로 로그인이 필요합니다.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_LecturerInfo;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -104,7 +98,7 @@ namespace my_first_chatbot.MessageReply
                 Text = "교수 정보",
                 //Images = new List<CardImage> { new CardImage("http://search.mju.ac.kr/RSA/front/images/logo.gif") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-                                                "정보로 이동",
+                                                RootDialog._storedvalues._goToButton,
                                                 value: "http://home.mju.ac.kr/mainIndex/searchHomepage.action") }
             }.ToAttachment());
 
@@ -114,8 +108,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_mandatorySubject(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"필수과목 정보에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_MandatorySubject;
 
             await context.PostAsync(activity);
         }
@@ -123,8 +116,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_prerequisite(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"선수과목 정보에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+            activity.Text = RootDialog._storedvalues._reply_Prerequisite;
 
             await context.PostAsync(activity);
         }
