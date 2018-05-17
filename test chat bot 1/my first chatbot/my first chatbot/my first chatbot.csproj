@@ -156,11 +156,6 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Dialogs\AgeDialog.cs" />
-    <Compile Include="Dialogs\FirstOptions.cs" />
-    <Compile Include="Dialogs\NameDialog.cs" />
-    <Compile Include="Dialogs\FirstOptionDialog.cs" />
-    <Compile Include="Dialogs\backupRootDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Forms\CourseEnrollForm.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,7 +165,6 @@
     <Compile Include="Helper\StoredStringValues\StoredStringValuesMaster.cs" />
     <Compile Include="Helper\StoredStringValues\StoredValues_kr.cs" />
     <Compile Include="Helper\StoredStringValues\StoredValues_en.cs" />
-    <Compile Include="Helper\StoredValues.cs" />
     <Compile Include="Helper\StudentInfo.cs" />
     <Compile Include="Helper\StudentInfoService.cs" />
     <Compile Include="MessageReply\aboutHelp.cs" />

@@ -28,20 +28,17 @@ namespace my_first_chatbot.MessageReply
         {
             var value = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._leaveOrRejoin) await Reply_leaveOrRejoin(context);
-            else if (value.ToString() == RootDialog._storedvalues._scholarship) await Reply_scholarship(context);
-            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+
             else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
 
-            //switch (value.ToString())                                                              
-            //{
-            //    case StoredValues._leaveOrRejoin:           await Reply_leaveOrRejoin(context);             break;      
-            //    case StoredValues._scholarship:             await Reply_scholarship(context);               break;
-            //    case StoredValues._gotostart:               await RootDialog.ShowWelcomeOptions(context);   break;
-            //    case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
-            //}
-
-            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            else
+            {
+                if (value.ToString() == RootDialog._storedvalues._leaveOrRejoin) await Reply_leaveOrRejoin(context);
+                else if (value.ToString() == RootDialog._storedvalues._scholarship) await Reply_scholarship(context);
+                
+                await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            }
         }
 
 

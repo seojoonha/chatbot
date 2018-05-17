@@ -28,22 +28,18 @@ namespace my_first_chatbot.MessageReply
         {
             var value = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
-            else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
-            else if (value.ToString() == RootDialog._storedvalues._electiveCredits) await Reply_electiveCredits(context);
-            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+
             else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
 
-            //switch (value.ToString())                                                              
-            //{
-            //    case StoredValues._currentCredits:          await Reply_currentCredits(context);            break;      
-            //    case StoredValues._majorCredits:            await Reply_majorCredits(context);              break;    
-            //    case StoredValues._electiveCredits:         await Reply_electiveCredits(context);           break;
-            //    case StoredValues._gotostart:               await RootDialog.ShowWelcomeOptions(context);   break;
-            //    case StoredValues._help:                    await aboutHelp.HelpOptionSelected(context);    break;
-            //}
-
-            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            else
+            {
+                if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
+                else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
+                else if (value.ToString() == RootDialog._storedvalues._electiveCredits) await Reply_electiveCredits(context);
+                
+                await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            }
         }
 
 
@@ -61,8 +57,9 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_majorCredits(IDialogContext context)
         {
             var activity = context.MakeMessage();
+            
             activity.Text = $"전공 학점에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+                            $"추후 추가예정 입니다.\n"+RootDialog.studentinfo.totalMajorCredits("60131937");
 
             await context.PostAsync(activity);
         }

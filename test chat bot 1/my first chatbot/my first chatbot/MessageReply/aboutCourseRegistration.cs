@@ -28,24 +28,19 @@ namespace my_first_chatbot.MessageReply
         {
             var value = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._howToDoIt) await Reply_howToDoIt(context);      //각각의 메서드에 연결
-            else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
-            else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
-            else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
-            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+
             else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
 
-            //switch (value.ToString())                                                               //ToString이 없어도 되려나..?
-            //{
-            //    case StoredValues._howToDoIt: await Reply_howToDoIt(context); break;      //각각의 메서드에 연결
-            //    case StoredValues._schedule: await Reply_schedule(context); break;      //각각의 Dialog로 연결하는 것 보다 편한듯
-            //    case StoredValues._regulation: await Reply_regulation(context); break;
-            //    case StoredValues._terms: await Reply_terms(context); break;
-            //    case StoredValues._gotostart: await RootDialog.ShowWelcomeOptions(context); break;
-            //    case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
-            //}
-
-            await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+            else
+            {
+                if (value.ToString() == RootDialog._storedvalues._howToDoIt) await Reply_howToDoIt(context);      //각각의 메서드에 연결
+                else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
+                else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
+                else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
+                
+                await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+            }
         }
 
 

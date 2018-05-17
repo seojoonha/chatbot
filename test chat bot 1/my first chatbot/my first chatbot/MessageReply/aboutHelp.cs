@@ -29,10 +29,17 @@ namespace my_first_chatbot.MessageReply
         {
             var value = await result;
 
-            if(value.ToString()==RootDialog._storedvalues._introduction) await Reply_introduction(context); 
-            else if (value.ToString() == RootDialog._storedvalues._requestInformationCorrection) await Reply_requestInformationCorrection(context);
-            else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context); 
-            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);          //웰컴이 두번 불러지는 문제인가?
+            else
+            {
+                if (value.ToString() == RootDialog._storedvalues._introduction) await Reply_introduction(context);     //이거 룻다이알로그에 스토얼 가져와서 인듯
+                else if (value.ToString() == RootDialog._storedvalues._requestInformationCorrection) await Reply_requestInformationCorrection(context);
+                else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context);
+
+                await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+            }
+            
+            
 
             //switch (value.ToString())
             //{
@@ -41,7 +48,7 @@ namespace my_first_chatbot.MessageReply
             //    case StoredValues._contactMaster:                   await Reply_contactMaster(context);                 break;
             //    case StoredValues._gotostart:                       await RootDialog.ShowWelcomeOptions(context);       break;
             //}
-            await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+           
         }
 
 

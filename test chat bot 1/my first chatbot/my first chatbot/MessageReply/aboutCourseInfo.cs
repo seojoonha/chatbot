@@ -28,26 +28,20 @@ namespace my_first_chatbot.MessageReply
         {
             var value = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._openedCourses) await Reply_openedCourses(context);
-            else if (value.ToString() == RootDialog._storedvalues._syllabus) await Reply_syllabus(context);
-            else if (value.ToString() == RootDialog._storedvalues._lecturerInfo) await Reply_lecturerInfo(context);
-            else if (value.ToString() == RootDialog._storedvalues._mandatorySubject) await Reply_mandatorySubject(context);
-            else if (value.ToString() == RootDialog._storedvalues._prerequisite) await Reply_prerequisite(context);
-            else if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+
             else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
 
-            //switch (value.ToString())
-            //{
-            //    case StoredValues._openedCourses: await Reply_openedCourses(context); break;
-            //    case StoredValues._syllabus: await Reply_syllabus(context); break;
-            //    case StoredValues._lecturerInfo: await Reply_lecturerInfo(context); break;
-            //    case StoredValues._mandatorySubject: await Reply_mandatorySubject(context); break;
-            //    case StoredValues._prerequisite: await Reply_prerequisite(context); break;
-            //    case StoredValues._gotostart: await RootDialog.ShowWelcomeOptions(context); break;
-            //    case StoredValues._help: await aboutHelp.HelpOptionSelected(context); break;
-            //}
-
-            await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            else
+            {
+                if (value.ToString() == RootDialog._storedvalues._openedCourses) await Reply_openedCourses(context);
+                else if (value.ToString() == RootDialog._storedvalues._syllabus) await Reply_syllabus(context);
+                else if (value.ToString() == RootDialog._storedvalues._lecturerInfo) await Reply_lecturerInfo(context);
+                else if (value.ToString() == RootDialog._storedvalues._mandatorySubject) await Reply_mandatorySubject(context);
+                else if (value.ToString() == RootDialog._storedvalues._prerequisite) await Reply_prerequisite(context);
+                
+                await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            }
         }
 
 
