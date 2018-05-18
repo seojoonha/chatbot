@@ -39,7 +39,7 @@ namespace my_first_chatbot.Helper
             _changeStuNum = "Resetting StuNum";
 
             // 기타 정보 선택시 메뉴     others options
-            _leaveOrRejoin = "Leave Or Rejoin";         //웹 연결
+            _leaveOrRejoin = "Leave Or Readmission";         //웹 연결
             _scholarship = "Scholarship";            //웹 연결
 
             // 도움말 선택시 메뉴       help options
@@ -64,11 +64,12 @@ namespace my_first_chatbot.Helper
             //for diffrent reply from language select
 
             //RootDialog + General
-            _getStudentNumMessage = $"Hello, Myongji University AAR3.\n" +
+            _getStudentNumMessage = $"Myongji University AAR.\n" +
                                 $"Please enter your student ID for personalized information\n" +
-                            $"The student number you entered is not saved.\n" +
                             $"Test number: 60131937.\n";
-            _welcomeMessage = $"Hello, Myongji University AAR3.\n" +
+            _getStudentNumUpdateMessage = @"Student number info updated to";
+
+            _welcomeMessage = $"Myongji University AAR.\n" +
                                 $"Please select the information you are interested in.\n" +
                             $"Credits management entry requires student number\n" +
                             $"메뉴에서 [Help] -> [한국어]를 선택하시면 언어변환이 가능합니다 :).\n";

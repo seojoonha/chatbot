@@ -17,7 +17,7 @@ namespace my_first_chatbot.Dialogs
         public static string stuNum = "";
         public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
         public static StudentInfoService studentinfo = new StudentInfoService();
-        
+
         public async Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
@@ -29,17 +29,17 @@ namespace my_first_chatbot.Dialogs
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            
+
             try
             {
-                var value = await result;                           
+                var value = await result;
                 if (value.Text.ToString() == "English") _storedvalues = new StoredValues_en();      //if you choose english at first keyboard convert to english
 
-                                                                                                            //storedvalue가 static이 아니게 되어 스위치에서 이프엘스로 수정
+                //storedvalue가 static이 아니게 되어 스위치에서 이프엘스로 수정
                 if (value.Text.ToString() == _storedvalues._gotostart) await ShowWelcomeOptions(context);    //첫 단계에서 처음으로 일 경우   
                 else if (value.Text.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);    //첫 단게에서 도움말 일 경우
                 else await ShowWelcomeOptions(context);                                                     //그외엔 웰컴 옵션 출력
-                
+
             }
             catch (Exception ee)                                        //Exception 잡아주기
             {
@@ -67,12 +67,21 @@ namespace my_first_chatbot.Dialogs
             //throw new NotImplementedException();
         }
 
+        public static async Task GetInfoDialogAfterResettingStudentNumber(IDialogContext context, IAwaitable<object> result)
+        {
+            var message = await result;
+            stuNum = message.ToString();
+
+            await context.PostAsync(_storedvalues._getStudentNumUpdateMessage + stuNum);
+            await aboutCredits.CreditsOptionSelected(context);
+        }
+
 
 
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
-            
-            
+
+
             PromptDialog.Choice<string>(
                 context,
                 HandelWelcomeOptionSelected,
@@ -83,7 +92,7 @@ namespace my_first_chatbot.Dialogs
                 PromptStyle.Auto);
         }
 
-        
+
 
         public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
@@ -114,6 +123,6 @@ namespace my_first_chatbot.Dialogs
                             $"추후 추가예정 입니다.\n";                                   //"Thanks for using AAR!!!. See u soon"
             await context.PostAsync(activity);
         }
-                
+
     }
 }

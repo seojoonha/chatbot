@@ -39,8 +39,9 @@ namespace my_first_chatbot.MessageReply
                 else if (value.ToString() == RootDialog._storedvalues._lecturerInfo) await Reply_lecturerInfo(context);
                 else if (value.ToString() == RootDialog._storedvalues._mandatorySubject) await Reply_mandatorySubject(context);
                 else if (value.ToString() == RootDialog._storedvalues._prerequisite) await Reply_prerequisite(context);
-                
-                await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+
+                //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+                await aboutCourseInfo.CourseInfoOptionSelected(context);
             }
         }
 

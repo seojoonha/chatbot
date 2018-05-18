@@ -74,6 +74,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                                 $"맞춤형 정보제공을 위해 학번을 입력해 주세요.\n" +
                             $"입력하신 학번은 저장되지 않습니다.\n" +
                             $"테스트용 학번 : 60131937.\n";
+        public string _getStudentNumUpdateMessage = @"Student number info updated to";
         public string _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
                                 $"궁금하신 정보를 선택해 주세요.\n" +
                             $"학점 관리항목은 학번입력이 필요합니다.\n" +

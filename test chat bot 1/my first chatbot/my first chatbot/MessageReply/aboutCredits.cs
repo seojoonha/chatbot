@@ -12,10 +12,10 @@ namespace my_first_chatbot.MessageReply
 {
     public static class aboutCredits
     {
-        
+
         public static async Task CreditsOptionSelected(IDialogContext context)
         {
-            
+
 
             PromptDialog.Choice<string>(
                 context,
@@ -27,7 +27,7 @@ namespace my_first_chatbot.MessageReply
                 PromptStyle.Auto);
 
         }
-        
+
 
 
         public static async Task HandelCreditsOptionSelection(IDialogContext context, IAwaitable<string> result)
@@ -40,12 +40,18 @@ namespace my_first_chatbot.MessageReply
 
             else
             {
-                if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
-                else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
-                else if (value.ToString() == RootDialog._storedvalues._electiveCredits) await Reply_electiveCredits(context);
-                else if (value.ToString() == RootDialog._storedvalues._changeStuNum) await Reply_changeStuNum(context);
+                if (value.ToString() == RootDialog._storedvalues._changeStuNum) {
+                    await Reply_changeStuNum(context);
+                }
+                else
+                {
+                    if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
+                    else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
+                    else if (value.ToString() == RootDialog._storedvalues._electiveCredits) await Reply_electiveCredits(context);
 
-                await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+                    //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+                    aboutCredits.CreditsOptionSelected(context);
+                }
             }
         }
 
@@ -79,12 +85,8 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task Reply_changeStuNum(IDialogContext context)
         {
-            RootDialog.stuNum = "";
-            var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_ChangeStuNum;
-
-            await context.PostAsync(activity);
-        }
-
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
+                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogAfterResettingStudentNumber);
+        }      
     }
 }

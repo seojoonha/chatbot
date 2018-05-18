@@ -38,8 +38,9 @@ namespace my_first_chatbot.MessageReply
                 else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
                 else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
                 else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
-                
-                await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+
+                //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+                await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
             }
         }
 

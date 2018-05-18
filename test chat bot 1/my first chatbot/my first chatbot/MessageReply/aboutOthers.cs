@@ -36,8 +36,9 @@ namespace my_first_chatbot.MessageReply
             {
                 if (value.ToString() == RootDialog._storedvalues._leaveOrRejoin) await Reply_leaveOrRejoin(context);
                 else if (value.ToString() == RootDialog._storedvalues._scholarship) await Reply_scholarship(context);
-                
-                await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+
+                //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+                await aboutOthers.OtherOptionSelected(context);
             }
         }
 
