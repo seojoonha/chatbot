@@ -17,6 +17,7 @@ namespace my_first_chatbot.Helper
             _courseRegistration = "Course Registration";
             _courseInformation = "Course Information";
             _credits = "Credits";
+            _graduation = "Graduation Information";
             _others = "Others";
 
             // 수강 신청 선택시 메뉴     course registration options
@@ -38,6 +39,10 @@ namespace my_first_chatbot.Helper
             _electiveCredits = "Cultural credits";
             _changeStuNum = "Resetting StuNum";
 
+            //졸업정보 선택시 메뉴       graduation options
+            _requiredCredits = "Graduation Requirements";            //웹 연결
+            _certification = "Graduate Certification";              //웹 연결
+
             // 기타 정보 선택시 메뉴     others options
             _leaveOrRejoin = "Leave Or Rejoin";         //웹 연결
             _scholarship = "Scholarship";            //웹 연결
@@ -46,19 +51,21 @@ namespace my_first_chatbot.Helper
             _introduction = "AAR Guidance";
             _requestInformationCorrection = "requestInformationCorrection";
             _contactMaster = "Contact to Master";
+            _PCLink = "PC Version Link";
             _convertLanguage = "한국어";
 
             // 처음으로 혹은 도움말      goto start and help
             _gotostart = "Go To Start";
             _help = "Help";
 
-            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
+            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _graduation, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
             _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
+            _graduationOptions = new List<string> { _requiredCredits, _certification, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
-            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
-
+            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _PCLink, _convertLanguage, _gotostart };
+            
 
             //모든 정보를 언어에 따라 다르게 주기 위해서
             //for diffrent reply from language select
@@ -71,7 +78,10 @@ namespace my_first_chatbot.Helper
             _welcomeMessage = $"Hello, Myongji University AAR3.\n" +
                                 $"Please select the information you are interested in.\n" +
                             $"Credits management entry requires student number\n" +
-                            $"메뉴에서 [Help] -> [한국어]를 선택하시면 언어변환이 가능합니다 :).\n";
+                            $"메뉴에서 [Help] -> [한국어]를 선택하시면 언어변환이 가능합니다 :).\n" +
+                            $"\nAAR2 변경사항:\n" +
+                            $"졸업정보 메뉴 추가\n" +
+                            $"모바일,PC링크에 관한 도움말 추가";
             _invalidSelectionMessage = "You have chosen the wrong option.";
             _goToButton = "Goto Info";
 
@@ -140,6 +150,20 @@ namespace my_first_chatbot.Helper
 
             _reply_ChangeStuNum = $"The student ID information has been initialized.\n" +
                             $"Please choose your grade management again.\n";
+            
+            
+            //aboutGraduation
+            _graduationOptionSelected = "You have selected graduation information. \nPlease select the details.";
+
+
+
+            _reply_requiredCredits = $"Instructions on Graduation.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+
+            _reply_certification = $"Instructions on Graduate Certification.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
             //aboutOthers
@@ -170,6 +194,10 @@ namespace my_first_chatbot.Helper
 
             _reply_ContactMaster = $"You can ask for a consultation with the administrator.\n" +
                                      $"We plan to add it later.\n";
+
+            _reply_PCLink = $"When you tap the link you might go to the MJU mobile page.\n" +
+                            $"Please tap \"PC버전\" icon of the upper left corner and tap the bot's link again.";
+
         }
 
     }

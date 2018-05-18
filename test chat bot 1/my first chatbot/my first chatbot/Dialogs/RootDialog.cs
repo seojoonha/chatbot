@@ -100,6 +100,7 @@ namespace my_first_chatbot.Dialogs
                 }
                 else await aboutCredits.CreditsOptionSelected(context);
             }
+            else if (value.ToString() == _storedvalues._graduation) await aboutGraduation.GraduateOptionSelected(context);
             else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
             else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
             else await ForUnimplementedOptions(context, value);

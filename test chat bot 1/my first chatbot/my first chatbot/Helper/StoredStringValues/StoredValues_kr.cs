@@ -16,6 +16,7 @@ namespace my_first_chatbot.Helper
             _courseRegistration = "수강 신청";
             _courseInformation = "과목 정보";
             _credits = "학점 관리";
+            _graduation = "졸업 정보";
             _others = "기타 정보";
 
             // 수강 신청 선택시 메뉴     course registration options
@@ -37,6 +38,10 @@ namespace my_first_chatbot.Helper
             _electiveCredits = "교양 학점";
             _changeStuNum = "학번 재설정";
 
+            //졸업정보 선택시 메뉴       graduation options
+            _requiredCredits = "졸업요건";            //웹 연결
+            _certification = "졸업인증제";              //웹 연결
+
         // 기타 정보 선택시 메뉴     others options
         _leaveOrRejoin = "휴학 및 복학";         //웹 연결
             _scholarship = "장학금 관련";            //웹 연결
@@ -45,18 +50,22 @@ namespace my_first_chatbot.Helper
             _introduction = "AAR안내";
             _requestInformationCorrection = "정보수정요청";
             _contactMaster = "관리자 연결";
+            _PCLink = "PC버전 링크";
             _convertLanguage = "English";
 
             // 처음으로 혹은 도움말      goto start and help
             _gotostart = "처음으로";
             _help = "도움말";
 
-            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
+            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _graduation, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
             _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
+            _graduationOptions = new List<string> { _requiredCredits, _certification, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
-            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
+            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _PCLink, _convertLanguage, _gotostart };
+            
+
 
             //모든 정보를 언어에 따라 다르게 주기 위해서
             //for diffrent reply from language select
@@ -70,7 +79,10 @@ namespace my_first_chatbot.Helper
                                 $"궁금하신 정보를 선택해 주세요.\n" +
                             $"학점 관리항목은 학번입력이 필요합니다.\n" +
                             $"If you go to [도움말] -> [English]\n" +
-                            $"You can convert language :).\n";
+                            $"You can convert language :).\n" +
+                            $"\nAAR2 변경사항:\n" +
+                            $"졸업정보 메뉴 추가\n" +
+                            $"모바일,PC링크에 관한 도움말 추가";
             _invalidSelectionMessage = "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.";
             _goToButton = "정보로 이동";
 
@@ -140,6 +152,16 @@ namespace my_first_chatbot.Helper
             _reply_ChangeStuNum = $"학번정보가 초기화 되었습니다.\n" +
                             $"다시한번 학점관리를 선택해 주세요.\n";
 
+            //aboutGraduation
+            _graduationOptionSelected = "졸업 정보를 선택하셨습니다. \n세부항목을 선택해주세요.";
+
+
+            _reply_requiredCredits = $"졸업 요건에 대한 안내입니다.\n" +
+                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+
+
+            _reply_certification = $"졸업 인증제에 대한 안내입니다.\n" +
+                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
 
             //aboutOthers
             _otherOptionSelected = "기타 정보를 선택하셨습니다.\n세부항목을 선택해주세요.";
@@ -170,6 +192,9 @@ namespace my_first_chatbot.Helper
 
             _reply_ContactMaster = $"관리자와 상담을 요청하실 수 있습니다.\n" +
                                      $"추후 추가예정 입니다.\n";
+
+            _reply_PCLink = $"모바일에서 데스크탑 링크를 탭하시면 모바일 페이지로 넘어가게 되는데요\n" +
+                            $"PC버전 버튼을 탭하신 후에 봇으로 돌아와 해당 메뉴의 링크를 탭하시면 데스크탑 페이지를 보실 수 있습니다.";
 
         }
 
