@@ -146,8 +146,8 @@ namespace my_first_chatbot.Helper.StoredStringValues
                             $"이수하신 교양 학점은 : ";
 
 
-        public string _reply_ChangeStuNum = $"학번정보가 초기화 되었습니다.\n" +
-                            $"다시한번 학점관리를 선택해 주세요.\n";
+        public string _reply_ChangeStuNum = $"재설정을 원하시는 학번을 입력해주세요.\n" +
+                            $"현재 설정되어 있는 학번은 : ";
 
 
         //aboutOthers

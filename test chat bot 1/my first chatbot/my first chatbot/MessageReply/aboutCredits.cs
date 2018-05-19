@@ -40,8 +40,8 @@ namespace my_first_chatbot.MessageReply
 
             else
             {
-                if (value.ToString() == RootDialog._storedvalues._changeStuNum) {
-                    await Reply_changeStuNum(context);
+                if (value.ToString() == RootDialog._storedvalues._changeStuNum) {               //학번 재설정 요청일시
+                    await Reply_changeStuNum(context);                                          //학번 재설정으로 연결
                 }
                 else
                 {
@@ -83,10 +83,10 @@ namespace my_first_chatbot.MessageReply
             await context.PostAsync(activity);
         }
 
-        public static async Task Reply_changeStuNum(IDialogContext context)
+        public static async Task Reply_changeStuNum(IDialogContext context)         //학번 재설정
         {
-                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogAfterResettingStudentNumber);
+                await context.PostAsync(RootDialog._storedvalues._reply_ChangeStuNum + RootDialog.stuNum);            //메시지를 보낸다.
+                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogAfterResettingStudentNumber);     //바로 학번입력으로 간다.
         }      
     }
 }

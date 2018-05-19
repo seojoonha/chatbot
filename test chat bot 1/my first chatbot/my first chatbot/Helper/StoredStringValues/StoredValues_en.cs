@@ -139,8 +139,8 @@ namespace my_first_chatbot.Helper
                                 $"Liberal Arts credits are : ";
 
 
-            _reply_ChangeStuNum = $"The student ID information has been initialized.\n" +
-                            $"Please choose your grade management again.\n";
+            _reply_ChangeStuNum = $"Please enter the student number you wish to reset\n" +
+                            $"The current student number is : ";
 
 
             //aboutOthers
