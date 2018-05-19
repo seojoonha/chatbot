@@ -20,10 +20,11 @@ namespace my_first_chatbot.MessageReply
                 RootDialog._storedvalues._courseRegistrationOptions,
                 RootDialog._storedvalues._courseRegistrationSelected,                                                                                        //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-                3,
+                1,
                 PromptStyle.Auto);
 
         }
+
         public static async Task HandelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
@@ -38,6 +39,7 @@ namespace my_first_chatbot.MessageReply
                 else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
                 else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
                 else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
+
 
                 //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
                 await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
@@ -58,10 +60,10 @@ namespace my_first_chatbot.MessageReply
                 Title = "수강신청 방법",
                 Subtitle = "온라인서비스-학사운영-수강신청",          //Location of information in MJU homepage
                 Text = "수강신청 방법",
-                Images = new List<CardImage> { new CardImage("http://www.mju.ac.kr/mbs/mjukr/images/title/tle5_5_4.gif") },
+                Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
-                                                value: "http://www.mju.ac.kr/mbs/mjukr/subview.jsp?id=mjukr_050504000000") }
+                                                value: "https://drive.google.com/open?id=1G4Vnh3vDnpZ5AXgwgSQy88k7wEgPermE") }
             }.ToAttachment());
 
             await context.PostAsync(activity);
@@ -77,10 +79,10 @@ namespace my_first_chatbot.MessageReply
                 Title = "수강신청 일정",
                 Subtitle = "온라인서비스-공지사항-일반공지",
                 Text = "수강신청 일정",
-                Images = new List<CardImage> { new CardImage("http://www.mju.ac.kr/upload/board/11294/editor/20180130_094627346_91111.jpg") },
+                Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
-                                                value: "http://www.mju.ac.kr/mbs/mjukr/jsp/board/view.jsp?spage=1&boardId=11294&boardSeq=79712853&mcategoryId=&id=mjukr_050101000000&search=%EC%88%98%EA%B0%95%EC%8B%A0%EC%B2%AD&column=TITLE&categoryDepth=&categoryId=0") }
+                                                value: "https://drive.google.com/open?id=1hkUuDnWVq4LgS5odnhda4CeZSkhdiET2") }
             }.ToAttachment());
 
             await context.PostAsync(activity);
@@ -96,7 +98,7 @@ namespace my_first_chatbot.MessageReply
                 Title = "명지대학교 학칙",
                 Subtitle = "2018.05.01 개정",
                 Text = "명지대학교 학칙 [ 2018.05.01 ]",
-                Images = new List<CardImage> { new CardImage("http://search.mju.ac.kr/RSA/front/images/logo.gif") },
+                Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
                                                 value: "http://law.mju.ac.kr/lmxsrv/law/lawviewer.srv?lawseq=69&hseq=1571&refid=undefined") }
@@ -107,7 +109,21 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task Reply_terms(IDialogContext context)
         {
-            await context.PostAsync(RootDialog._storedvalues._reply_Terms);
+            var activity = context.MakeMessage();
+            activity.Text = RootDialog._storedvalues._reply_Terms;
+
+            activity.Attachments.Add(new HeroCard
+            {
+                Title = "수강신청관련 용어정리",
+                Subtitle = "수강신청관련 용어정리",
+                Text = "수강신청관련 용어정리",
+                Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
+                                                RootDialog._storedvalues._goToButton,
+                                                value: "https://drive.google.com/open?id=13K60TUyp8Cim21w5jFmPZ-CWR5Ub-0iHDLtl8wbN0D0") }
+            }.ToAttachment());
+
+            await context.PostAsync(activity);
         }
     }
 }

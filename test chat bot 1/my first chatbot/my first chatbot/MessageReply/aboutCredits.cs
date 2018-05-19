@@ -15,16 +15,23 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task CreditsOptionSelected(IDialogContext context)
         {
-
-
-            PromptDialog.Choice<string>(
+            if (RootDialog.stuNum == "")
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
+                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogResumeAfter);                //get student number
+            }
+            else
+            {
+                PromptDialog.Choice<string>(
                 context,
                 HandelCreditsOptionSelection,
                 RootDialog._storedvalues._creditsOptions,
                 RootDialog._storedvalues._creditsOptionSelected,                                                                                 //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-                3,
+                1,
                 PromptStyle.Auto);
+            }
+
 
         }
 
@@ -40,14 +47,16 @@ namespace my_first_chatbot.MessageReply
 
             else
             {
-                if (value.ToString() == RootDialog._storedvalues._changeStuNum) {               //학번 재설정 요청일시
+                if (value.ToString() == RootDialog._storedvalues._changeStuNum)
+                {               //학번 재설정 요청일시
                     await Reply_changeStuNum(context);                                          //학번 재설정으로 연결
                 }
                 else
                 {
                     if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
                     else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
-                    else if (value.ToString() == RootDialog._storedvalues._electiveCredits) await Reply_electiveCredits(context);
+                    else if (value.ToString() == RootDialog._storedvalues._liberalArtsCredits) await Reply_liberalArtsCredits(context);
+
 
                     //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
                     aboutCredits.CreditsOptionSelected(context);
@@ -75,18 +84,18 @@ namespace my_first_chatbot.MessageReply
             await context.PostAsync(activity);
         }
 
-        public static async Task Reply_electiveCredits(IDialogContext context)
+        public static async Task Reply_liberalArtsCredits(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_ElectiveCredits + RootDialog.studentinfo.totalElectiveCredits(RootDialog.stuNum);
+            activity.Text = RootDialog._storedvalues._reply_LiberalArtsCredits + RootDialog.studentinfo.totalElectiveCredits(RootDialog.stuNum);
 
             await context.PostAsync(activity);
         }
 
         public static async Task Reply_changeStuNum(IDialogContext context)         //학번 재설정
         {
-                await context.PostAsync(RootDialog._storedvalues._reply_ChangeStuNum + RootDialog.stuNum);            //메시지를 보낸다.
-                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogAfterResettingStudentNumber);     //바로 학번입력으로 간다.
-        }      
+            await context.PostAsync(RootDialog._storedvalues._reply_ChangeStuNum + RootDialog.stuNum);            //메시지를 보낸다.
+            context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogAfterResettingStudentNumber);     //바로 학번입력으로 간다.
+        }
     }
 }

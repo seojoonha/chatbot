@@ -18,7 +18,7 @@ namespace my_first_chatbot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            
+
             if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());

@@ -24,17 +24,18 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public List<string> _courseRegistrationOptions = new List<string>();
 
         // 과목 정보 선택시 메뉴     course info options
-        public string _openedCourses = "이번학기 개설과목";   //myiweb에 있는데 우짜지..
+        public string _openedMajorCourses = "이번학기 전공개설과목";
+        public string _openedCourses = "이번학기 교양개설과목";   //myiweb에 있는데 우짜지..
         public string _syllabus = "강의계획서";                //이것도..
         public string _lecturerInfo = "강사 정보";             //이것도..
         public string _mandatorySubject = "필수과목 정보";      //이건 어떻게 가능
         public string _prerequisite = "선수과목 정보";          //이것도 탐색
         public List<string> _courseInfoOptions = new List<string>();
-
+        //_liberalArtsCredits
         // 학점 관리 선택시 메뉴     credit options
         public string _currentCredits = "나의 이수학점";        //개인별 정보 필요
         public string _majorCredits = "전공 학점";
-        public string _electiveCredits = "교양 학점";
+        public string _liberalArtsCredits = "교양 학점";
         public string _changeStuNum = "학번 재설정";
         public List<string> _creditsOptions = new List<string>();
 
@@ -59,8 +60,8 @@ namespace my_first_chatbot.Helper.StoredStringValues
         {
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
-            _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
-            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
+            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
+            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
@@ -74,11 +75,12 @@ namespace my_first_chatbot.Helper.StoredStringValues
                                 $"맞춤형 정보제공을 위해 학번을 입력해 주세요.\n" +
                             $"입력하신 학번은 저장되지 않습니다.\n" +
                             $"테스트용 학번 : 60131937.\n";
-        public string _getStudentNumUpdateMessage = @"Student number info updated to";
+        public string _getStudentNumUpdateMessage = $"학번 정보가 변경되었습니다.\n" +
+                            $"변경된 학번 : ";
         public string _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
                                 $"궁금하신 정보를 선택해 주세요.\n" +
                             $"학점 관리항목은 학번입력이 필요합니다.\n" +
-                            $"If you go to [도움말] -> [English]\n" + 
+                            $"If you go to [도움말] -> [English]\n" +
                             $"You can convert language :).\n";
         public string _invalidSelectionMessage = "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.";
         public string _goToButton = "정보로 이동";
@@ -86,9 +88,11 @@ namespace my_first_chatbot.Helper.StoredStringValues
         //aboutCourseInfo
         public string _courseInfoSelected = "강의 정보를 선택하셨습니다.\n세부항목을 선택해주세요.";
 
-        public string _reply_OpenedCourses = $"이번학기 개설강의에 대한 안내입니다.\n" +
-                            $"Myiweb내에 존재하는 정보이므로 로그인이 필요합니다.\n" +
-                            $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+
+        public string _reply_OpenedMajorCourses = $"이번학기 개설전공강의에 대한 안내입니다.\n";
+
+
+        public string _reply_OpenedCourses = $"이번학기 개설강의에 대한 안내입니다.\n";
 
 
         public string _reply_Syllabus = $"강의계획서에 대한 안내입니다.\n" +
@@ -126,8 +130,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                             $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
 
 
-        public string _reply_Terms = $"수강신청관련 용어정보에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+        public string _reply_Terms = $"수강신청관련 용어정보에 대한 안내입니다.\n";
 
 
         //aboutCredits
@@ -142,7 +145,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                             $"이수하신 전공 학점은 : ";
 
 
-        public string _reply_ElectiveCredits = $"선택 학점에 대한 안내입니다.\n" + 
+        public string _reply_LiberalArtsCredits = $"교양 학점에 대한 안내입니다.\n" +
                             $"이수하신 교양 학점은 : ";
 
 
@@ -154,12 +157,10 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _otherOptionSelected = "기타 정보를 선택하셨습니다.\n세부항목을 선택해주세요.";
 
 
-        public string _reply_LeaveOrRejoin = $"휴학 및 복학정보에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+        public string _reply_LeaveOrRejoin = $"휴학 및 복학정보에 대한 안내입니다.\n";
 
 
-        public string _reply_Scholarship = $"장학금 관련정보에 대한 안내입니다.\n" +
-                            $"추후 추가예정 입니다.\n";
+        public string _reply_Scholarship = $"장학금 관련정보에 대한 안내입니다.\n";
 
 
         //aboutHelp
@@ -173,7 +174,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                             $"추후 추가예정 입니다.\n";
 
 
-        public string _reply_RequestInformationCorrection = $"장학금 관련정보에 대한 안내입니다.\n" +
+        public string _reply_RequestInformationCorrection = $"정보수정요청을 하실수 있습니다.\n" +
                             $"추후 추가예정 입니다.\n";
 
         public string _reply_ContactMaster = $"관리자와 상담을 요청하실 수 있습니다.\n" +

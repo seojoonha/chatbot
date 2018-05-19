@@ -25,7 +25,8 @@ namespace my_first_chatbot.Helper
             _terms = "수강신청 용어";                 //우리가 정의? 혹은 웹 연결?
 
             // 과목 정보 선택시 메뉴     course info options
-            _openedCourses = "이번학기 개설과목";   //myiweb에 있는데 우짜지..
+            _openedMajorCourses = "이번학기 개설전공";
+            _openedCourses = "이번학기 개설교양";   //myiweb에 있는데 우짜지..
             _syllabus = "강의계획서";                //이것도..
             _lecturerInfo = "강사 정보";             //이것도..
             _mandatorySubject = "필수과목 정보";      //이건 어떻게 가능
@@ -34,11 +35,11 @@ namespace my_first_chatbot.Helper
             // 학점 관리 선택시 메뉴     credit options
             _currentCredits = "나의 이수학점";        //개인별 정보 필요
             _majorCredits = "전공 학점";
-            _electiveCredits = "교양 학점";
+            _liberalArtsCredits = "교양 학점";
             _changeStuNum = "학번 재설정";
 
-        // 기타 정보 선택시 메뉴     others options
-        _leaveOrRejoin = "휴학 및 복학";         //웹 연결
+            // 기타 정보 선택시 메뉴     others options
+            _leaveOrRejoin = "휴학 및 복학";         //웹 연결
             _scholarship = "장학금 관련";            //웹 연결
 
             // 도움말 선택시 메뉴       help options
@@ -53,8 +54,8 @@ namespace my_first_chatbot.Helper
 
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
-            _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
-            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
+            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
+            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
@@ -66,20 +67,25 @@ namespace my_first_chatbot.Helper
                                 $"맞춤형 정보제공을 위해 학번을 입력해 주세요.\n" +
                             $"입력하신 학번은 저장되지 않습니다.\n" +
                             $"테스트용 학번 : 60131937.\n";
+
+            _getStudentNumUpdateMessage = $"학번 정보가 변경되었습니다.\n" +
+                            $"변경된 학번 : ";
+
             _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
-                                $"궁금하신 정보를 선택해 주세요.\n" +
-                            $"학점 관리항목은 학번입력이 필요합니다.\n" +
-                            $"If you go to [도움말] -> [English]\n" +
-                            $"You can convert language :).\n";
+                                    $"궁금하신 정보를 선택해 주세요.\n" +
+                                $"학점 관리항목은 학번입력이 필요합니다.\n" +
+                                $"If you go to [도움말] -> [English]\n" +
+                                $"You can convert language :).\n";
             _invalidSelectionMessage = "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.";
             _goToButton = "정보로 이동";
 
             //aboutCourseInfo
             _courseInfoSelected = "강의 정보를 선택하셨습니다.\n세부항목을 선택해주세요.";
 
-            _reply_OpenedCourses = $"이번학기 개설강의에 대한 안내입니다.\n" +
-                                $"Myiweb내에 존재하는 정보이므로 로그인이 필요합니다.\n" +
-                                $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
+            _reply_OpenedMajorCourses = $"이번학기 개설전공강의에 대한 안내입니다.\n";
+
+
+            _reply_OpenedCourses = $"이번학기 개설교양강의에 대한 안내입니다.\n";
 
 
             _reply_Syllabus = $"강의계획서에 대한 안내입니다.\n" +
@@ -92,12 +98,10 @@ namespace my_first_chatbot.Helper
                                 $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
 
 
-            _reply_MandatorySubject = $"필수과목 정보에 대한 안내입니다.\n" +
-                                $"추후 추가예정 입니다.\n";
+            _reply_MandatorySubject = $"필수과목 정보에 대한 안내입니다.\n";
 
 
-            _reply_Prerequisite = $"선수과목 정보에 대한 안내입니다.\n" +
-                                $"추후 추가예정 입니다.\n";
+            _reply_Prerequisite = $"선수과목 정보에 대한 안내입니다.";
 
 
             //aboutCourseRegistration
@@ -117,8 +121,7 @@ namespace my_first_chatbot.Helper
                                 $"모바일 페이지에 존재하지 않는 정보라 데스크탑 사이트로 연결됩니다.\n";
 
 
-            _reply_Terms = $"수강신청관련 용어정보에 대한 안내입니다.\n" +
-                                $"추후 추가예정 입니다.\n";
+            _reply_Terms = $"수강신청관련 용어정보에 대한 안내입니다.\n";
 
 
             //aboutCredits
@@ -133,7 +136,7 @@ namespace my_first_chatbot.Helper
                                 $"이수하신 전공 학점은 : ";
 
 
-            _reply_ElectiveCredits = $"선택 학점에 대한 안내입니다.\n" +
+            _reply_LiberalArtsCredits = $"교양 학점에 대한 안내입니다.\n" +
                                 $"이수하신 교양 학점은 : ";
 
 
@@ -145,12 +148,10 @@ namespace my_first_chatbot.Helper
             _otherOptionSelected = "기타 정보를 선택하셨습니다.\n세부항목을 선택해주세요.";
 
 
-            _reply_LeaveOrRejoin = $"휴학 및 복학정보에 대한 안내입니다.\n" +
-                                $"추후 추가예정 입니다.\n";
+            _reply_LeaveOrRejoin = $"휴학 및 복학정보에 대한 안내입니다.\n";
 
 
-            _reply_Scholarship = $"장학금 관련정보에 대한 안내입니다.\n" +
-                                $"추후 추가예정 입니다.\n";
+            _reply_Scholarship = $"장학금 관련정보에 대한 안내입니다.\n";
 
 
 
@@ -165,7 +166,7 @@ namespace my_first_chatbot.Helper
                                     $"추후 추가예정 입니다.\n";
 
 
-            _reply_RequestInformationCorrection = $"장학금 관련정보에 대한 안내입니다.\n" +
+            _reply_RequestInformationCorrection = $"정보수정요청을 하실수 있습니다.\n" +
                                     $"추후 추가예정 입니다.\n";
 
             _reply_ContactMaster = $"관리자와 상담을 요청하실 수 있습니다.\n" +

@@ -20,10 +20,8 @@ namespace my_first_chatbot.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
             _storedvalues = new StoredValues_kr();          //Default is korean
-            //_storedvalues = new StoredValues_en();
-
+            context.Wait(MessageReceivedAsync);
         }
 
 
@@ -35,11 +33,7 @@ namespace my_first_chatbot.Dialogs
                 var value = await result;
                 if (value.Text.ToString() == "English") _storedvalues = new StoredValues_en();      //if you choose english at first keyboard convert to english
 
-                //storedvalue가 static이 아니게 되어 스위치에서 이프엘스로 수정
-                if (value.Text.ToString() == _storedvalues._gotostart) await ShowWelcomeOptions(context);    //첫 단계에서 처음으로 일 경우   
-                else if (value.Text.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);    //첫 단게에서 도움말 일 경우
-                else await ShowWelcomeOptions(context);                                                     //그외엔 웰컴 옵션 출력
-
+                await ShowWelcomeOptions(context);   
             }
             catch (Exception ee)                                        //Exception 잡아주기
             {
@@ -48,15 +42,45 @@ namespace my_first_chatbot.Dialogs
             //await ShowWelcomeOptions(context);
         }
 
+        
 
-        private static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
+        public static async Task ShowWelcomeOptions(IDialogContext context)
+        {
+
+
+            PromptDialog.Choice<string>(
+                context,
+                HandelWelcomeOptionSelected,
+                _storedvalues._welcomeOptionsList,
+                _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
+                _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
+                1,
+                PromptStyle.Auto);
+        }
+
+
+
+        public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        {
+            var value = await result;
+
+            if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+            else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
+            else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
+            else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
+            else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+            else await ForUnimplementedOptions(context, value);
+        }
+
+
+
+        public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
             try
             {
                 var message = await result;
                 stuNum = message.ToString();
                 await aboutCredits.CreditsOptionSelected(context);
-
             }
             catch (TooManyAttemptsException)
             {
@@ -74,44 +98,6 @@ namespace my_first_chatbot.Dialogs
 
             await context.PostAsync(_storedvalues._getStudentNumUpdateMessage + stuNum);
             await aboutCredits.CreditsOptionSelected(context);
-        }
-
-
-
-        public static async Task ShowWelcomeOptions(IDialogContext context)
-        {
-
-
-            PromptDialog.Choice<string>(
-                context,
-                HandelWelcomeOptionSelected,
-                _storedvalues._welcomeOptionsList,
-                _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
-                _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
-                3,
-                PromptStyle.Auto);
-        }
-
-
-
-        public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
-        {
-            var value = await result;
-
-            if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
-            else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
-            else if (value.ToString() == _storedvalues._credits)
-            {
-                if (stuNum == "")
-                {
-                    await context.PostAsync(_storedvalues._getStudentNumMessage);
-                    context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);                //get student number
-                }
-                else await aboutCredits.CreditsOptionSelected(context);
-            }
-            else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
-            else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-            else await ForUnimplementedOptions(context, value);
         }
 
 

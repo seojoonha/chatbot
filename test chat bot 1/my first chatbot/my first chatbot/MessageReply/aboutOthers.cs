@@ -20,7 +20,7 @@ namespace my_first_chatbot.MessageReply
                 RootDialog._storedvalues._othersOption,
                 RootDialog._storedvalues._otherOptionSelected,                                                                                 //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : OtherOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-                3,
+                1,
                 PromptStyle.Auto);
 
         }
@@ -37,6 +37,7 @@ namespace my_first_chatbot.MessageReply
                 if (value.ToString() == RootDialog._storedvalues._leaveOrRejoin) await Reply_leaveOrRejoin(context);
                 else if (value.ToString() == RootDialog._storedvalues._scholarship) await Reply_scholarship(context);
 
+
                 //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
                 await aboutOthers.OtherOptionSelected(context);
             }
@@ -48,8 +49,26 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task Reply_leaveOrRejoin(IDialogContext context)
         {
+            /*
             var activity = context.MakeMessage();
             activity.Text = RootDialog._storedvalues._reply_LeaveOrRejoin;
+            await context.PostAsync(activity);
+            */
+
+            var activity = context.MakeMessage();
+            activity.Text = RootDialog._storedvalues._reply_LeaveOrRejoin;
+
+            activity.Attachments.Add(new HeroCard
+            {
+                Title = "휴학 및 복학관련 정보입니다.",
+                Subtitle = "휴학 및 복학관련 정보입니다.",          //Location of information in MJU homepage
+                Text = "휴학 및 복학관련 정보입니다.",
+                Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") }, 
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
+                                                RootDialog._storedvalues._goToButton,
+                                                value: "https://drive.google.com/open?id=1YXE91epV_0_l8_lsgkXn1f9rYeF4_DfG") }
+            }.ToAttachment());
+
             await context.PostAsync(activity);
         }
 
@@ -57,6 +76,17 @@ namespace my_first_chatbot.MessageReply
         {
             var activity = context.MakeMessage();
             activity.Text = RootDialog._storedvalues._reply_Scholarship;
+
+            activity.Attachments.Add(new HeroCard
+            {
+                Title = "장학금관련 정보입니다.",
+                Subtitle = "장학금관련 정보입니다.",          //Location of information in MJU homepage
+                Text = "장학금관련 정보입니다.",
+                Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
+                                                RootDialog._storedvalues._goToButton,
+                                                value: "https://drive.google.com/open?id=112Fs5ZE3ek3AzQBiCrKLXLuLxkWCPvo_") }
+            }.ToAttachment());
 
             await context.PostAsync(activity);
         }

@@ -20,7 +20,7 @@ namespace my_first_chatbot.MessageReply
                 RootDialog._storedvalues._helpOptionsList,
                 RootDialog._storedvalues._helpOptionSelected,           //선택시 출력되는 메시지 정의
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : ShowHelpOptions",    //오류시 표시될 메시지 정의
-                3,
+                1,
                 PromptStyle.Auto);
         }
 
@@ -30,6 +30,7 @@ namespace my_first_chatbot.MessageReply
             var value = await result;
 
             if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);          //웰컴이 두번 불러지는 문제인가?
+
             else
             {
                 if (value.ToString() == RootDialog._storedvalues._introduction) await Reply_introduction(context);     //이거 룻다이알로그에 스토얼 가져와서 인듯
@@ -37,13 +38,13 @@ namespace my_first_chatbot.MessageReply
                 else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context);
                 else if (value.ToString() == RootDialog._storedvalues._convertLanguage)
                 {
-                    if(RootDialog._storedvalues._convertLanguage == "한국어") RootDialog._storedvalues = new StoredValues_kr();   //for convert en to kr
+                    if (RootDialog._storedvalues._convertLanguage == "한국어") RootDialog._storedvalues = new StoredValues_kr();   //for convert en to kr
                     else RootDialog._storedvalues = new StoredValues_en();                                  //for convert kr to en
                 }
-                
+
                 await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
             }
-            
+
         }
 
 
@@ -73,6 +74,6 @@ namespace my_first_chatbot.MessageReply
             await context.PostAsync(activity);
         }
 
-        
+
     }
 }

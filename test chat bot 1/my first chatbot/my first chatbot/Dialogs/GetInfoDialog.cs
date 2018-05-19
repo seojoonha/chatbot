@@ -18,12 +18,12 @@ namespace my_first_chatbot.Dialogs
         {
             context.Wait(MessageReceivedAsync);
         }
-        
+
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
             try
             {
-                var message = await result;                                       
+                var message = await result;
                 context.Done(message.Text);
             }
             catch (Exception ee)                                        //Exception 잡아주기

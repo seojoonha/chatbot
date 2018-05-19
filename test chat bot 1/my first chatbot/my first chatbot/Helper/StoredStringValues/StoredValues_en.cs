@@ -26,7 +26,8 @@ namespace my_first_chatbot.Helper
             _terms = "Terms";                 //우리가 정의? 혹은 웹 연결?
 
             // 과목 정보 선택시 메뉴     course info options
-            _openedCourses = "Opened Courses";   //myiweb에 있는데 우짜지..
+            _openedCourses = "Opened LiberalArts";   //myiweb에 있는데 우짜지..
+            _openedMajorCourses = "Opened Major";
             _syllabus = "Syllabus";                //이것도..
             _lecturerInfo = "Lecture Info";             //이것도..
             _mandatorySubject = "Mandatory Subject";      //이건 어떻게 가능
@@ -35,7 +36,7 @@ namespace my_first_chatbot.Helper
             // 학점 관리 선택시 메뉴     credit options
             _currentCredits = "Current Credits";        //개인별 정보 필요
             _majorCredits = "Major Credits";
-            _electiveCredits = "Cultural credits";
+            _liberalArtsCredits = "Liberal Arts credits";
             _changeStuNum = "Resetting StuNum";
 
             // 기타 정보 선택시 메뉴     others options
@@ -54,8 +55,8 @@ namespace my_first_chatbot.Helper
 
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
-            _courseInfoOptions = new List<string> { _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
-            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _electiveCredits, _changeStuNum, _gotostart, _help };
+            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
+            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };
             _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
@@ -67,7 +68,8 @@ namespace my_first_chatbot.Helper
             _getStudentNumMessage = $"Myongji University AAR.\n" +
                                 $"Please enter your student ID for personalized information\n" +
                             $"Test number: 60131937.\n";
-            _getStudentNumUpdateMessage = @"Student number info updated to";
+            _getStudentNumUpdateMessage = $"Student number info updated\n" +
+                            $"Updated Student number is : ";
 
             _welcomeMessage = $"Myongji University AAR.\n" +
                                 $"Please select the information you are interested in.\n" +
@@ -79,9 +81,9 @@ namespace my_first_chatbot.Helper
             //aboutCourseInfo
             _courseInfoSelected = "You have selected lecture information.\nPlease select details.";
 
-            _reply_OpenedCourses = $"This is a guide for this semester.\n" +
-                                $"This is information in Myiweb, so login is required.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+            _reply_OpenedCourses = $"This is a guide for this semester opened LiberalArts.\n";
+
+            _reply_OpenedMajorCourses = $"This is a guide for this semester opened Major.\n";
 
 
             _reply_Syllabus = $"This is a guide for syllabus.\n" +
@@ -94,12 +96,10 @@ namespace my_first_chatbot.Helper
                                 $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_MandatorySubject = $"This is a guide for required course information \n" +
-                                $"We plan to add it later. \n";
+            _reply_MandatorySubject = $"This is a guide for required course information \n";
 
 
-            _reply_Prerequisite = $"This is a guide for prerequisite information \n" +
-                                $"We plan to add it later. \n";
+            _reply_Prerequisite = $"This is a guide for prerequisite information \n";
 
 
             //aboutCourseRegistration
@@ -119,8 +119,7 @@ namespace my_first_chatbot.Helper
                                 $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_Terms = $"This is a guide to information about course registration.\n" +
-                                $"We plan to add it later.\n";
+            _reply_Terms = $"This is a guide to information about course registration.\n";
 
 
             //aboutCredits
@@ -135,7 +134,7 @@ namespace my_first_chatbot.Helper
                                 $"Specialization credits for the undergraduate courses are : ";
 
 
-            _reply_ElectiveCredits = $"Guidance on Cultural credits.\n" +
+            _reply_LiberalArtsCredits = $"Guidance on Liberal Arts credits.\n" +
                                 $"Liberal Arts credits are : ";
 
 
@@ -147,12 +146,10 @@ namespace my_first_chatbot.Helper
             _otherOptionSelected = "You have selected other information.\nPlease select the details.";
 
 
-            _reply_LeaveOrRejoin = $"This is information about the leave and returning information. \n" +
-                                $"We plan to add it later.\n";
+            _reply_LeaveOrRejoin = $"This is information about the leave and returning information. \n";
 
 
-            _reply_Scholarship = $"Information on scholarship information. \n" +
-                                $"We plan to add it later. \n";
+            _reply_Scholarship = $"Information on scholarship information. \n";
 
 
             //aboutHelp
@@ -166,7 +163,7 @@ namespace my_first_chatbot.Helper
                                 $"Added later \n";
 
 
-            _reply_RequestInformationCorrection = $"Information on scholarship information.\n" +
+            _reply_RequestInformationCorrection = $"You can request to modify the information.\n" +
                                     $"We plan to add it later.\n";
 
             _reply_ContactMaster = $"You can ask for a consultation with the administrator.\n" +
