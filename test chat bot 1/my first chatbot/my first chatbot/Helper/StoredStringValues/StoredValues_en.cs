@@ -27,7 +27,7 @@ namespace my_first_chatbot.Helper
             _terms = "Terms";                 //우리가 정의? 혹은 웹 연결?
 
             // 과목 정보 선택시 메뉴     course info options
-            _openedCourses = "Opened LiberalArts";   //myiweb에 있는데 우짜지..
+            _openedLiberalArts = "Opened LiberalArts";   //myiweb에 있는데 우짜지..
             _openedMajorCourses = "Opened Major";
             _syllabus = "Syllabus";                //이것도..
             _lecturerInfo = "Lecture Info";             //이것도..
@@ -41,11 +41,17 @@ namespace my_first_chatbot.Helper
             _changeStuNum = "Resetting StuNum";
 
             // 기타 정보 선택시 메뉴     others options
-            _leaveOrRejoin = "Leave Or Readmission";         //웹 연결
+            _leaveOrReadmission = "Leave Or Readmission";         //웹 연결
             _scholarship = "Scholarship";            //웹 연결
 
             // 직접 입력하기 선택시 메뉴     typeself options
-            _typePlease = "Please enter your question";
+            _typePlease = $"Please enter your information yourself\n" +
+                                    $"- Example-\n" +
+                                    $"[Course Registration]\n" +
+                                    $"[Course Information]\n" +
+                                    $"[Credits]\n" +
+                                    $"[Others]\n" +
+                                    $"We are going to implement Depth 3 later.\n";
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
@@ -59,9 +65,9 @@ namespace my_first_chatbot.Helper
 
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
-            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
+            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedLiberalArts, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };
-            _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
+            _othersOption = new List<string> { _leaveOrReadmission, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
 
@@ -77,6 +83,7 @@ namespace my_first_chatbot.Helper
 
             _welcomeMessage = $"Myongji University AAR.\n" +
                                 $"Please select the information you are interested in.\n" +
+                                $"You can enter text if you choose to type it yourself.\n" +
                             $"Credits management entry requires student number\n" +
                             $"메뉴에서 [Help] -> [한국어]를 선택하시면 언어변환이 가능합니다 :).\n";
             _invalidSelectionMessage = "You have chosen the wrong option.";
@@ -85,7 +92,7 @@ namespace my_first_chatbot.Helper
             //aboutCourseInfo
             _courseInfoSelected = "You have selected lecture information.\nPlease select details.";
 
-            _reply_OpenedCourses = $"This is a guide for this semester opened LiberalArts.\n";
+            _reply_openedLiberalArts = $"This is a guide for this semester opened LiberalArts.\n";
 
             _reply_OpenedMajorCourses = $"This is a guide for this semester opened Major.\n";
 
@@ -150,7 +157,7 @@ namespace my_first_chatbot.Helper
             _otherOptionSelected = "You have selected other information.\nPlease select the details.";
 
 
-            _reply_LeaveOrRejoin = $"This is information about the leave and returning information. \n";
+            _reply_leaveOrReadmission = $"This is information about the leave and returning information. \n";
 
 
             _reply_Scholarship = $"Information on scholarship information. \n";

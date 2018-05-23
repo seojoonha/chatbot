@@ -35,7 +35,7 @@ namespace my_first_chatbot.MessageReply
             else
             {
                 if (value.ToString() == RootDialog._storedvalues._openedMajorCourses) await Reply_openedMajorCourses(context);
-                else if (value.ToString() == RootDialog._storedvalues._openedCourses) await Reply_openedCourses(context);
+                else if (value.ToString() == RootDialog._storedvalues._openedLiberalArts) await Reply_openedLiberalArts(context);
                 else if (value.ToString() == RootDialog._storedvalues._syllabus) await Reply_syllabus(context);
                 else if (value.ToString() == RootDialog._storedvalues._lecturerInfo) await Reply_lecturerInfo(context);
                 else if (value.ToString() == RootDialog._storedvalues._mandatorySubject) await Reply_mandatorySubject(context);
@@ -54,7 +54,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_openedMajorCourses(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_OpenedCourses;
+            activity.Text = RootDialog._storedvalues._reply_openedLiberalArts;
 
             activity.Attachments.Add(new HeroCard
             {
@@ -70,10 +70,10 @@ namespace my_first_chatbot.MessageReply
             await context.PostAsync(activity);
         }
 
-        public static async Task Reply_openedCourses(IDialogContext context)
+        public static async Task Reply_openedLiberalArts(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_OpenedCourses;
+            activity.Text = RootDialog._storedvalues._reply_openedLiberalArts;
 
             activity.Attachments.Add(new HeroCard
             {

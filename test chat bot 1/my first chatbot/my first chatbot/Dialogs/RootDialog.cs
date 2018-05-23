@@ -97,7 +97,6 @@ namespace my_first_chatbot.Dialogs
 
                 await ShowWelcomeOptions(context);
             }
-            //throw new NotImplementedException();
         }
 
         public static async Task GetInfoDialogAfterResettingStudentNumber(IDialogContext context, IAwaitable<object> result)

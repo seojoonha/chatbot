@@ -27,7 +27,7 @@ namespace my_first_chatbot.Helper
 
             // 과목 정보 선택시 메뉴     course info options
             _openedMajorCourses = "이번학기 개설전공";
-            _openedCourses = "이번학기 개설교양";   //myiweb에 있는데 우짜지..
+            _openedLiberalArts = "이번학기 개설교양";   //myiweb에 있는데 우짜지..
             _syllabus = "강의계획서";                //이것도..
             _lecturerInfo = "강사 정보";             //이것도..
             _mandatorySubject = "필수과목 정보";      //이건 어떻게 가능
@@ -40,14 +40,22 @@ namespace my_first_chatbot.Helper
             _changeStuNum = "학번 재설정";
 
             // 기타 정보 선택시 메뉴     others options
-            _leaveOrRejoin = "휴학 및 복학";         //웹 연결
+            _leaveOrReadmission = "휴학 및 복학";         //웹 연결
             _scholarship = "장학금 관련";            //웹 연결
 
             // 직접 입력하기 선택시 메뉴     typeself options
-            _typePlease = "궁금하신 정보를 입력해주세요";
+            _typePlease = $"궁금하신 정보를 직접 입력해 주세요.\n" +
+                                    $"-Example-\n" +
+                                    $"[수강신청방법]\n" +
+                                    $"[이번학기개설전공]\n" +
+                                    $"[나의 학점관리]\n" +
+                                    $"[휴학하는법]\n" +
+                                    $"현재 Depth 2까지만 작동\n" +
+                                    $"추후 Depth 3 까지 구현예정입니다.\n";
 
-        // 도움말 선택시 메뉴       help options
-        _introduction = "AAR안내";
+
+            // 도움말 선택시 메뉴       help options
+            _introduction = "AAR안내";
             _requestInformationCorrection = "정보수정요청";
             _contactMaster = "관리자 연결";
             _convertLanguage = "English";
@@ -58,9 +66,9 @@ namespace my_first_chatbot.Helper
 
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
-            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
+            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedLiberalArts, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };
-            _othersOption = new List<string> { _leaveOrRejoin, _scholarship, _gotostart, _help };
+            _othersOption = new List<string> { _leaveOrReadmission, _scholarship, _gotostart, _help };
             _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
 
             //모든 정보를 언어에 따라 다르게 주기 위해서
@@ -76,10 +84,11 @@ namespace my_first_chatbot.Helper
                             $"변경된 학번 : ";
 
             _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
-                                    $"궁금하신 정보를 선택해 주세요.\n" +
-                                $"학점 관리항목은 학번입력이 필요합니다.\n" +
-                                $"If you go to [도움말] -> [English]\n" +
-                                $"You can convert language :).\n";
+                                $"궁금하신 정보를 선택해 주세요.\n" +
+                            $"직접 입력하기를 선택하시면 텍스트 입력이 가능합니다..\n" +
+                            $"학점 관리항목은 학번입력이 필요합니다.\n" +
+                            $"Go to the [도움말] -> [English]\n" +
+                            $"Language conversion is possible :).\n";
             _invalidSelectionMessage = "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.";
             _goToButton = "정보로 이동";
 
@@ -89,7 +98,7 @@ namespace my_first_chatbot.Helper
             _reply_OpenedMajorCourses = $"이번학기 개설전공강의에 대한 안내입니다.\n";
 
 
-            _reply_OpenedCourses = $"이번학기 개설교양강의에 대한 안내입니다.\n";
+            _reply_openedLiberalArts = $"이번학기 개설교양강의에 대한 안내입니다.\n";
 
 
             _reply_Syllabus = $"강의계획서에 대한 안내입니다.\n" +
@@ -152,7 +161,7 @@ namespace my_first_chatbot.Helper
             _otherOptionSelected = "기타 정보를 선택하셨습니다.\n세부항목을 선택해주세요.";
 
 
-            _reply_LeaveOrRejoin = $"휴학 및 복학정보에 대한 안내입니다.\n";
+            _reply_leaveOrReadmission = $"휴학 및 복학정보에 대한 안내입니다.\n";
 
 
             _reply_Scholarship = $"장학금 관련정보에 대한 안내입니다.\n";

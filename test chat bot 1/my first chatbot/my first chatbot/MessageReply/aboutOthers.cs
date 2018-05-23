@@ -34,7 +34,7 @@ namespace my_first_chatbot.MessageReply
 
             else
             {
-                if (value.ToString() == RootDialog._storedvalues._leaveOrRejoin) await Reply_leaveOrRejoin(context);
+                if (value.ToString() == RootDialog._storedvalues._leaveOrReadmission) await Reply_leaveOrReadmission(context);
                 else if (value.ToString() == RootDialog._storedvalues._scholarship) await Reply_scholarship(context);
 
 
@@ -47,16 +47,16 @@ namespace my_first_chatbot.MessageReply
         //================================================================================================================================================
         //Last Phase Option
 
-        public static async Task Reply_leaveOrRejoin(IDialogContext context)
+        public static async Task Reply_leaveOrReadmission(IDialogContext context)
         {
             /*
             var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_LeaveOrRejoin;
+            activity.Text = RootDialog._storedvalues._reply_leaveOrReadmission;
             await context.PostAsync(activity);
             */
 
             var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_LeaveOrRejoin;
+            activity.Text = RootDialog._storedvalues._reply_leaveOrReadmission;
 
             activity.Attachments.Add(new HeroCard
             {

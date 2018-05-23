@@ -26,7 +26,7 @@ namespace my_first_chatbot.MessageReply
                 context,
                 HandleCreditsOptionSelection,
                 RootDialog._storedvalues._creditsOptions,
-                RootDialog._storedvalues._creditsOptionSelected,                                                                                 //Course Registration
+                RootDialog._storedvalues._creditsOptionSelected + "\n현재 설정된 학번 : " + RootDialog.stuNum,                                                                                 //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
                 1,
                 PromptStyle.Auto);
