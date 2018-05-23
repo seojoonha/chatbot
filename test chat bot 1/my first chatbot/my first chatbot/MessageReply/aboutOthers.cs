@@ -16,7 +16,7 @@ namespace my_first_chatbot.MessageReply
         {
             PromptDialog.Choice<string>(
                 context,
-                HandelOtherOptionSelection,
+                HandleOtherOptionSelection,
                 RootDialog._storedvalues._othersOption,
                 RootDialog._storedvalues._otherOptionSelected,                                                                                 //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : OtherOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
@@ -24,7 +24,7 @@ namespace my_first_chatbot.MessageReply
                 PromptStyle.Auto);
 
         }
-        public static async Task HandelOtherOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleOtherOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 

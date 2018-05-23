@@ -17,6 +17,7 @@ namespace my_first_chatbot.Helper
             _courseInformation = "과목 정보";
             _credits = "학점 관리";
             _others = "기타 정보";
+            _typeself = "직접 입력하기";
 
             // 수강 신청 선택시 메뉴     course registration options
             _howToDoIt = "수강신청 방법";             //웹 연결
@@ -42,8 +43,11 @@ namespace my_first_chatbot.Helper
             _leaveOrRejoin = "휴학 및 복학";         //웹 연결
             _scholarship = "장학금 관련";            //웹 연결
 
-            // 도움말 선택시 메뉴       help options
-            _introduction = "AAR안내";
+            // 직접 입력하기 선택시 메뉴     typeself options
+            _typePlease = "궁금하신 정보를 입력해주세요";
+
+        // 도움말 선택시 메뉴       help options
+        _introduction = "AAR안내";
             _requestInformationCorrection = "정보수정요청";
             _contactMaster = "관리자 연결";
             _convertLanguage = "English";
@@ -52,7 +56,7 @@ namespace my_first_chatbot.Helper
             _gotostart = "처음으로";
             _help = "도움말";
 
-            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
+            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
             _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };

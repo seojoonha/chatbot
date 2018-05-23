@@ -46,21 +46,29 @@ namespace my_first_chatbot.Dialogs
 
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
+            /*var activity = context.MakeMessage();
+            activity.Text = _storedvalues._welcomeMessage;
 
+            activity.AddKeyboardCard<string>(_storedvalues._welcomeMessage, _storedvalues._welcomeOptionsList);
 
+            await context.PostAsync(activity);
+            await HandleWelcomeOptionSelected(context, "");*/
+            //PromptDialog.Text(context, HandleWelcomeOptionSelected, "바보");
+            //PromptDialog.Choice<string>()
             PromptDialog.Choice<string>(
                 context,
-                HandelWelcomeOptionSelected,
+                HandleWelcomeOptionSelected,
                 _storedvalues._welcomeOptionsList,
                 _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
                 _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
                 1,
                 PromptStyle.Auto);
+                
         }
 
 
 
-        public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 
@@ -69,6 +77,7 @@ namespace my_first_chatbot.Dialogs
             else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
             else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
             else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+            else if (value.ToString() == _storedvalues._typeself) await aboutTypeSelf.TypeSelfOptionSelected(context);
             else await ForUnimplementedOptions(context, value);
         }
 
@@ -100,6 +109,13 @@ namespace my_first_chatbot.Dialogs
             await aboutCredits.CreditsOptionSelected(context);
         }
 
+
+        public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
+        {
+            var message = await result;
+            await context.PostAsync(message.Text);
+            await ShowWelcomeOptions(context);
+        }
 
 
         private static async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)       //그 외 말을 했을 때

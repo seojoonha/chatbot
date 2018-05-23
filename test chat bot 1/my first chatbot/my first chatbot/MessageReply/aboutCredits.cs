@@ -24,7 +24,7 @@ namespace my_first_chatbot.MessageReply
             {
                 PromptDialog.Choice<string>(
                 context,
-                HandelCreditsOptionSelection,
+                HandleCreditsOptionSelection,
                 RootDialog._storedvalues._creditsOptions,
                 RootDialog._storedvalues._creditsOptionSelected,                                                                                 //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
@@ -37,7 +37,7 @@ namespace my_first_chatbot.MessageReply
 
 
 
-        public static async Task HandelCreditsOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleCreditsOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 

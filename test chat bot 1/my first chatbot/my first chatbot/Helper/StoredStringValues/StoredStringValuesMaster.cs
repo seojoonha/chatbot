@@ -14,6 +14,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _courseInformation = "과목 정보";
         public string _credits = "학점 관리";
         public string _others = "기타 정보";
+        public string _typeself = "직접 입력하기";
         public List<string> _welcomeOptionsList = new List<string>();
 
         // 수강 신청 선택시 메뉴     course registration options
@@ -44,6 +45,9 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _scholarship = "장학금 관련";            //웹 연결
         public List<string> _othersOption = new List<string>();
 
+        // 직접 입력하기 선택시 메뉴     typeself options
+        public string _typePlease = "궁금하신 정보를 입력해주세요";
+
         // 도움말 선택시 메뉴       help options
         public string _introduction = "AAR안내";
         public string _requestInformationCorrection = "정보수정요청";
@@ -58,7 +62,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
 
         public StoredStringValuesMaster()
         {
-            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _help };
+            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
             _courseInfoOptions = new List<string> { _openedMajorCourses, _openedCourses, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
             _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };

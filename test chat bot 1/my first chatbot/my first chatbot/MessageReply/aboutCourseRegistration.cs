@@ -16,7 +16,7 @@ namespace my_first_chatbot.MessageReply
         {
             PromptDialog.Choice<string>(
                 context,
-                HandelCourseRegistrationOptionSelection,
+                HandleCourseRegistrationOptionSelection,
                 RootDialog._storedvalues._courseRegistrationOptions,
                 RootDialog._storedvalues._courseRegistrationSelected,                                                                                        //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
@@ -25,7 +25,7 @@ namespace my_first_chatbot.MessageReply
 
         }
 
-        public static async Task HandelCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 

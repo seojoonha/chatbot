@@ -16,7 +16,7 @@ namespace my_first_chatbot.MessageReply
         {
             PromptDialog.Choice<string>(
                 context,
-                HandelHelpOptionSelected,
+                HandleHelpOptionSelected,
                 RootDialog._storedvalues._helpOptionsList,
                 RootDialog._storedvalues._helpOptionSelected,           //선택시 출력되는 메시지 정의
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : ShowHelpOptions",    //오류시 표시될 메시지 정의
@@ -25,7 +25,7 @@ namespace my_first_chatbot.MessageReply
         }
 
 
-        public static async Task HandelHelpOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleHelpOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 

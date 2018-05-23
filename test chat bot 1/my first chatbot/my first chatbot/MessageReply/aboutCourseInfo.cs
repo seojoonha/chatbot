@@ -16,7 +16,7 @@ namespace my_first_chatbot.MessageReply
         {
             PromptDialog.Choice<string>(
                 context,
-                HandelCourseInfoOptionSelection,
+                HandleCourseInfoOptionSelection,
                 RootDialog._storedvalues._courseInfoOptions,
                 RootDialog._storedvalues._courseInfoSelected,                                                                                 //Course Registration
                 RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
@@ -24,7 +24,7 @@ namespace my_first_chatbot.MessageReply
                 PromptStyle.Auto);
 
         }
-        public static async Task HandelCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleCourseInfoOptionSelection(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 
