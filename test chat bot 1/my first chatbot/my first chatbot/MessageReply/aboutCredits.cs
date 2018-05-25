@@ -15,7 +15,7 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task CreditsOptionSelected(IDialogContext context)
         {
-            if (RootDialog.stuNum == "")
+            if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
                 context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogResumeAfter);                //get student number

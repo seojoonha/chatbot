@@ -14,7 +14,7 @@ namespace my_first_chatbot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        public static string stuNum = "";
+        public static int stuNum = 0;
         public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
         public static StudentInfoService studentinfo = new StudentInfoService();
 
@@ -33,7 +33,7 @@ namespace my_first_chatbot.Dialogs
                 var value = await result;
                 if (value.Text.ToString() == "English") _storedvalues = new StoredValues_en();      //if you choose english at first keyboard convert to english
 
-                await ShowWelcomeOptions(context);   
+                await ShowWelcomeOptions(context);
             }
             catch (Exception ee)                                        //Exception 잡아주기
             {
@@ -42,33 +42,35 @@ namespace my_first_chatbot.Dialogs
             //await ShowWelcomeOptions(context);
         }
 
-        
-
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
-            /*var activity = context.MakeMessage();
-            activity.Text = _storedvalues._welcomeMessage;
+            var message = context.MakeMessage();
+            message.Text =
+                $"{_storedvalues._welcomeMessage}\n" +
+                $"{_storedvalues._printLine}" +
+                $"{_storedvalues._courseRegistration}\n" +
+                $"{_storedvalues._courseInformation}\n" +
+                $"{_storedvalues._credits}\n" +
+                $"{_storedvalues._others}\n" +
+                $"{_storedvalues._help}\n" +
+                $"{_storedvalues._printLine}";
+            await context.PostAsync(message);
 
-            activity.AddKeyboardCard<string>(_storedvalues._welcomeMessage, _storedvalues._welcomeOptionsList);
+            context.Call(new LuisDialog(), LuisDialogResumeAfter);
 
-            await context.PostAsync(activity);
-            await HandleWelcomeOptionSelected(context, "");*/
-            //PromptDialog.Text(context, HandleWelcomeOptionSelected, "바보");
-            //PromptDialog.Choice<string>()
-            PromptDialog.Choice<string>(
-                context,
-                HandleWelcomeOptionSelected,
-                _storedvalues._welcomeOptionsList,
-                _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
-                _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
-                1,
-                PromptStyle.Auto);
-                
+            //PromptDialog.Choice<string>(
+            //    context,
+            //    HandelWelcomeOptionSelected,
+            //    _storedvalues._welcomeOptionsList,
+            //    _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
+            //    _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
+            //    1,
+            //    PromptStyle.Auto);
         }
 
 
 
-        public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 
@@ -77,18 +79,17 @@ namespace my_first_chatbot.Dialogs
             else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
             else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
             else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-            else if (value.ToString() == _storedvalues._typeself) await aboutTypeSelf.TypeSelfOptionSelected(context);
             else await ForUnimplementedOptions(context, value);
         }
 
 
 
-        public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<object> result)
+        public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
         {
             try
             {
-                var message = await result;
-                stuNum = message.ToString();
+                stuNum = await result;
+
                 await aboutCredits.CreditsOptionSelected(context);
             }
             catch (TooManyAttemptsException)
@@ -97,24 +98,28 @@ namespace my_first_chatbot.Dialogs
 
                 await ShowWelcomeOptions(context);
             }
+            //throw new NotImplementedException();
         }
 
-        public static async Task GetInfoDialogAfterResettingStudentNumber(IDialogContext context, IAwaitable<object> result)
+        public static async Task GetInfoDialogAfterResettingStudentNumber(IDialogContext context, IAwaitable<int> result)
         {
-            var message = await result;
-            stuNum = message.ToString();
+            try
+            {
+                stuNum = await result;
 
-            await context.PostAsync(_storedvalues._getStudentNumUpdateMessage + stuNum);
-            await aboutCredits.CreditsOptionSelected(context);
+                await context.PostAsync(_storedvalues._getStudentNumUpdateMessage + stuNum);
+                await aboutCredits.CreditsOptionSelected(context);
+            }
+            catch (TooManyAttemptsException)
+            {
+                await context.PostAsync(
+                    $"I'm sorry, I'm having issues understanding you. Let's try again.\n" +
+                    $"{ _storedvalues._printLine}");
+
+                await ShowWelcomeOptions(context);
+            }
         }
 
-
-        public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
-        {
-            var message = await result;
-            await context.PostAsync(message.Text);
-            await ShowWelcomeOptions(context);
-        }
 
 
         private static async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)       //그 외 말을 했을 때
@@ -125,5 +130,11 @@ namespace my_first_chatbot.Dialogs
             await context.PostAsync(activity);
         }
 
+        public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
+        {
+            var message = await result;
+            await context.PostAsync(message.Text);
+            await ShowWelcomeOptions(context);
+        }
     }
 }

@@ -12,8 +12,9 @@ using my_first_chatbot.Helper.StoredStringValues;
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
-    public class GetInfoDialog : IDialog<object>
+    public class GetInfoDialog : IDialog<int>
     {
+        private int attempts = 3;
         public async Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
@@ -21,14 +22,27 @@ namespace my_first_chatbot.Dialogs
 
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
-            try
+            var message = await result;
+
+            int stuNum;
+
+            if (Int32.TryParse(message.Text, out stuNum) && (message.Text.Length == 8))
             {
-                var message = await result;
-                context.Done(message.Text);
+                context.Done(stuNum);
             }
-            catch (Exception ee)                                        //Exception 잡아주기
+            else
             {
-                string msg = ee.Message;
+                --attempts;
+                if (attempts > 0)
+                {
+                    await context.PostAsync(RootDialog._storedvalues._getStudentNumFail);
+
+                    context.Wait(this.MessageReceivedAsync);
+                }
+                else
+                {
+                    context.Fail(new TooManyAttemptsException("Message was not valid."));
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ namespace my_first_chatbot.Helper
 
         public StoredValues_en()        //생성자로 멤버 초기화
         {
+            _printLine = "\n----------\n";
             // 기본 메뉴    welcome options
             _courseRegistration = "Course Registration";
             _courseInformation = "Course Information";
@@ -80,7 +81,8 @@ namespace my_first_chatbot.Helper
                             $"Test number: 60131937.\n";
             _getStudentNumUpdateMessage = $"Student number info updated\n" +
                             $"Updated Student number is : ";
-
+            _getStudentNumFail = $"Wrong Format.\n" +
+                            $"What is your Student ID(e.g. '60131937') ?";
             _welcomeMessage = $"Myongji University AAR.\n" +
                                 $"Please select the information you are interested in.\n" +
                                 $"You can enter text if you choose to type it yourself.\n" +
