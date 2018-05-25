@@ -185,10 +185,8 @@
     <Content Include="apiapp.json" />
     <Content Include="data\studentinfo_active.csv" />
     <Content Include="data\studentinfo_inactive.csv" />
-    <None Include="Properties\PublishProfiles\aar-mju-af5b - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\aar-mju-af5b - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\aar3 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\myfirstchatbot20171021102052 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\aartestbot - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

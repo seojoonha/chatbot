@@ -48,11 +48,11 @@ namespace my_first_chatbot.Dialogs
             message.Text =
                 $"{_storedvalues._welcomeMessage}\n" +
                 $"{_storedvalues._printLine}" +
-                $"{_storedvalues._courseRegistration}\n" +
-                $"{_storedvalues._courseInformation}\n" +
-                $"{_storedvalues._credits}\n" +
-                $"{_storedvalues._others}\n" +
-                $"{_storedvalues._help}\n" +
+                $"1. {_storedvalues._courseRegistration}\n" +
+                $"2. {_storedvalues._courseInformation}\n" +
+                $"3. {_storedvalues._credits}\n" +
+                $"4. {_storedvalues._others}\n" +
+                $"5. {_storedvalues._help}\n" +
                 $"{_storedvalues._printLine}";
             await context.PostAsync(message);
 
@@ -60,7 +60,7 @@ namespace my_first_chatbot.Dialogs
 
             //PromptDialog.Choice<string>(
             //    context,
-            //    HandelWelcomeOptionSelected,
+            //    HandleWelcomeOptionSelected,
             //    _storedvalues._welcomeOptionsList,
             //    _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
             //    _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
@@ -70,7 +70,7 @@ namespace my_first_chatbot.Dialogs
 
 
 
-        public static async Task HandelWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         {
             var value = await result;
 

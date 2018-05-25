@@ -8,11 +8,11 @@ using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
 using my_first_chatbot.MessageReply;
-
+using my_first_chatbot.Helper;
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
-    [LuisModel("1c2971cf-2e31-4abb-9f03-0932c48fb838", "adc70e51f80e4c6a8431de30d094042b")]
+    [LuisModel("b764b107-9ed2-4f9e-ad3f-9251430dafa8", "be608df8436f4ccea3bec7a39f2a03a5")]
     public class LuisDialog : LuisDialog<Activity>
     {
         /*
@@ -38,37 +38,23 @@ namespace my_first_chatbot.Dialogs
 
 
 
-        [LuisIntent("CourseRegistration")]
-        public async Task CourseRegistrationIntent(IDialogContext context, LuisResult result)
+        [LuisIntent("Information")]
+        public async Task InformationIntent(IDialogContext context, LuisResult result)
         {
-            await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+            var strtmp = result.Entities[0].Type;
+            if (strtmp == "_courseRegistration") await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+            else if (strtmp == "_courseInformation") await aboutCourseInfo.CourseInfoOptionSelected(context);
+            else if (strtmp == "_credits") await aboutCredits.CreditsOptionSelected(context);
+            else if (strtmp == "_others") await aboutOthers.OtherOptionSelected(context);
+            else
+            {
+                var activity = context.MakeMessage();
+                activity.Text = $"못알아들음";
+                context.Done(activity);
+            }
+            
         }
-
-
-
-        [LuisIntent("CourseInformation")]
-        public async Task CourseInformationIntent(IDialogContext context, LuisResult result)
-        {
-            await aboutCourseInfo.CourseInfoOptionSelected(context);
-        }
-
-
-
-        [LuisIntent("Credits")]
-        public async Task CreditsIntent(IDialogContext context, LuisResult result)
-        {
-            await aboutCredits.CreditsOptionSelected(context);
-        }
-
-
-
-        [LuisIntent("Others")]
-        public async Task OthersIntent(IDialogContext context, LuisResult result)
-        {
-            await aboutOthers.OtherOptionSelected(context);
-        }
-
-
+        
 
         [LuisIntent("Help")]
         public async Task HelpIntent(IDialogContext context, LuisResult result)
@@ -87,17 +73,21 @@ namespace my_first_chatbot.Dialogs
             
             context.Done(activity);
         }
-
-
-
-        [LuisIntent("GoToStart")]
-        public async Task GoToStartIntent(IDialogContext context, LuisResult result)
-        {
-            var activity = context.MakeMessage();
-            activity.Text = $"시작메뉴로 이동합니다.";
-
-            context.Done(activity);
-        }
         
+        [LuisIntent("ChangeLanguage")]
+        public async Task ChangeLanguage(IDialogContext context, LuisResult result)
+        {
+
+            if (result.Entities[0].Type == "한국어")
+            {
+                RootDialog._storedvalues = new StoredValues_kr();
+            }   //for convert en to kr
+            else
+            {
+                RootDialog._storedvalues = new StoredValues_en();
+            }
+
+            await RootDialog.ShowWelcomeOptions(context);
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _introduction = "AAR안내";
         public string _requestInformationCorrection = "정보수정요청";
         public string _contactMaster = "관리자 연결";
-        public string _convertLanguage = "한국어";
+        public string _convertLanguage = "English";
         public List<string> _helpOptionsList = new List<string>();
 
         // 처음으로 혹은 도움말      goto start and help
@@ -82,7 +82,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         //for diffrent reply from language select
 
         //RootDialog + General
-        public string _getStudentNumMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
+        public string _getStudentNumMessage = $"안녕하세요 명지대학교 AAR입니다.\n" +
                                 $"맞춤형 정보제공을 위해 학번을 입력해 주세요.\n" +
                             $"입력하신 학번은 저장되지 않습니다.\n" +
                             $"테스트용 학번 : 60131937.\n";
@@ -90,12 +90,12 @@ namespace my_first_chatbot.Helper.StoredStringValues
                             $"변경된 학번 : ";
         public string _getStudentNumFail = $"잘못된 형식입니다.\n" +
                                     $"학번을 다시 입력해 주세요.(e.g. '60131937')";
-        public string _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
-                                $"궁금하신 정보를 선택해 주세요.\n" +
-                            $"직접 입력하기를 선택하시면 텍스트 입력이 가능합니다.\n" +
+        public string _welcomeMessage = 
+                            $"안녕하세요 명지대학교 AAR입니다.\n" +
+                            $"궁금하신 정보의 번호나 내용을 입력해 주세요.\n" +
                             $"학점 관리항목은 학번입력이 필요합니다.\n" +
-                            $"Go to the [도움말] -> [English]\n" +
-                            $"Language conversion is possible :).\n";
+                            $"Please type in 'English' if you wish to chat in English :D\n";
+
         public string _invalidSelectionMessage = "잘못된 옵션을 선택하셨어요ㅠㅠ 다시해주세요.";
         public string _goToButton = "정보로 이동";
 

@@ -84,10 +84,9 @@ namespace my_first_chatbot.Helper
             _getStudentNumFail = $"Wrong Format.\n" +
                             $"What is your Student ID(e.g. '60131937') ?";
             _welcomeMessage = $"Myongji University AAR.\n" +
-                                $"Please select the information you are interested in.\n" +
-                                $"You can enter text if you choose to type it yourself.\n" +
+                            $"Please select one of the list number or type -in your questions to be answered..\n" +
                             $"Credits management entry requires student number\n" +
-                            $"메뉴에서 [Help] -> [한국어]를 선택하시면 언어변환이 가능합니다 :).\n";
+                            $" '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
             _invalidSelectionMessage = "You have chosen the wrong option.";
             _goToButton = "Goto Info";
 
