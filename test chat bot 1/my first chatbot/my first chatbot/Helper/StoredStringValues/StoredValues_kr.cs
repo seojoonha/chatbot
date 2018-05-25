@@ -12,6 +12,7 @@ namespace my_first_chatbot.Helper
 
         public StoredValues_kr()
         {
+            _printLine = "\n----------\n";
             // 기본 메뉴    welcome options
             _courseRegistration = "수강 신청";
             _courseInformation = "과목 정보";
@@ -82,10 +83,11 @@ namespace my_first_chatbot.Helper
 
             _getStudentNumUpdateMessage = $"학번 정보가 변경되었습니다.\n" +
                             $"변경된 학번 : ";
-
+            _getStudentNumFail = $"잘못된 형식입니다.\n" +
+                                    $"학번을 다시 입력해 주세요.(e.g. '60131937')";
             _welcomeMessage = $"안녕하세요 명지대학교 AAR3입니다.\n" +
                                 $"궁금하신 정보를 선택해 주세요.\n" +
-                            $"직접 입력하기를 선택하시면 텍스트 입력이 가능합니다..\n" +
+                            $"직접 입력하기를 선택하시면 텍스트 입력이 가능합니다.\n" +
                             $"학점 관리항목은 학번입력이 필요합니다.\n" +
                             $"Go to the [도움말] -> [English]\n" +
                             $"Language conversion is possible :).\n";

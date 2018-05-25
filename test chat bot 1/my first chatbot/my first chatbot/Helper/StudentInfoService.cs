@@ -10,13 +10,14 @@ namespace my_first_chatbot.Helper
 {
     public class StudentInfoService
     {
-        public  List<StudentInfo> studentInfoList;                  //학생정보 리스트 생성
+        public List<StudentInfo> studentInfoList;                  //학생정보 리스트 생성
 
-        public StudentInfoService() {
+        public StudentInfoService()
+        {
             this.studentInfoList = readTheStudentInfoFile();
         }
 
-        public  List<StudentInfo> readTheStudentInfoFile()
+        public List<StudentInfo> readTheStudentInfoFile()
         {
             var mylist = new List<StudentInfo>();
             string path = Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, @"data\");          //path 설정
@@ -59,30 +60,30 @@ namespace my_first_chatbot.Helper
             return mylist;
         }
 
-        public  double totalCredits(string studentID)                   //총 이수학점
+        public double totalCredits(int studentID)                   //총 이수학점
         {
             var studentinfo = from b in studentInfoList
-                              where b.StudentNumber == studentID
+                              where b.StudentNumber == studentID.ToString()
                               select b;
             int count = studentinfo.Count();
             double mycredit = studentinfo.Sum(item => item.Credit);
             return mycredit;
         }
 
-        public  double totalMajorCredits(string studentID)              //총 이수 전공학점
+        public double totalMajorCredits(int studentID)              //총 이수 전공학점
         {
             var studentinfo = from b in studentInfoList
-                              where b.StudentNumber == studentID && b.CourseType.Contains("전공")
+                              where b.StudentNumber == studentID.ToString() && b.CourseType.Contains("전공")
                               select b;
             int count = studentinfo.Count();
             double mycredit = studentinfo.Sum(item => item.Credit);
             return mycredit;
         }
 
-        public  double totalElectiveCredits(string studentID)           //총 이수 교양학점
+        public double totalElectiveCredits(int studentID)           //총 이수 교양학점
         {
             var studentinfo = from b in studentInfoList
-                              where b.StudentNumber == studentID && b.CourseType.Contains("교양")
+                              where b.StudentNumber == studentID.ToString() && b.CourseType.Contains("교양")
                               select b;
             int count = studentinfo.Count();
             double mycredit = studentinfo.Sum(item => item.Credit);
