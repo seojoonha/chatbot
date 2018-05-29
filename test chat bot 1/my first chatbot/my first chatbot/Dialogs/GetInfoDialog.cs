@@ -26,6 +26,7 @@ namespace my_first_chatbot.Dialogs
 
             int stuNum;
 
+            //학번을 8자리 숫자로만 입력받음
             if (Int32.TryParse(message.Text, out stuNum) && (message.Text.Length == 8))
             {
                 context.Done(stuNum);

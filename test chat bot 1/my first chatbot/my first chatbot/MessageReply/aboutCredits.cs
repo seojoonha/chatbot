@@ -59,7 +59,7 @@ namespace my_first_chatbot.MessageReply
 
 
                     //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
-                    aboutCredits.CreditsOptionSelected(context);
+                    await CreditsOptionSelected(context);
                 }
             }
         }
@@ -73,6 +73,7 @@ namespace my_first_chatbot.MessageReply
             var activity = context.MakeMessage();
             activity.Text = RootDialog._storedvalues._reply_CurrentCredits + RootDialog.studentinfo.totalCredits(RootDialog.stuNum);
             await context.PostAsync(activity);
+            return;
         }
 
         public static async Task Reply_majorCredits(IDialogContext context)

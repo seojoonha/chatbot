@@ -14,36 +14,53 @@ namespace my_first_chatbot.MessageReply
     {
         public static async Task CourseRegistraionOptionSelected(IDialogContext context)
         {
-            PromptDialog.Choice<string>(
-                context,
-                HandleCourseRegistrationOptionSelection,
-                RootDialog._storedvalues._courseRegistrationOptions,
-                RootDialog._storedvalues._courseRegistrationSelected,                                                                                        //Course Registration
-                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-                1,
-                PromptStyle.Auto);
+            await context.PostAsync(RootDialog._storedvalues._typePleaseCourseRegistration);
+            context.Call(new LuisDialog(), HandleCourseRegistrationOptionSelection);
+
+            //버튼방식
+            //PromptDialog.Choice<string>(
+            //    context,
+            //    HandleCourseRegistrationOptionSelection,
+            //    RootDialog._storedvalues._courseRegistrationOptions,
+            //    RootDialog._storedvalues._courseRegistrationSelected,                                                                                        //Course Registration
+            //    RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+            //    1,
+            //    PromptStyle.Auto);
 
         }
-
-        public static async Task HandleCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
-            var value = await result;
+            var message = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-
-            else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-
-            else
+            switch (message.Text)
             {
-                if (value.ToString() == RootDialog._storedvalues._howToDoIt) await Reply_howToDoIt(context);      //각각의 메서드에 연결
-                else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
-                else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
-                else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
-
-
-                //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
-                await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+                case "1": await Reply_howToDoIt(context); break;
+                case "2": await Reply_schedule(context); break;
+                case "3": await Reply_regulation(context); break;
+                case "4": await Reply_terms(context); break;
+                case "5": await RootDialog.ShowWelcomeOptions(context); break;
+                case "6": await aboutHelp.HelpOptionSelected(context); break;
+                default:
+                    {
+                        await context.PostAsync(message);
+                    }break;
             }
+            await RootDialog.ShowWelcomeOptions(context);
+
+            //var value = await result;
+            //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+            //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+            //else
+            //{
+            //    if (value.ToString() == RootDialog._storedvalues._howToDoIt) await Reply_howToDoIt(context);      //각각의 메서드에 연결
+            //    else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
+            //    else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
+            //    else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
+
+
+            //    //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+            //    await CourseRegistraionOptionSelected(context);
+            //}
         }
 
 
@@ -59,7 +76,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "수강신청 방법",
                 Subtitle = "온라인서비스-학사운영-수강신청",          //Location of information in MJU homepage
-                Text = "수강신청 방법",
+                Text = "수강신청 방법\n",
                 Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
@@ -78,7 +95,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "수강신청 일정",
                 Subtitle = "온라인서비스-공지사항-일반공지",
-                Text = "수강신청 일정",
+                Text = "수강신청 일정\n",
                 Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
@@ -97,7 +114,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "명지대학교 학칙",
                 Subtitle = "2018.05.01 개정",
-                Text = "명지대학교 학칙 [ 2018.05.01 ]",
+                Text = "명지대학교 학칙 [ 2018.05.01 ]\n",
                 Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
@@ -116,7 +133,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "수강신청관련 용어정리",
                 Subtitle = "수강신청관련 용어정리",
-                Text = "수강신청관련 용어정리",
+                Text = "수강신청관련 용어정리\n",
                 Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,

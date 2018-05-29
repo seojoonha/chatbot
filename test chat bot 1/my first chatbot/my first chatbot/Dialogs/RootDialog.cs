@@ -44,19 +44,37 @@ namespace my_first_chatbot.Dialogs
 
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
-            var message = context.MakeMessage();
-            message.Text =
-                $"{_storedvalues._welcomeMessage}\n" +
-                $"{_storedvalues._printLine}" +
-                $"1. {_storedvalues._courseRegistration}\n" +
-                $"2. {_storedvalues._courseInformation}\n" +
-                $"3. {_storedvalues._credits}\n" +
-                $"4. {_storedvalues._others}\n" +
-                $"5. {_storedvalues._help}\n" +
-                $"{_storedvalues._printLine}";
-            await context.PostAsync(message);
+            var activity = context.MakeMessage();
+            activity.Text = _storedvalues._typePleaseWelcome;
 
+            activity.Attachments.Add(new HeroCard
+            {
+                Title = "",
+                Subtitle = "",          //Location of information in MJU homepage
+                Text = "",
+                Images = new List<CardImage> { new CardImage("http://dynamicscrmcoe.com/wp-content/uploads/2016/08/chatbot-icon.png") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
+                                                "관련 페이지로 이동",
+                                                value: "https://github.com/MJUKJE/chatbot/blob/dev/README.md") }
+            }.ToAttachment());
+
+            await context.PostAsync(activity);
             context.Call(new LuisDialog(), LuisDialogResumeAfter);
+
+
+            //var message = context.MakeMessage();
+            //message.Text =
+            //    $"\n{_storedvalues._welcomeMessage}\n" +
+            //    $"{_storedvalues._printLine}" +
+            //    $"1. {_storedvalues._courseRegistration}\n" +
+            //    $"2. {_storedvalues._courseInformation}\n" +
+            //    $"3. {_storedvalues._credits}\n" +
+            //    $"4. {_storedvalues._others}\n" +
+            //    $"5. {_storedvalues._help}\n" +
+            //    $"{_storedvalues._printLine}";
+            //await context.PostAsync(message);
+            //context.Call(new LuisDialog(), LuisDialogResumeAfter);
+
 
             //PromptDialog.Choice<string>(
             //    context,
@@ -70,17 +88,17 @@ namespace my_first_chatbot.Dialogs
 
 
 
-        public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
-        {
-            var value = await result;
+        //public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
+        //{
+        //    var value = await result;
 
-            if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
-            else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
-            else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
-            else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
-            else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-            else await ForUnimplementedOptions(context, value);
-        }
+        //    if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
+        //    else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
+        //    else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
+        //    else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
+        //    else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+        //    else await ForUnimplementedOptions(context, value);
+        //}
 
 
 
@@ -120,8 +138,58 @@ namespace my_first_chatbot.Dialogs
             }
         }
 
+        //초기화면 번호메뉴 선택시
+        //public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
+        //{
+        //    int message = await result;
+        //    switch (message)
+        //    {
+        //        case 1: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
+        //        case 2: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
+        //        case 3: await aboutCredits.CreditsOptionSelected(context); break;
+        //        case 4: await aboutOthers.OtherOptionSelected(context); break;
+        //        case 5: await aboutHelp.HelpOptionSelected(context); break;
+        //        default:
+        //            {
+        //                await context.PostAsync(_storedvalues._sorryMessage);
+        //                await ShowWelcomeOptions(context);
+        //            }
+        //            break;
+        //    }
+        //}
+        //LUIS 결과 메시지 출력부분
+        public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
+        {
+            int number;
+            var message = await result;
+            if (Int32.TryParse(message.Text, out number))
+            {
+                switch (number)
+                {
+                    case 1: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
+                    case 2: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
+                    case 3: await aboutCredits.CreditsOptionSelected(context); break;
+                    case 4: await aboutOthers.OtherOptionSelected(context); break;
+                    case 5: await aboutHelp.HelpOptionSelected(context); break;
+                    default:
+                        {
+                            await context.PostAsync(_storedvalues._sorryMessage);
+                            await ShowWelcomeOptions(context);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                await context.PostAsync(message.Text);
+                await ShowWelcomeOptions(context);
+            }
+
+        }
 
 
+
+        //구현하지 않은 메뉴에 넣을 더미
         private static async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)       //그 외 말을 했을 때
         {
             var activity = context.MakeMessage();
@@ -130,11 +198,5 @@ namespace my_first_chatbot.Dialogs
             await context.PostAsync(activity);
         }
 
-        public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
-        {
-            var message = await result;
-            await context.PostAsync(message.Text);
-            await ShowWelcomeOptions(context);
-        }
     }
 }

@@ -42,7 +42,8 @@ namespace my_first_chatbot.MessageReply
                     else RootDialog._storedvalues = new StoredValues_en();                                  //for convert kr to en
                 }
 
-                await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+                //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+                await HelpOptionSelected(context);
             }
 
         }

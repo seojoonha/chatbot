@@ -45,15 +45,64 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _scholarship = "장학금 관련";            //웹 연결
         public List<string> _othersOption = new List<string>();
 
-        // 직접 입력하기 선택시 메뉴     typeself options
-        public string _typePlease = $"궁금하신 정보를 직접 입력해 주세요.\n" +
-                                    $"-Example-\n" +
-                                    $"[수강신청방법]\n" +
-                                    $"[이번학기개설전공]\n" +
-                                    $"[나의 학점관리]\n" +
-                                    $"[휴학하는법]\n" +
-                                    $"현재 Depth 2까지만 작동\n" +
-                                    $"추후 Depth 3 까지 구현예정입니다.\n";
+        // 직접 입력 메뉴     typeself options
+        public string _typePleaseWelcome = $"▶ 안녕하세요 AAR 챗봇서비스\n      입니다.\n" +
+                                    $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                    $"▶ 1. 수강신청정보\n" +
+                                    $"▶ 2. 과목정보\n" +
+                                    $"▶ 3. 학점관리\n" +
+                                    $"▶ 4. 기타정보\n" +
+                                    $"▶ 5. 도움말\n" +
+
+                                    $" ※ 명지대학교 홈페이지\n" +
+                                    $" ■ https://www.mju.ac.kr \n" +
+                                    $" ※ Github for AAR\n" +
+                                    $" ■ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+
+                                    $"▶ 학점 관리항목은\n      학번입력이 필요합니다.\n" +
+                                    $"▶ [처음으로]나 초기메뉴를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
+                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ 추후 계속 업데이트 예정.\n";
+
+
+        public string _typePleaseCourseRegistration = $"▶ 수강신청 메뉴 입니다.\n" +
+                                    $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                    $"▶ 1. 수강신청 방법\n" +
+                                    $"▶ 2. 수강신청 일정\n" +
+                                    $"▶ 3. 수강신청 규정\n" +
+                                    $"▶ 4. 수강신청 용어\n" +
+                                    $"▶ 5. 처음으로\n" +
+                                    $"▶ 6. 도움말\n\n" +
+
+                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ 추후 계속 업데이트 예정.\n";
+
+
+        public string _typePleaseCourseInfo = $"▶ 강의정보 메뉴 입니다.\n" +
+                                    $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                    $"▶ 1. 이번학기 전공개설과목\n" +
+                                    $"▶ 2. 이번학기 교양개설과목\n" +
+                                    $"▶ 3. 강의계획서\n" +
+                                    $"▶ 4. 강사 정보\n" +
+                                    $"▶ 5. 필수과목 정보\n" +
+                                    $"▶ 6. 선수과목 정보\n" +
+                                    $"▶ 7. 처음으로\n" +
+                                    $"▶ 8. 도움말\n\n" +
+
+                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ 추후 계속 업데이트 예정.\n";
+
+
+
+        public string _sorryMessage = $"▶말씀을 이해하지 못했습니다.\n" +
+                                        $"▶문의하신 내용에 대해 다음에는\n" +
+                                        $"▶안내드릴 수 있도록 열심히\n" +
+                                        $"▶학습하겠습니다.\n\n" +
+                                        $"■ 각종 문의 및 상담\n" +
+                                        $"▶ Github페이지\n" +
+                                        $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+                                        $"▶ 관리자 Email로 문의\n" +
+                                        $"▶ Email : jasen0324@gmail.com\n";
 
         // 도움말 선택시 메뉴       help options
         public string _introduction = "AAR안내";

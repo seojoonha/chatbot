@@ -45,14 +45,23 @@ namespace my_first_chatbot.Helper
             _scholarship = "장학금 관련";            //웹 연결
 
             // 직접 입력하기 선택시 메뉴     typeself options
-            _typePlease = $"궁금하신 정보를 직접 입력해 주세요.\n" +
-                                    $"-Example-\n" +
-                                    $"[수강신청방법]\n" +
-                                    $"[이번학기개설전공]\n" +
-                                    $"[나의 학점관리]\n" +
-                                    $"[휴학하는법]\n" +
-                                    $"현재 Depth 2까지만 작동\n" +
-                                    $"추후 Depth 3 까지 구현예정입니다.\n";
+            _typePleaseWelcome = $"▶ 안녕하세요 AAR 챗봇서비스\n      입니다.\n" +
+                                    $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                    $"▶ 1. 수강신청정보\n" +
+                                    $"▶ 2. 과목정보\n" +
+                                    $"▶ 3. 학점관리\n" +
+                                    $"▶ 4. 기타정보\n" +
+                                    $"▶ 5. 도움말\n" +
+
+                                    $" ※ 명지대학교 홈페이지\n" +
+                                    $" ■ https://www.mju.ac.kr \n" +
+                                    $" ※ Github for AAR\n" +
+                                    $" ■ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+
+                                    $"▶ 학점 관리항목은\n      학번입력이 필요합니다.\n" +
+                                    $"▶ [처음으로]나 초기메뉴를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
+                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ 추후 계속 업데이트 예정.\n";
 
 
             // 도움말 선택시 메뉴       help options

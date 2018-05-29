@@ -62,7 +62,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "휴학 및 복학관련 정보입니다.",
                 Subtitle = "휴학 및 복학관련 정보입니다.",          //Location of information in MJU homepage
-                Text = "휴학 및 복학관련 정보입니다.",
+                Text = "휴학 및 복학관련 정보입니다.\n",
                 Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") }, 
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
@@ -81,7 +81,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "장학금관련 정보입니다.",
                 Subtitle = "장학금관련 정보입니다.",          //Location of information in MJU homepage
-                Text = "장학금관련 정보입니다.",
+                Text = "장학금관련 정보입니다.\n",
                 Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,

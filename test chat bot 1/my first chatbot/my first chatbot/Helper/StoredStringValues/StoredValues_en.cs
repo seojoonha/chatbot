@@ -31,7 +31,7 @@ namespace my_first_chatbot.Helper
             _openedLiberalArts = "Opened LiberalArts";   //myiweb에 있는데 우짜지..
             _openedMajorCourses = "Opened Major";
             _syllabus = "Syllabus";                //이것도..
-            _lecturerInfo = "Lecture Info";             //이것도..
+            _lecturerInfo = "Lecturer Info";             //이것도..
             _mandatorySubject = "Mandatory Subject";      //이건 어떻게 가능
             _prerequisite = "Prerequisite";          //이것도 탐색
 
@@ -46,17 +46,25 @@ namespace my_first_chatbot.Helper
             _scholarship = "Scholarship";            //웹 연결
 
             // 직접 입력하기 선택시 메뉴     typeself options
-            _typePlease = $"Please enter your information yourself\n" +
-                                    $"- Example-\n" +
-                                    $"[Course Registration]\n" +
-                                    $"[Course Information]\n" +
-                                    $"[Credits]\n" +
-                                    $"[Others]\n" +
-                                    $"We are going to implement Depth 3 later.\n";
+            _typePleaseWelcome = $"▶ Hello AAR chat service. \n" +
+                                    $"▶ Select the number of the inquiry or" +
+                                    $"   Please enter your question \n \n" +
+                                    $"▶ 1. Course Registration Information \n" +
+                                    $"▶ 2. Subject related information \n" +
+                                    $"▶ 3. Credit management \n" +
+                                    $"▶ 4. Other information \n" +
+                                    $"▶ 5. Help \n" +
+
+                                    $"▶ Credits must be entered in the course number. \n" +
+                                    $"▶ Go to the [Help] -> [English] \n" +
+                                    $"Language conversion is possible:). \n" +
+                                    $"▶ Current Depth 2 only \n" +
+                                    $"▶ We plan to implement Depth 3 later. \n";
+
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
-            _requestInformationCorrection = "requestInformationCorrection";
+            _requestInformationCorrection = "request Information Correction";
             _contactMaster = "Contact to Master";
             _convertLanguage = "한국어";
 
