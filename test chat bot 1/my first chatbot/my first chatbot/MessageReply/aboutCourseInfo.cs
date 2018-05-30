@@ -40,7 +40,7 @@ namespace my_first_chatbot.MessageReply
                 case "4": await Reply_lecturerInfo(context); break;
                 case "5": await Reply_mandatorySubject(context); break;
                 case "6": await Reply_prerequisite(context); break;
-                case "7": await RootDialog.ShowWelcomeOptions(context); break;
+                case "7": break;//go to start
                 case "8": await aboutHelp.HelpOptionSelected(context); break;
                 
                 default:

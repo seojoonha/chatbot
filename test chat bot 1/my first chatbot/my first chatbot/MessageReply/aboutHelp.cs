@@ -14,37 +14,58 @@ namespace my_first_chatbot.MessageReply
     {
         public static async Task HelpOptionSelected(IDialogContext context)
         {
-            PromptDialog.Choice<string>(
-                context,
-                HandleHelpOptionSelected,
-                RootDialog._storedvalues._helpOptionsList,
-                RootDialog._storedvalues._helpOptionSelected,           //선택시 출력되는 메시지 정의
-                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : ShowHelpOptions",    //오류시 표시될 메시지 정의
-                1,
-                PromptStyle.Auto);
+
+            await context.PostAsync(RootDialog._storedvalues._typePleaseHelp);
+            context.Call(new LuisDialog(), HandleHelpOptionSelection);
+
+            //버튼방식
+            //PromptDialog.Choice<string>(
+            //    context,
+            //    HandleHelpOptionSelected,
+            //    RootDialog._storedvalues._helpOptionsList,
+            //    RootDialog._storedvalues._helpOptionSelected,           //선택시 출력되는 메시지 정의
+            //    RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : ShowHelpOptions",    //오류시 표시될 메시지 정의
+            //    1,
+            //    PromptStyle.Auto);
         }
 
 
-        public static async Task HandleHelpOptionSelected(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleHelpOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
-            var value = await result;
+            var message = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);          //웰컴이 두번 불러지는 문제인가?
-
-            else
+            switch (message.Text)
             {
-                if (value.ToString() == RootDialog._storedvalues._introduction) await Reply_introduction(context);     //이거 룻다이알로그에 스토얼 가져와서 인듯
-                else if (value.ToString() == RootDialog._storedvalues._requestInformationCorrection) await Reply_requestInformationCorrection(context);
-                else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context);
-                else if (value.ToString() == RootDialog._storedvalues._convertLanguage)
-                {
-                    if (RootDialog._storedvalues._convertLanguage == "한국어") RootDialog._storedvalues = new StoredValues_kr();   //for convert en to kr
-                    else RootDialog._storedvalues = new StoredValues_en();                                  //for convert kr to en
-                }
-
-                //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
-                await HelpOptionSelected(context);
+                case "1": await Reply_introduction(context); break;
+                case "2": await Reply_requestInformationCorrection(context); break;
+                case "3": await Reply_contactMaster(context); break;
+                case "4": break;//go to start
+                default:
+                    {
+                        await context.PostAsync(message);
+                    }
+                    break;
             }
+            await RootDialog.ShowWelcomeOptions(context);
+
+            //var value = await result;
+
+            //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);          //웰컴이 두번 불러지는 문제인가?
+
+            //else
+            //{
+            //    if (value.ToString() == RootDialog._storedvalues._introduction) await Reply_introduction(context);     //이거 룻다이알로그에 스토얼 가져와서 인듯
+            //    else if (value.ToString() == RootDialog._storedvalues._requestInformationCorrection) await Reply_requestInformationCorrection(context);
+            //    else if (value.ToString() == RootDialog._storedvalues._contactMaster) await Reply_contactMaster(context);
+            //    else if (value.ToString() == RootDialog._storedvalues._convertLanguage)
+            //    {
+            //        if (RootDialog._storedvalues._convertLanguage == "한국어") RootDialog._storedvalues = new StoredValues_kr();   //for convert en to kr
+            //        else RootDialog._storedvalues = new StoredValues_en();                                  //for convert kr to en
+            //    }
+
+            //    //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
+            //    await HelpOptionSelected(context);
+            //}
 
         }
 

@@ -38,7 +38,7 @@ namespace my_first_chatbot.MessageReply
                 case "2": await Reply_schedule(context); break;
                 case "3": await Reply_regulation(context); break;
                 case "4": await Reply_terms(context); break;
-                case "5": await RootDialog.ShowWelcomeOptions(context); break;
+                case "5": break;//go to start
                 case "6": await aboutHelp.HelpOptionSelected(context); break;
                 default:
                     {

@@ -59,60 +59,64 @@ namespace my_first_chatbot.Dialogs
             //    activity.Text = $"Information intent error.";
             //    context.Done(activity);
             //}
-
-            switch (strtmp)
+            
+            
+            //번호 메뉴 인식
+            int number;
+            if (Int32.TryParse(result.Query, out number))
             {
-                //기본 메뉴
-                case "_courseRegistration": await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
-                case "_courseInformation": await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                case "_credits": await aboutCredits.CreditsOptionSelected(context); break;
-                case "_others": await aboutOthers.OtherOptionSelected(context); break;
-                //수강신청 메뉴
-                case "_courseRegistration::_howToDoIt": await aboutCourseRegistration.Reply_howToDoIt(context); break;
-                case "_courseRegistration::_schedule": await aboutCourseRegistration.Reply_schedule(context); break;
-                case "_courseRegistration::_regulation": await aboutCourseRegistration.Reply_regulation(context); break;
-                case "_courseRegistration::_terms": await aboutCourseRegistration.Reply_terms(context); break;
-                //과목정보 메뉴
-                case "_courseInformation::_openedMajorCourses": await aboutCourseInfo.Reply_openedMajorCourses(context); break;
-                case "_courseInformation::_openedLiberalArts": await aboutCourseInfo.Reply_openedLiberalArts(context); break;
-                case "_courseInformation::_syllabus": await aboutCourseInfo.Reply_syllabus(context); break;
-                case "_courseInformation::_lecturerInfo": await aboutCourseInfo.Reply_lecturerInfo(context); break;
-                case "_courseInformation::_mandatorySubject": await aboutCourseInfo.Reply_mandatorySubject(context); break;
-                case "_courseInformation::_prerequisite": await aboutCourseInfo.Reply_prerequisite(context); break;
-                //학점관리 메뉴
-                //아직 구현안함
-                case "_credits::_currentCredits": await aboutCredits.Reply_currentCredits(context); break;
-                case "_credits::_majorCredits": await aboutCredits.Reply_majorCredits(context); break;
-                case "_credits::_liberalArtsCredits": await aboutCredits.Reply_liberalArtsCredits(context); break;
-                case "_credits::_changeStuNum": break;
-                //기타 메뉴
-                case "_others::_leaveOrReadmission": await aboutOthers.Reply_leaveOrReadmission(context); break;
-                case "_others::_scholarship": await aboutOthers.Reply_scholarship(context); break;
+                var activity = context.MakeMessage();
+                activity.Text = result.Query;
+                context.Done(activity);
+            }
+            else
+            {
+                
+                switch (strtmp)
+                {
+                    //기본 메뉴
+                    case "_courseRegistration": await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
+                    case "_courseInformation": await aboutCourseInfo.CourseInfoOptionSelected(context); break;
+                    case "_credits": await aboutCredits.CreditsOptionSelected(context); break;
+                    case "_others": await aboutOthers.OtherOptionSelected(context); break;
+                    //수강신청 메뉴
+                    case "_courseRegistration::_howToDoIt": await aboutCourseRegistration.Reply_howToDoIt(context); break;
+                    case "_courseRegistration::_schedule": await aboutCourseRegistration.Reply_schedule(context); break;
+                    case "_courseRegistration::_regulation": await aboutCourseRegistration.Reply_regulation(context); break;
+                    case "_courseRegistration::_terms": await aboutCourseRegistration.Reply_terms(context); break;
+                    //과목정보 메뉴
+                    case "_courseInformation::_openedMajorCourses": await aboutCourseInfo.Reply_openedMajorCourses(context); break;
+                    case "_courseInformation::_openedLiberalArts": await aboutCourseInfo.Reply_openedLiberalArts(context); break;
+                    case "_courseInformation::_syllabus": await aboutCourseInfo.Reply_syllabus(context); break;
+                    case "_courseInformation::_lecturerInfo": await aboutCourseInfo.Reply_lecturerInfo(context); break;
+                    case "_courseInformation::_mandatorySubject": await aboutCourseInfo.Reply_mandatorySubject(context); break;
+                    case "_courseInformation::_prerequisite": await aboutCourseInfo.Reply_prerequisite(context); break;
+                    //학점관리 메뉴
+                    //아직 구현안함
+                    case "_credits::_currentCredits": await aboutCredits.Reply_currentCredits(context); break;
+                    case "_credits::_majorCredits": await aboutCredits.Reply_majorCredits(context); break;
+                    case "_credits::_liberalArtsCredits": await aboutCredits.Reply_liberalArtsCredits(context); break;
+                    case "_credits::_changeStuNum": break;
+                    //기타 메뉴
+                    case "_others::_leaveOrReadmission": await aboutOthers.Reply_leaveOrReadmission(context); break;
+                    case "_others::_scholarship": await aboutOthers.Reply_scholarship(context); break;
 
-                //번호 메뉴 인식
-                case "_number":
-                    {
-                        var activity = context.MakeMessage();
-                        activity.Text = result.Query;
-                        context.Done(activity);
-                    }
-                    break;
-
-                //디버그용
-                case null:
-                    {
-                        var activity = context.MakeMessage();
-                        activity.Text = $"Entity not delivered.\n";
-                        context.Done(activity);
-                    }
-                    break;
-                default:
-                    {
-                        var activity = context.MakeMessage();
-                        activity.Text = $"Information intent error.\n";
-                        context.Done(activity);
-                    }
-                    break;
+                    //디버그용
+                    case null:
+                        {
+                            var activity = context.MakeMessage();
+                            activity.Text = $"Entity not delivered.\n";
+                            context.Done(activity);
+                        }
+                        break;
+                    default:
+                        {
+                            var activity = context.MakeMessage();
+                            activity.Text = $"Information intent error.\n";
+                            context.Done(activity);
+                        }
+                        break;
+                }
             }
             return;
         }

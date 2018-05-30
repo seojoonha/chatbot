@@ -61,11 +61,11 @@ namespace my_first_chatbot.Helper.StoredStringValues
 
                                     $"▶ 학점 관리항목은\n      학번입력이 필요합니다.\n" +
                                     $"▶ [처음으로]나 초기메뉴를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
-                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
 
 
-        public string _typePleaseCourseRegistration = $"▶ 수강신청 메뉴 입니다.\n" +
+        public string _typePleaseCourseRegistration = $"▶ 수강신청정보 메뉴 입니다.\n" +
                                     $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
                                     $"▶ 1. 수강신청 방법\n" +
                                     $"▶ 2. 수강신청 일정\n" +
@@ -74,7 +74,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                                     $"▶ 5. 처음으로\n" +
                                     $"▶ 6. 도움말\n\n" +
 
-                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
 
 
@@ -89,10 +89,47 @@ namespace my_first_chatbot.Helper.StoredStringValues
                                     $"▶ 7. 처음으로\n" +
                                     $"▶ 8. 도움말\n\n" +
 
-                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
 
 
+        //public string _typePleaseCredits
+        //구현예정
+        public string _typePleaseCredits = $"▶ 학점관리 메뉴 입니다.\n" +
+                                   $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                   $"▶ 1. 나의 이수학점\n" +
+                                   $"▶ 2. 전공 학점\n" +
+                                   $"▶ 3. 교양 학점\n" +
+                                   $"▶ 4. 학번 재설정\n" +
+                                   $"▶ 5. 처음으로\n" +
+                                   $"▶ 6. 도움말\n\n" +
+
+                                   $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                   $"▶ 추후 계속 업데이트 예정.\n";
+
+
+
+        public string _typePleaseOthers = $"▶ 기타 메뉴 입니다.\n" +
+                           $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                           $"▶ 1. 휴학 및 복학\n" +
+                           $"▶ 2. 장학금 관련\n" +
+                           $"▶ 3. 처음으로\n" +
+                           $"▶ 4. 도움말\n\n" +
+
+                           $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                           $"▶ 추후 계속 업데이트 예정.\n";
+
+
+
+        public string _typePleaseHelp = $"▶ 도움말 메뉴 입니다.\n" +
+                            $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                            $"▶ 1. AAR안내\n" +
+                            $"▶ 2. 정보수정 요청\n" +
+                            $"▶ 3. 관리자 연결\n" +
+                            $"▶ 4. 처음으로\n" +
+
+                            $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                            $"▶ 추후 계속 업데이트 예정.\n";
 
         public string _sorryMessage = $"▶말씀을 이해하지 못했습니다.\n" +
                                         $"▶문의하신 내용에 대해 다음에는\n" +

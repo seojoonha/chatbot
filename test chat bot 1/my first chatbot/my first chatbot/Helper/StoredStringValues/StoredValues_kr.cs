@@ -60,7 +60,7 @@ namespace my_first_chatbot.Helper
 
                                     $"▶ 학점 관리항목은\n      학번입력이 필요합니다.\n" +
                                     $"▶ [처음으로]나 초기메뉴를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
-                                    $"▶ Go to the [도움말] -> [English]\n      Language conversion is\n      possible :).\n" +
+                                    $"▶ Please type in 'English' if you wish to chat in English :D\n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
 
 

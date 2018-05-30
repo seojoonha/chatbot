@@ -20,10 +20,6 @@ namespace my_first_chatbot.MessageReply
             context.Call<Activity>(new LuisDialog(), RootDialog.LuisDialogResumeAfter);                //get student number
             
         }
-
-        
-
-
         
     }
 }

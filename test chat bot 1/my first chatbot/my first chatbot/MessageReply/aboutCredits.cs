@@ -22,14 +22,19 @@ namespace my_first_chatbot.MessageReply
             }
             else
             {
-                PromptDialog.Choice<string>(
-                context,
-                HandleCreditsOptionSelection,
-                RootDialog._storedvalues._creditsOptions,
-                RootDialog._storedvalues._creditsOptionSelected + "\n현재 설정된 학번 : " + RootDialog.stuNum,                                                                                 //Course Registration
-                RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-                1,
-                PromptStyle.Auto);
+
+                await context.PostAsync(RootDialog._storedvalues._typePleaseCredits);
+                context.Call(new LuisDialog(), HandleCreditsOptionSelection);
+
+                //버튼방식
+                //PromptDialog.Choice<string>(
+                //context,
+                //HandleCreditsOptionSelection,
+                //RootDialog._storedvalues._creditsOptions,
+                //RootDialog._storedvalues._creditsOptionSelected + "\n현재 설정된 학번 : " + RootDialog.stuNum,                                                                                 //Course Registration
+                //RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                //1,
+                //PromptStyle.Auto);
             }
 
 
@@ -37,31 +42,49 @@ namespace my_first_chatbot.MessageReply
 
 
 
-        public static async Task HandleCreditsOptionSelection(IDialogContext context, IAwaitable<string> result)
+        public static async Task HandleCreditsOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
-            var value = await result;
+            var message = await result;
 
-            if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-
-            else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-
-            else
+            switch (message.Text)
             {
-                if (value.ToString() == RootDialog._storedvalues._changeStuNum)
-                {               //학번 재설정 요청일시
-                    await Reply_changeStuNum(context);                                          //학번 재설정으로 연결
-                }
-                else
-                {
-                    if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
-                    else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
-                    else if (value.ToString() == RootDialog._storedvalues._liberalArtsCredits) await Reply_liberalArtsCredits(context);
-
-
-                    //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
-                    await CreditsOptionSelected(context);
-                }
+                case "1": await Reply_currentCredits(context); break;
+                case "2": await Reply_majorCredits(context); break;
+                case "3": await Reply_liberalArtsCredits(context); break;
+                case "4": await Reply_changeStuNum(context); break;
+                case "5": break;//go to start
+                case "6": await aboutHelp.HelpOptionSelected(context); break;
+                default:
+                    {
+                        await context.PostAsync(message);
+                    }
+                    break;
             }
+            await RootDialog.ShowWelcomeOptions(context);
+
+            //var value = await result;
+
+            //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
+
+            //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
+
+            //else
+            //{
+            //    if (value.ToString() == RootDialog._storedvalues._changeStuNum)
+            //    {               //학번 재설정 요청일시
+            //        await Reply_changeStuNum(context);                                          //학번 재설정으로 연결
+            //    }
+            //    else
+            //    {
+            //        if (value.ToString() == RootDialog._storedvalues._currentCredits) await Reply_currentCredits(context);
+            //        else if (value.ToString() == RootDialog._storedvalues._majorCredits) await Reply_majorCredits(context);
+            //        else if (value.ToString() == RootDialog._storedvalues._liberalArtsCredits) await Reply_liberalArtsCredits(context);
+
+
+            //        //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
+            //        await CreditsOptionSelected(context);
+            //    }
+            //}
         }
 
 

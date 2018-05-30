@@ -56,8 +56,7 @@ namespace my_first_chatbot.Helper
                                     $"▶ 5. Help \n" +
 
                                     $"▶ Credits must be entered in the course number. \n" +
-                                    $"▶ Go to the [Help] -> [English] \n" +
-                                    $"Language conversion is possible:). \n" +
+                                    $"▶ '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n" +
                                     $"▶ Current Depth 2 only \n" +
                                     $"▶ We plan to implement Depth 3 later. \n";
 
