@@ -60,7 +60,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                                     $" ■ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
 
                                     $"▶ 학점 관리항목은\n      학번입력이 필요합니다.\n" +
-                                    $"▶ [처음으로]나 초기메뉴를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
+                                    $"▶ 대화의 어느 단계에서든 '취소'를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
                                     $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
 
@@ -92,9 +92,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
                                     $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
 
-
-        //public string _typePleaseCredits
-        //구현예정
+        
         public string _typePleaseCredits = $"▶ 학점관리 메뉴 입니다.\n" +
                                    $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
                                    $"▶ 1. 나의 이수학점\n" +
@@ -165,7 +163,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         }
 
         //모든 정보를 언어에 따라 다르게 주기 위해서
-        //for diffrent reply from language select
+        //for different reply from language select
 
         //RootDialog + General
         public string _getStudentNumMessage = $"안녕하세요 명지대학교 AAR입니다.\n" +

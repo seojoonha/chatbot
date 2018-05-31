@@ -15,6 +15,7 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task CreditsOptionSelected(IDialogContext context)
         {
+            //설정된 학번이 없으면 새로 설정함
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
@@ -23,7 +24,12 @@ namespace my_first_chatbot.MessageReply
             else
             {
 
-                await context.PostAsync(RootDialog._storedvalues._typePleaseCredits);
+                //텍스트 입력방식
+                var activity = context.MakeMessage();
+                activity.Text = $"{RootDialog._storedvalues._typePleaseCredits}\n" +
+                                $"▶현재 설정된 학번: " +
+                                $"{RootDialog.stuNum}\n";
+                await context.PostAsync(activity);
                 context.Call(new LuisDialog(), HandleCreditsOptionSelection);
 
                 //버튼방식
@@ -40,10 +46,9 @@ namespace my_first_chatbot.MessageReply
 
         }
 
-
-
         public static async Task HandleCreditsOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
+            //텍스트 입력방식
             var message = await result;
 
             switch (message.Text)
@@ -62,12 +67,10 @@ namespace my_first_chatbot.MessageReply
             }
             await RootDialog.ShowWelcomeOptions(context);
 
+            //버튼방식
             //var value = await result;
-
             //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-
             //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-
             //else
             //{
             //    if (value.ToString() == RootDialog._storedvalues._changeStuNum)
@@ -93,27 +96,50 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task Reply_currentCredits(IDialogContext context)
         {
-            var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_CurrentCredits + RootDialog.studentinfo.totalCredits(RootDialog.stuNum);
-            await context.PostAsync(activity);
-            return;
+            //설정된 학번이 없으면 새로 설정함
+            if (RootDialog.stuNum == 0)
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
+                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogResumeAfter);                //get student number
+            }
+            else
+            {
+                var activity = context.MakeMessage();
+                activity.Text = RootDialog._storedvalues._reply_CurrentCredits + RootDialog.studentinfo.totalCredits(RootDialog.stuNum);
+                await context.PostAsync(activity);
+            }
         }
 
         public static async Task Reply_majorCredits(IDialogContext context)
         {
-            var activity = context.MakeMessage();
+            if (RootDialog.stuNum == 0)
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
+                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogResumeAfter);                //get student number
+            }
+            else
+            {
+                var activity = context.MakeMessage();
+                activity.Text = RootDialog._storedvalues._reply_MajorCredits + RootDialog.studentinfo.totalMajorCredits(RootDialog.stuNum);
 
-            activity.Text = RootDialog._storedvalues._reply_MajorCredits + RootDialog.studentinfo.totalMajorCredits(RootDialog.stuNum);
-
-            await context.PostAsync(activity);
+                await context.PostAsync(activity);
+            }
         }
 
         public static async Task Reply_liberalArtsCredits(IDialogContext context)
         {
-            var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_LiberalArtsCredits + RootDialog.studentinfo.totalElectiveCredits(RootDialog.stuNum);
+            if (RootDialog.stuNum == 0)
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
+                context.Call(new GetInfoDialog(), RootDialog.GetInfoDialogResumeAfter);                //get student number
+            }
+            else
+            {
+                var activity = context.MakeMessage();
+                activity.Text = RootDialog._storedvalues._reply_LiberalArtsCredits + RootDialog.studentinfo.totalElectiveCredits(RootDialog.stuNum);
 
-            await context.PostAsync(activity);
+                await context.PostAsync(activity);
+            }
         }
 
         public static async Task Reply_changeStuNum(IDialogContext context)         //학번 재설정

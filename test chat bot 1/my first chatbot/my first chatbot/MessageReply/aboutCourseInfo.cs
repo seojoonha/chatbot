@@ -14,6 +14,7 @@ namespace my_first_chatbot.MessageReply
     {
         public static async Task CourseInfoOptionSelected(IDialogContext context)
         {
+            //텍스트 입력방식
             await context.PostAsync(RootDialog._storedvalues._typePleaseCourseInfo);
             context.Call(new LuisDialog(), HandleCourseInfoOptionSelection);
 
@@ -30,6 +31,7 @@ namespace my_first_chatbot.MessageReply
         }
         public static async Task HandleCourseInfoOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
+            //텍스트 입력방식
             var message = await result;
 
             switch (message.Text)
@@ -52,12 +54,10 @@ namespace my_first_chatbot.MessageReply
             await RootDialog.ShowWelcomeOptions(context);
 
 
+            //버튼방식
             //var value = await result;
-
             //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-
             //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-
             //else
             //{
             //    if (value.ToString() == RootDialog._storedvalues._openedMajorCourses) await Reply_openedMajorCourses(context);

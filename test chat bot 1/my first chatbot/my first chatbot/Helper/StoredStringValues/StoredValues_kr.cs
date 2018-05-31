@@ -59,9 +59,84 @@ namespace my_first_chatbot.Helper
                                     $" ■ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
 
                                     $"▶ 학점 관리항목은\n      학번입력이 필요합니다.\n" +
-                                    $"▶ [처음으로]나 초기메뉴를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
-                                    $"▶ Please type in 'English' if you wish to chat in English :D\n" +
+                                    $"▶ 대화의 어느 단계에서든 '취소'를 입력시\n      처음으로 돌아가실 수 있습니다.\n" +
+                                    $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
                                     $"▶ 추후 계속 업데이트 예정.\n";
+
+
+            _typePleaseCourseRegistration = $"▶ 수강신청정보 메뉴 입니다.\n" +
+                                        $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                        $"▶ 1. 수강신청 방법\n" +
+                                        $"▶ 2. 수강신청 일정\n" +
+                                        $"▶ 3. 수강신청 규정\n" +
+                                        $"▶ 4. 수강신청 용어\n" +
+                                        $"▶ 5. 처음으로\n" +
+                                        $"▶ 6. 도움말\n\n" +
+
+                                        $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                        $"▶ 추후 계속 업데이트 예정.\n";
+
+
+            _typePleaseCourseInfo = $"▶ 강의정보 메뉴 입니다.\n" +
+                                       $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                       $"▶ 1. 이번학기 전공개설과목\n" +
+                                       $"▶ 2. 이번학기 교양개설과목\n" +
+                                       $"▶ 3. 강의계획서\n" +
+                                       $"▶ 4. 강사 정보\n" +
+                                       $"▶ 5. 필수과목 정보\n" +
+                                       $"▶ 6. 선수과목 정보\n" +
+                                       $"▶ 7. 처음으로\n" +
+                                       $"▶ 8. 도움말\n\n" +
+
+                                       $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                       $"▶ 추후 계속 업데이트 예정.\n";
+
+
+            _typePleaseCredits = $"▶ 학점관리 메뉴 입니다.\n" +
+                                      $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                                      $"▶ 1. 나의 이수학점\n" +
+                                      $"▶ 2. 전공 학점\n" +
+                                      $"▶ 3. 교양 학점\n" +
+                                      $"▶ 4. 학번 재설정\n" +
+                                      $"▶ 5. 처음으로\n" +
+                                      $"▶ 6. 도움말\n\n" +
+
+                                      $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                      $"▶ 추후 계속 업데이트 예정.\n";
+
+
+
+            _typePleaseOthers = $"▶ 기타 메뉴 입니다.\n" +
+                              $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                              $"▶ 1. 휴학 및 복학\n" +
+                              $"▶ 2. 장학금 관련\n" +
+                              $"▶ 3. 처음으로\n" +
+                              $"▶ 4. 도움말\n\n" +
+
+                              $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                              $"▶ 추후 계속 업데이트 예정.\n";
+
+
+
+            _typePleaseHelp = $"▶ 도움말 메뉴 입니다.\n" +
+                               $"▶ 문의 내용의 번호를 선택하시\n      거나 질문을 입력해주세요.\n\n" +
+                               $"▶ 1. AAR안내\n" +
+                               $"▶ 2. 정보수정 요청\n" +
+                               $"▶ 3. 관리자 연결\n" +
+                               $"▶ 4. 처음으로\n" +
+
+                               $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                               $"▶ 추후 계속 업데이트 예정.\n";
+
+            _sorryMessage = $"▶말씀을 이해하지 못했습니다.\n" +
+                            $"▶문의하신 내용에 대해 다음에는\n" +
+                            $"▶안내드릴 수 있도록 열심히\n" +
+                            $"▶학습하겠습니다.\n\n" +
+                            $"■ 각종 문의 및 상담\n" +
+                            $"▶ Github페이지\n" +
+                            $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+                            $"▶ 관리자 Email로 문의\n" +
+                            $"▶ Email : jasen0324@gmail.com\n";
 
 
             // 도움말 선택시 메뉴       help options

@@ -56,10 +56,76 @@ namespace my_first_chatbot.Helper
                                     $"▶ 5. Help \n" +
 
                                     $"▶ Credits must be entered in the course number. \n" +
-                                    $"▶ '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n" +
-                                    $"▶ Current Depth 2 only \n" +
-                                    $"▶ We plan to implement Depth 3 later. \n";
+                                    $"▶ You can go back to the main menu" + 
+                                    $"   by typing 'cancel' at any stage of the conversation.\n" +
+                                    $"▶ '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
 
+            _typePleaseCourseRegistration = $"▶ You have selected to enroll.\n" +
+                                        $"▶ Please select details.\n\n" +
+                                        $"▶ 1. How to register\n" +
+                                        $"▶ 2. Schedule\n" +
+                                        $"▶ 3. Regulation\n" +
+                                        $"▶ 4. Terms\n" +
+                                        $"▶ 5. Go To Start\n" +
+                                        $"▶ 6. Help\n\n" +
+
+                                        $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                        $"▶ It will be updated continuously..\n";
+
+
+            _typePleaseCourseInfo = $"▶ You have selected lecture information.\n"+
+                                    $"▶ Please select details.\n\n" +
+                                    $"▶ 1. Opened LiberalArts\n" +
+                                    $"▶ 2. Opened Major\n" +
+                                    $"▶ 3. Syllabus\n" +
+                                    $"▶ 4. Lecturer Info\n" +
+                                    $"▶ 5. Mandatory Subject\n" +
+                                    $"▶ 6. Prerequisite\n" +
+                                    $"▶ 7. Go To Start\n" +
+                                    $"▶ 8. Help\n\n" +
+                                    $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                    $"▶ It will be updated continuously..\n";
+
+
+            _typePleaseCredits = $"▶You have selected credit management.\n" +
+                                 $"▶Please select the details.\n\n" +
+                                 $"▶ 1. Current credits\n" +
+                                 $"▶ 2. Major credits\n" +
+                                 $"▶ 3. Liberal Arts credits\n" +
+                                 $"▶ 4. Reset Student Number\n" +
+                                 $"▶ 5. Go To Start\n" +
+                                 $"▶ 6. Help\n\n" +
+                                 $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                 $"▶ It will be updated continuously..\n";
+
+
+
+            _typePleaseOthers = $"▶You have selected other informations.\n" +
+                                $"▶Please select the details.\n\n" +
+                                $"▶ 1. Leave Or Readmission\n" +
+                                $"▶ 2. Scholarship\n" +
+                                $"▶ 3. Go To Start\n" +
+                                $"▶ 4. Help\n\n" +
+                                $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                                $"▶ It will be updated continuously..\n";
+
+
+
+            _typePleaseHelp = $"▶You have selected Help.\n" +
+                              $"▶Please select the details.\n\n" +
+                              $"▶ 1. AAR Guidance\n" +
+                              $"▶ 2. Request information correction\n" +
+                              $"▶ 3. Contact to Master\n" +
+                              $"▶ 4. Go To Start\n" +
+                              $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
+                              $"▶ It will be updated continuously..\n";
+
+            _sorryMessage = $"▶I didn't understand your words.\n" +
+                            $"▶We will work hard to help you with your inquiries next time." +
+                            $"■ Contact Us\n" +
+                            $"▶ Github Page\n" +
+                            $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+                            $"▶ Email : jasen0324@gmail.com\n";
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
@@ -97,6 +163,25 @@ namespace my_first_chatbot.Helper
             _invalidSelectionMessage = "You have chosen the wrong option.";
             _goToButton = "Goto Info";
 
+            //aboutCourseRegistration
+            _courseRegistrationSelected = "You have selected to enroll.\nPlease select the details.";
+
+
+            _reply_HowToDoIt = $"Instructions on how to enroll\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Schedule = $"Instructions for the course registration.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Regulation = $"Instructions for course registration\n" +
+                                $"Please check page 3, section 5, article 26 of this page.\n" +
+                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+
+
+            _reply_Terms = $"This is a guide to information about course registration.\n";
+
             //aboutCourseInfo
             _courseInfoSelected = "You have selected lecture information.\nPlease select details.";
 
@@ -119,26 +204,6 @@ namespace my_first_chatbot.Helper
 
 
             _reply_Prerequisite = $"This is a guide for prerequisite information \n";
-
-
-            //aboutCourseRegistration
-            _courseRegistrationSelected = "You have selected to enroll.\nPlease select the details.";
-
-
-            _reply_HowToDoIt = $"Instructions on how to enroll\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
-
-
-            _reply_Schedule = $"Instructions for the course registration.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
-
-
-            _reply_Regulation = $"Instructions for course registration\n" +
-                                $"Please check page 3, section 5, article 26 of this page.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
-
-
-            _reply_Terms = $"This is a guide to information about course registration.\n";
 
 
             //aboutCredits

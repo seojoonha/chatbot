@@ -12,19 +12,9 @@ using my_first_chatbot.Helper;
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
-    [LuisModel("b764b107-9ed2-4f9e-ad3f-9251430dafa8", "be608df8436f4ccea3bec7a39f2a03a5")]
+    [LuisModel("b764b107-9ed2-4f9e-ad3f-9251430dafa8", "98c9d829c0b24aaaa06991d58dc259c6")]
     public class LuisDialog : LuisDialog<Activity>
     {
-        /*
-            string strtemp = "";
-            for (int i = 0; i < result.Entities.Count; i++)
-            {
-                strtemp = strtemp + (i + 1) + " Entitie의 타입은 : " + result.Entities[i].Type + "  Entitie의 Target Text는 " + result.Entities[i].Entity + " 입니다.###";
-            }
-            var activity = context.MakeMessage();
-            activity.Text = $"{strtemp} Intent는 {result.Intents[0].Intent}. 해당 Intent일 확률은 {result.Intents[0].Score}% 입니다. {result.Entities.Count} is Entities count //";
-            context.Done(activity);
-        */
 
         [LuisIntent("")]
         [LuisIntent("None")]
@@ -44,22 +34,12 @@ namespace my_first_chatbot.Dialogs
             context.Done(activity);
         }
 
-
+        
         [LuisIntent("Information")]
         public async Task InformationIntent(IDialogContext context, LuisResult result)
         {
-            //var strtmp = result.Entities[0].Type;
-            //if (strtmp == "_courseRegistration") await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
-            //else if (strtmp == "_courseInformation") await aboutCourseInfo.CourseInfoOptionSelected(context);
-            //else if (strtmp == "_credits") await aboutCredits.CreditsOptionSelected(context);
-            //else if (strtmp == "_others") await aboutOthers.OtherOptionSelected(context);
-            //else
-            //{
-            //    var activity = context.MakeMessage();
-            //    activity.Text = $"Information intent error.";
-            //    context.Done(activity);
-            //}
-            //번호 메뉴 인식
+            //입력받은 메시지가 숫자(번호메뉴)인 경우
+            //
             int number;
             if (Int32.TryParse(result.Query, out number))
             {
@@ -67,9 +47,10 @@ namespace my_first_chatbot.Dialogs
                 activity.Text = result.Query;
                 context.Done(activity);
             }
+            //입력받은 메시지가 텍스트인 경우
             else
             {
-
+                //텍스트가 LUIS Entity 중 하나로 예측되면 메뉴이동으로 판단함
                 if (result.Entities.Count == 1)
                 {
                     switch (result.Entities[0].Type)
@@ -100,6 +81,7 @@ namespace my_first_chatbot.Dialogs
                         case "_others::_leaveOrReadmission": await aboutOthers.Reply_leaveOrReadmission(context); break;
                         case "_others::_scholarship": await aboutOthers.Reply_scholarship(context); break;
 
+                        //for debug
                         default:
                             {
                                 var activity = context.MakeMessage();
@@ -109,6 +91,9 @@ namespace my_first_chatbot.Dialogs
                             break;
                     }
                 }
+
+                //텍스트를 특정한 메뉴로 알아듣지 못한 경우(Entity가 없으면)
+                //정해진 메시지를 내보냄
                 else
                 {
                     var activity = context.MakeMessage();
@@ -128,12 +113,15 @@ namespace my_first_chatbot.Dialogs
             switch (strtmp)
             {
                 //도움말 메뉴 
-                //언어변경 메뉴는 넣지 않음.
+                //언어변경 메뉴는 넣지 않음.  
+                //Help menu
+                //Didn't add 'Change Language' menu.
                 case "_help": await aboutHelp.HelpOptionSelected(context); break;
                 case "_help::_introduction": await aboutHelp.Reply_introduction(context); break;
                 case "_help::_requestInformationCorrection": await aboutHelp.Reply_requestInformationCorrection(context); break;
                 case "_help::_contactMaster": await aboutHelp.Reply_contactMaster(context); break;
-                //디버그용
+                
+                //for debug
                 default:
                     {
                         var activity = context.MakeMessage();
@@ -161,7 +149,7 @@ namespace my_first_chatbot.Dialogs
             if (result.Query.Contains("한국") || result.Query.Contains("korea"))
             {
                 RootDialog._storedvalues = new StoredValues_kr();
-            }   //for convert en to kr
+            }   //convert en to kr
             else
             {
                 RootDialog._storedvalues = new StoredValues_en();

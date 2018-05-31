@@ -14,7 +14,7 @@ namespace my_first_chatbot.MessageReply
     {
         public static async Task HelpOptionSelected(IDialogContext context)
         {
-
+            //텍스트 입력방식
             await context.PostAsync(RootDialog._storedvalues._typePleaseHelp);
             context.Call(new LuisDialog(), HandleHelpOptionSelection);
 
@@ -32,6 +32,8 @@ namespace my_first_chatbot.MessageReply
 
         public static async Task HandleHelpOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
+
+            //텍스트 입력방식
             var message = await result;
 
             switch (message.Text)
@@ -48,10 +50,9 @@ namespace my_first_chatbot.MessageReply
             }
             await RootDialog.ShowWelcomeOptions(context);
 
+            //버튼방식
             //var value = await result;
-
             //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);          //웰컴이 두번 불러지는 문제인가?
-
             //else
             //{
             //    if (value.ToString() == RootDialog._storedvalues._introduction) await Reply_introduction(context);     //이거 룻다이알로그에 스토얼 가져와서 인듯
