@@ -62,20 +62,7 @@ namespace my_first_chatbot.Dialogs
             context.Call(new LuisDialog(), LuisDialogResumeAfter);
 
 
-            //var message = context.MakeMessage();
-            //message.Text =
-            //    $"\n{_storedvalues._welcomeMessage}\n" +
-            //    $"{_storedvalues._printLine}" +
-            //    $"1. {_storedvalues._courseRegistration}\n" +
-            //    $"2. {_storedvalues._courseInformation}\n" +
-            //    $"3. {_storedvalues._credits}\n" +
-            //    $"4. {_storedvalues._others}\n" +
-            //    $"5. {_storedvalues._help}\n" +
-            //    $"{_storedvalues._printLine}";
-            //await context.PostAsync(message);
-            //context.Call(new LuisDialog(), LuisDialogResumeAfter);
-
-
+            //버튼방식
             //PromptDialog.Choice<string>(
             //    context,
             //    HandleWelcomeOptionSelected,
@@ -87,7 +74,7 @@ namespace my_first_chatbot.Dialogs
         }
 
 
-
+        //버튼방식
         //public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
         //{
         //    var value = await result;
@@ -138,25 +125,7 @@ namespace my_first_chatbot.Dialogs
             }
         }
 
-        //초기화면 번호메뉴 선택시
-        //public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
-        //{
-        //    int message = await result;
-        //    switch (message)
-        //    {
-        //        case 1: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
-        //        case 2: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-        //        case 3: await aboutCredits.CreditsOptionSelected(context); break;
-        //        case 4: await aboutOthers.OtherOptionSelected(context); break;
-        //        case 5: await aboutHelp.HelpOptionSelected(context); break;
-        //        default:
-        //            {
-        //                await context.PostAsync(_storedvalues._sorryMessage);
-        //                await ShowWelcomeOptions(context);
-        //            }
-        //            break;
-        //    }
-        //}
+
         //LUIS 결과 메시지 출력부분
         public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
         {
