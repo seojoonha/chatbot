@@ -12,7 +12,7 @@ using my_first_chatbot.Helper;
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
-    [LuisModel("b764b107-9ed2-4f9e-ad3f-9251430dafa8", "98c9d829c0b24aaaa06991d58dc259c6")]
+    [LuisModel("00f80fdf-2018-411d-82e8-ce60e1629787", "a843d7ded45b4e179a29189763122065")]
     public class LuisDialog : LuisDialog<Activity>
     {
 

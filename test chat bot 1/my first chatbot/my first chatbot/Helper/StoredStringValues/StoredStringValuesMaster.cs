@@ -149,7 +149,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         // 처음으로 혹은 도움말      goto start and help
         public string _gotostart = "처음으로";
         public string _help = "도움말";
-
+        public string _cancelMessage = "대화를 취소하고 처음으로 돌아갑니다.";
 
         public StoredStringValuesMaster()
         {

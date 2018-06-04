@@ -20,6 +20,7 @@ namespace my_first_chatbot
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
 
+        //Module 추가
         private void RegisterBotModules()
         {
             Conversation.UpdateContainer(builder =>

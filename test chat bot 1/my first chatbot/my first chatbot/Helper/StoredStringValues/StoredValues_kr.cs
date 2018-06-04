@@ -148,6 +148,7 @@ namespace my_first_chatbot.Helper
             // 처음으로 혹은 도움말      goto start and help
             _gotostart = "처음으로";
             _help = "도움말";
+            _cancelMessage = "대화를 취소하고 처음으로 돌아갑니다.";
 
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
