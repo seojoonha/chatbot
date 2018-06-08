@@ -47,7 +47,7 @@ namespace my_first_chatbot.MessageReply
                         await context.PostAsync(message);
                     }break;
             }
-            await RootDialog.ShowWelcomeOptions(context);
+            //await RootDialog.ShowWelcomeOptions(context);
 
             //버튼방식
             //var value = await result;

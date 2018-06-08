@@ -46,97 +46,91 @@ namespace my_first_chatbot.Helper
             _scholarship = "Scholarship";            //웹 연결
 
             // 직접 입력하기 선택시 메뉴     typeself options
-            _typePleaseWelcome = $"▶ Hello AAR chat service. \n" +
-                                    $"▶ Select the number of the inquiry or" +
-                                    $"   Please enter your question \n \n" +
-                                    $"▶ 1. Course Registration Information \n" +
-                                    $"▶ 2. Subject related information \n" +
-                                    $"▶ 3. Credit management \n" +
-                                    $"▶ 4. Other information \n" +
-                                    $"▶ 5. Help \n" +
+            _typePleaseWelcome = 
+                                    $"Hi! This is AAR chat service. \n" +
+                                    $"Please enter the number of the menu or" +
+                                    $"your question. \n \n" +
+                                    $"1. Course Registration Information \n" +
+                                    $"2. Subject related information \n" +
+                                    $"3. Credit management \n" +
+                                    $"4. Other information \n" +
+                                    $"5. Help \n" +
+                                    $"Student number must be entered in the Credits menu. \n" +
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
 
-                                    $"▶ Credits must be entered in the course number. \n" +
-                                    $"▶ You can go back to the main menu" + 
-                                    $"   by typing 'cancel' at any stage of the conversation.\n" +
-                                    $"▶ '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
-
-            _typePleaseCourseRegistration = $"▶ You have selected to enroll.\n" +
-                                        $"▶ Please select details.\n\n" +
-                                        $"▶ 1. How to register\n" +
-                                        $"▶ 2. Schedule\n" +
-                                        $"▶ 3. Regulation\n" +
-                                        $"▶ 4. Terms\n" +
-                                        $"▶ 5. Go To Start\n" +
-                                        $"▶ 6. Help\n\n" +
-
-                                        $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
-                                        $"▶ It will be updated continuously..\n";
+            _typePleaseCourseRegistration = 
+                                    $"You have selected to enroll.\n" +
+                                    $"Please select details.\n\n" +
+                                    $"1. How to register\n" +
+                                    $"2. Schedule\n" +
+                                    $"3. Regulation\n" +
+                                    $"4. Terms\n" +
+                                    $"5. Go To Start\n" +
+                                    $"6. Help\n\n" +
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
 
 
-            _typePleaseCourseInfo = $"▶ You have selected lecture information.\n"+
-                                    $"▶ Please select details.\n\n" +
-                                    $"▶ 1. Opened LiberalArts\n" +
-                                    $"▶ 2. Opened Major\n" +
-                                    $"▶ 3. Syllabus\n" +
-                                    $"▶ 4. Lecturer Info\n" +
-                                    $"▶ 5. Mandatory Subject\n" +
-                                    $"▶ 6. Prerequisite\n" +
-                                    $"▶ 7. Go To Start\n" +
-                                    $"▶ 8. Help\n\n" +
-                                    $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
-                                    $"▶ It will be updated continuously..\n";
+            _typePleaseCourseInfo = 
+                                    $"You have selected lecture information.\n" +
+                                    $"Please select details.\n\n" +
+                                    $"1. Opened LiberalArts\n" +
+                                    $"2. Opened Major\n" +
+                                    $"3. Syllabus\n" +
+                                    $"4. Lecturer Info\n" +
+                                    $"5. Mandatory Subject\n" +
+                                    $"6. Prerequisite\n" +
+                                    $"7. Go To Start\n" +
+                                    $"8. Help\n\n" +
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
 
 
-            _typePleaseCredits = $"▶You have selected credit management.\n" +
-                                 $"▶Please select the details.\n\n" +
-                                 $"▶ 1. Current credits\n" +
-                                 $"▶ 2. Major credits\n" +
-                                 $"▶ 3. Liberal Arts credits\n" +
-                                 $"▶ 4. Reset Student Number\n" +
-                                 $"▶ 5. Go To Start\n" +
-                                 $"▶ 6. Help\n\n" +
-                                 $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
-                                 $"▶ It will be updated continuously..\n";
+            _typePleaseCredits =    
+                                    $"You have selected credit management.\n" +
+                                    $"Please select the details.\n\n" +
+                                    $"1. Current credits\n" +
+                                    $"2. Major credits\n" +
+                                    $"3. Liberal Arts credits\n" +
+                                    $"4. Reset Student Number\n" +
+                                    $"5. Go To Start\n" +
+                                    $"6. Help\n\n" +
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
 
 
 
-            _typePleaseOthers = $"▶You have selected other informations.\n" +
-                                $"▶Please select the details.\n\n" +
-                                $"▶ 1. Leave Or Readmission\n" +
-                                $"▶ 2. Scholarship\n" +
-                                $"▶ 3. Go To Start\n" +
-                                $"▶ 4. Help\n\n" +
-                                $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
-                                $"▶ It will be updated continuously..\n";
+            _typePleaseOthers =     $"You have selected other informations.\n" +
+                                    $"Please select the details.\n\n" +
+                                    $"1. Leave Or Readmission\n" +
+                                    $"2. Scholarship\n" +
+                                    $"3. Go To Start\n" +
+                                    $"4. Help\n\n" +
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D \n";
 
 
 
-            _typePleaseHelp = $"▶You have selected Help.\n" +
-                              $"▶Please select the details.\n\n" +
-                              $"▶ 1. AAR Guidance\n" +
-                              $"▶ 2. Request information correction\n" +
-                              $"▶ 3. Contact to Master\n" +
-                              $"▶ 4. Go To Start\n" +
-                              $"▶ Please type in 'English' if you wish to chat in English. :D \n" +
-                              $"▶ It will be updated continuously..\n";
+            _typePleaseHelp =       
+                                    $"You have selected Help.\n" +
+                                    $"Please select the details.\n\n" +
+                                    $"1. AAR Guidance\n" +
+                                    $"2. Request information correction\n" +
+                                    $"3. Contact to Master\n" +
+                                    $"4. Go To Start\n" +
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D \n";
 
-            _sorryMessage = $"▶I didn't understand your words.\n" +
-                            $"▶We will work hard to help you with your inquiries next time." +
-                            $"■ Contact Us\n" +
-                            $"▶ Github Page\n" +
-                            $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
-                            $"▶ Email : jasen0324@gmail.com\n";
+            _sorryMessage = 
+                                    $"I didn't understand your words.\n" +
+                                    $"We will work hard to help you with your inquiries next time.\n" +
+                                    $"Please enter 'menu' to go back to the main menu.";
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
-            _requestInformationCorrection = "request Information Correction";
+            _requestInformationCorrection = "Request Information Correction";
             _contactMaster = "Contact to Master";
             _convertLanguage = "한국어";
 
             // 처음으로 혹은 도움말      goto start and help
             _gotostart = "Go To Start";
             _help = "Help";
-            _cancelMessage = "Cancel this conversation and go back to beginning.";
+            _cancelMessage = "We will stop this conversation and go back to beginning.";
 
             _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
             _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
@@ -150,55 +144,66 @@ namespace my_first_chatbot.Helper
             //for diffrent reply from language select
 
             //RootDialog + General
-            _getStudentNumMessage = $"Myongji University AAR.\n" +
-                                $"Please enter your student ID for personalized information\n" +
-                            $"Test number: 60131937.\n";
-            _getStudentNumUpdateMessage = $"Student number info updated\n" +
-                            $"Updated Student number is : ";
-            _getStudentNumFail = $"Wrong Format.\n" +
-                            $"What is your Student ID(e.g. '60131937') ?";
-            _welcomeMessage = $"Myongji University AAR.\n" +
-                            $"Please select one of the list number or type -in your questions to be answered..\n" +
-                            $"Credits management entry requires student number\n" +
-                            $" '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
-            _invalidSelectionMessage = "You have chosen the wrong option.";
+            _getStudentNumMessage = 
+                                    $"Please enter your student ID for personalized information\n" +
+                                    $"For example: 12345678.\n";
+            _getStudentNumUpdateMessage = 
+                                    $"Student number info updated\n" +
+                                    $"Updated Student number is : ";
+            _getStudentNumFail =    
+                                    $"Wrong Format.\n" +
+                                    $"What is your Student ID(e.g. '60131937') ?";
+            _welcomeMessage = 
+                                    $"Myongji University AAR.\n" +
+                                    $"Please select one of the list number or type -in your questions to be answered..\n" +
+                                    $"Credits management entry requires student number\n" +
+                                    $" '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
+            _invalidSelectionMessage = $"You have chosen the wrong option.";
             _goToButton = "Goto Info";
 
             //aboutCourseRegistration
-            _courseRegistrationSelected = "You have selected to enroll.\nPlease select the details.";
+            _courseRegistrationSelected = 
+                                    $"You have selected to enroll.\n" +
+                                    $"Please select the details.";
+            
+            _reply_HowToDoIt = 
+                                    $"Instructions on how to enroll\n" +
+                                    $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_HowToDoIt = $"Instructions on how to enroll\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+            _reply_Schedule = 
+                                    $"Instructions for the course registration.\n" +
+                                    $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_Schedule = $"Instructions for the course registration.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
-
-
-            _reply_Regulation = $"Instructions for course registration\n" +
-                                $"Please check page 3, section 5, article 26 of this page.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+            _reply_Regulation = 
+                                    $"Instructions for course registration\n" +
+                                    $"Please check page 3, section 5, article 26 of this page.\n" +
+                                    $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
             _reply_Terms = $"This is a guide to information about course registration.\n";
 
             //aboutCourseInfo
-            _courseInfoSelected = "You have selected lecture information.\nPlease select details.";
+            _courseInfoSelected = 
+                                    $"You have selected lecture information.\n" +
+                                    $"Please select details.";
 
             _reply_openedLiberalArts = $"This is a guide for this semester opened LiberalArts.\n";
 
             _reply_OpenedMajorCourses = $"This is a guide for this semester opened Major.\n";
 
 
-            _reply_Syllabus = $"This is a guide for syllabus.\n" +
-                                $"This is information in Myiweb, so login is required.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+            _reply_Syllabus = 
+                                    $"This is a guide for syllabus.\n" +
+                                    $"This is information in Myiweb, so login is required.\n" +
+                                    $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_LecturerInfo = $"This is a guide for LecturerInfo.\n" +
-                                $"This is information in Myiweb, so login is required.\n" +
-                                $"This links to the desktop site, which does not exist on the mobile page.\n";
+            _reply_LecturerInfo = 
+                                    $"This is a guide for LecturerInfo.\n" +
+                                    $"This is information in Myiweb, so login is required.\n" +
+                                    $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
             _reply_MandatorySubject = $"This is a guide for required course information \n";
@@ -208,27 +213,35 @@ namespace my_first_chatbot.Helper
 
 
             //aboutCredits
-            _creditsOptionSelected = "You have selected credit management.\nPlease select the details.";
+            _creditsOptionSelected = 
+                                    $"You have selected credit management.\n" +
+                                    $"Please select the details.";
 
 
-            _reply_CurrentCredits = $"Guide to my graduation.\n" +
-                            $"Total credits earned are : ";
+            _reply_CurrentCredits = 
+                                    $"Guide to my credits.\n" +
+                                    $"Total credits earned are : ";
 
 
-            _reply_MajorCredits = $"Guide to major credit.\n" +
-                                $"Specialization credits for the undergraduate courses are : ";
+            _reply_MajorCredits = 
+                                    $"Guide to major credit.\n" +
+                                    $"Specialization credits for the undergraduate courses are : ";
 
 
-            _reply_LiberalArtsCredits = $"Guidance on Liberal Arts credits.\n" +
-                                $"Liberal Arts credits are : ";
+            _reply_LiberalArtsCredits = 
+                                    $"Guidance on Liberal Arts credits.\n" +
+                                    $"Liberal Arts credits are : ";
 
 
-            _reply_ChangeStuNum = $"Please enter the student number you wish to reset\n" +
-                            $"The current student number is : ";
+            _reply_ChangeStuNum = 
+                                    $"Please enter the student number you wish to reset\n" +
+                                    $"The current student number is : ";
 
 
             //aboutOthers
-            _otherOptionSelected = "You have selected other information.\nPlease select the details.";
+            _otherOptionSelected = 
+                                    $"You have selected other information.\n" +
+                                    $"Please select the details.";
 
 
             _reply_leaveOrReadmission = $"This is information about the leave and returning information. \n";
@@ -238,21 +251,29 @@ namespace my_first_chatbot.Helper
 
 
             //aboutHelp
-            _helpOptionSelected = "AAR3 help, what can I do for you?";
+            _helpOptionSelected = $"AAR3 help, what can I do for you?";
 
 
-            _reply_Introduction = $"A guide to AAR3\n" +
-                                $"AAR3 can help you to apply for water and manage your credit.\n" +
-                                $"Select the data in the archive.\n" +
-                                $"The selection has now returned to the beginning.\n" +
-                                $"Added later \n";
+            _reply_Introduction =
+                            $"A guide to AAR3\n" +
+                            $"AAR3 can help you to get informations of enrollment and manage your credit.\n" +
+                            $"If you select the information you are interested in, you will be taken to the information page.\n" +
+                            $"If you want to go back to the beginning of the selection, please enter 'go to start'.\n";
 
 
-            _reply_RequestInformationCorrection = $"You can request to modify the information.\n" +
-                                    $"We plan to add it later.\n";
+            _reply_RequestInformationCorrection = 
+                            $"You can request to modify the information.\n" +
+                            $"Github Page\n" +
+                            $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+                            $"▶ Administrator Email\n" +
+                            $"Email : jasen0324@gmail.com\n";
 
-            _reply_ContactMaster = $"You can ask for a consultation with the administrator.\n" +
-                                     $"We plan to add it later.\n";
+            _reply_ContactMaster = 
+                            $"You can ask for a consultation with the administrator.\n" +
+                            $"Github Page\n" +
+                            $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
+                            $"▶ Administrator Email\n" +
+                            $"Email : jasen0324@gmail.com\n";
         }
 
     }

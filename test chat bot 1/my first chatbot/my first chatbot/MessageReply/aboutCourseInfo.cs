@@ -51,7 +51,7 @@ namespace my_first_chatbot.MessageReply
                     }
                     break;
             }
-            await RootDialog.ShowWelcomeOptions(context);
+            //await RootDialog.ShowWelcomeOptions(context);
 
 
             //버튼방식
@@ -80,7 +80,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_openedMajorCourses(IDialogContext context)
         {
             var activity = context.MakeMessage();
-            activity.Text = RootDialog._storedvalues._reply_openedLiberalArts;
+            activity.Text = RootDialog._storedvalues._reply_OpenedMajorCourses;
 
             activity.Attachments.Add(new HeroCard
             {
