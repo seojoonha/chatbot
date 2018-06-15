@@ -15,54 +15,26 @@ namespace my_first_chatbot.MessageReply
         public static async Task OtherOptionSelected(IDialogContext context)
         {
 
-            //텍스트 입력방식
             await context.PostAsync(RootDialog._storedvalues._typePleaseOthers);
             context.Call(new LuisDialog(), HandleOtherOptionSelection);
-
-            //버튼방식
-            //PromptDialog.Choice<string>(
-            //    context,
-            //    HandleOtherOptionSelection,
-            //    RootDialog._storedvalues._othersOption,
-            //    RootDialog._storedvalues._otherOptionSelected,                                                                                 //Course Registration
-            //    RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : OtherOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-            //    1,
-            //    PromptStyle.Auto);
 
         }
         public static async Task HandleOtherOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
 
-            //텍스트 입력방식
             var message = await result;
 
             switch (message.Text)
             {
                 case "1": await Reply_leaveOrReadmission(context); break;
                 case "2": await Reply_scholarship(context); break;
-                case "3": break;//go to start
-                case "4": await aboutHelp.HelpOptionSelected(context); break;
+                case "3": await aboutHelp.HelpOptionSelected(context); break;
                 default:
                     {
                         await context.PostAsync(message);
                     }
                     break;
             }
-            //await RootDialog.ShowWelcomeOptions(context);
-
-            //버튼방식
-            //var value = await result;
-            //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-            //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-            //else
-            //{
-            //    if (value.ToString() == RootDialog._storedvalues._leaveOrReadmission) await Reply_leaveOrReadmission(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._scholarship) await Reply_scholarship(context);
-
-
-            //    //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
-            //    await aboutOthers.OtherOptionSelected(context);
-            //}
         }
 
 

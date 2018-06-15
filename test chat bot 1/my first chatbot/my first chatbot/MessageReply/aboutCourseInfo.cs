@@ -14,24 +14,14 @@ namespace my_first_chatbot.MessageReply
     {
         public static async Task CourseInfoOptionSelected(IDialogContext context)
         {
-            //텍스트 입력방식
+
             await context.PostAsync(RootDialog._storedvalues._typePleaseCourseInfo);
             context.Call(new LuisDialog(), HandleCourseInfoOptionSelection);
-
-            //버튼방식
-            //PromptDialog.Choice<string>(
-            //    context,
-            //    HandleCourseInfoOptionSelection,
-            //    RootDialog._storedvalues._courseInfoOptions,
-            //    RootDialog._storedvalues._courseInfoSelected,                                                                                 //Course Registration
-            //    RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-            //    1,
-            //    PromptStyle.Auto);
 
         }
         public static async Task HandleCourseInfoOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
-            //텍스트 입력방식
+
             var message = await result;
 
             switch (message.Text)
@@ -42,8 +32,7 @@ namespace my_first_chatbot.MessageReply
                 case "4": await Reply_lecturerInfo(context); break;
                 case "5": await Reply_mandatorySubject(context); break;
                 case "6": await Reply_prerequisite(context); break;
-                case "7": break;//go to start
-                case "8": await aboutHelp.HelpOptionSelected(context); break;
+                case "7": await aboutHelp.HelpOptionSelected(context); break;
                 
                 default:
                     {
@@ -51,26 +40,6 @@ namespace my_first_chatbot.MessageReply
                     }
                     break;
             }
-            //await RootDialog.ShowWelcomeOptions(context);
-
-
-            //버튼방식
-            //var value = await result;
-            //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-            //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-            //else
-            //{
-            //    if (value.ToString() == RootDialog._storedvalues._openedMajorCourses) await Reply_openedMajorCourses(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._openedLiberalArts) await Reply_openedLiberalArts(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._syllabus) await Reply_syllabus(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._lecturerInfo) await Reply_lecturerInfo(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._mandatorySubject) await Reply_mandatorySubject(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._prerequisite) await Reply_prerequisite(context);
-
-
-            //    //await RootDialog.ShowWelcomeOptions(context);           //Return To Start
-            //    await CourseInfoOptionSelected(context);
-            //}
         }
 
 

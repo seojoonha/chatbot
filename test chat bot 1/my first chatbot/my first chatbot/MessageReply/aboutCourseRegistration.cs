@@ -14,24 +14,14 @@ namespace my_first_chatbot.MessageReply
     {
         public static async Task CourseRegistraionOptionSelected(IDialogContext context)
         {
-            //텍스트 입력방식
+
             await context.PostAsync(RootDialog._storedvalues._typePleaseCourseRegistration);
             context.Call(new LuisDialog(), HandleCourseRegistrationOptionSelection);
-
-            //버튼방식
-            //PromptDialog.Choice<string>(
-            //    context,
-            //    HandleCourseRegistrationOptionSelection,
-            //    RootDialog._storedvalues._courseRegistrationOptions,
-            //    RootDialog._storedvalues._courseRegistrationSelected,                                                                                        //Course Registration
-            //    RootDialog._storedvalues._invalidSelectionMessage + "[ERROR] : CourseRegistraionOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
-            //    1,
-            //    PromptStyle.Auto);
 
         }
         public static async Task HandleCourseRegistrationOptionSelection(IDialogContext context, IAwaitable<Activity> result)
         {
-            //텍스트 입력방식
+            
             var message = await result;
 
             switch (message.Text)
@@ -40,30 +30,12 @@ namespace my_first_chatbot.MessageReply
                 case "2": await Reply_schedule(context); break;
                 case "3": await Reply_regulation(context); break;
                 case "4": await Reply_terms(context); break;
-                case "5": break;//go to start
-                case "6": await aboutHelp.HelpOptionSelected(context); break;
+                case "5": await aboutHelp.HelpOptionSelected(context); break;
                 default:
                     {
                         await context.PostAsync(message);
                     }break;
             }
-            //await RootDialog.ShowWelcomeOptions(context);
-
-            //버튼방식
-            //var value = await result;
-            //if (value.ToString() == RootDialog._storedvalues._gotostart) await RootDialog.ShowWelcomeOptions(context);
-            //else if (value.ToString() == RootDialog._storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-            //else
-            //{
-            //    if (value.ToString() == RootDialog._storedvalues._howToDoIt) await Reply_howToDoIt(context);      //각각의 메서드에 연결
-            //    else if (value.ToString() == RootDialog._storedvalues._schedule) await Reply_schedule(context);     //각각의 Dialog로 연결하는 것 보다 편한듯
-            //    else if (value.ToString() == RootDialog._storedvalues._regulation) await Reply_regulation(context);
-            //    else if (value.ToString() == RootDialog._storedvalues._terms) await Reply_terms(context);
-
-
-            //    //await RootDialog.ShowWelcomeOptions(context);                  //Return To Start
-            //    await CourseRegistraionOptionSelected(context);
-            //}
         }
 
 

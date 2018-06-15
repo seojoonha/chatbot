@@ -48,29 +48,27 @@ namespace my_first_chatbot.Helper
             // 직접 입력하기 선택시 메뉴     typeself options
             _typePleaseWelcome = 
                                     $"Hi! This is AAR chat service. \n" +
-                                    $"Please enter the number of the menu or" +
-                                    $"your question. \n \n" +
+                                    $"Please enter the number of the menu or your question. \n\n" +
                                     $"1. Course Registration Information \n" +
                                     $"2. Subject related information \n" +
                                     $"3. Credit management \n" +
                                     $"4. Other information \n" +
                                     $"5. Help \n" +
                                     $"Student number must be entered in the Credits menu. \n" +
-                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
+                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다.\n";
 
-            _typePleaseCourseRegistration = 
+            _typePleaseCourseRegistration =
                                     $"You have selected to enroll.\n" +
                                     $"Please select details.\n\n" +
                                     $"1. How to register\n" +
                                     $"2. Schedule\n" +
                                     $"3. Regulation\n" +
                                     $"4. Terms\n" +
-                                    $"5. Go To Start\n" +
-                                    $"6. Help\n\n" +
-                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
+                                    $"5. Help\n\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n";
 
 
-            _typePleaseCourseInfo = 
+            _typePleaseCourseInfo =
                                     $"You have selected lecture information.\n" +
                                     $"Please select details.\n\n" +
                                     $"1. Opened LiberalArts\n" +
@@ -79,47 +77,42 @@ namespace my_first_chatbot.Helper
                                     $"4. Lecturer Info\n" +
                                     $"5. Mandatory Subject\n" +
                                     $"6. Prerequisite\n" +
-                                    $"7. Go To Start\n" +
-                                    $"8. Help\n\n" +
-                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
+                                    $"7. Help\n\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n";
 
 
-            _typePleaseCredits =    
+            _typePleaseCredits =
                                     $"You have selected credit management.\n" +
                                     $"Please select the details.\n\n" +
                                     $"1. Current credits\n" +
                                     $"2. Major credits\n" +
                                     $"3. Liberal Arts credits\n" +
                                     $"4. Reset Student Number\n" +
-                                    $"5. Go To Start\n" +
-                                    $"6. Help\n\n" +
-                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
+                                    $"5. Help\n\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n";
 
 
 
-            _typePleaseOthers =     $"You have selected other informations.\n" +
+            _typePleaseOthers = $"You have selected other informations.\n" +
                                     $"Please select the details.\n\n" +
                                     $"1. Leave Or Readmission\n" +
                                     $"2. Scholarship\n" +
-                                    $"3. Go To Start\n" +
-                                    $"4. Help\n\n" +
-                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D \n";
+                                    $"3. Help\n\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n";
 
 
 
-            _typePleaseHelp =       
+            _typePleaseHelp =
                                     $"You have selected Help.\n" +
                                     $"Please select the details.\n\n" +
                                     $"1. AAR Guidance\n" +
                                     $"2. Request information correction\n" +
-                                    $"3. Contact to Master\n" +
-                                    $"4. Go To Start\n" +
-                                    $"'한국어'를 입력하시면 한국어 채팅이 가능합니다 :D \n";
+                                    $"3. Contact to Master\n\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n";
 
-            _sorryMessage = 
+            _sorryMessage =
                                     $"I didn't understand your words.\n" +
-                                    $"We will work hard to help you with your inquiries next time.\n" +
-                                    $"Please enter 'menu' to go back to the main menu.";
+                                    $"We will work hard to help you with your inquiries next time.\n";
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
@@ -132,13 +125,6 @@ namespace my_first_chatbot.Helper
             _help = "Help";
             _cancelMessage = "We will stop this conversation and go back to beginning.";
 
-            _welcomeOptionsList = new List<string> { _courseRegistration, _courseInformation, _credits, _others, _typeself, _help };
-            _courseRegistrationOptions = new List<string> { _howToDoIt, _schedule, _regulation, _terms, _gotostart, _help };
-            _courseInfoOptions = new List<string> { _openedMajorCourses, _openedLiberalArts, _syllabus, _lecturerInfo, _mandatorySubject, _prerequisite, _gotostart, _help };
-            _creditsOptions = new List<string> { _currentCredits, _majorCredits, _liberalArtsCredits, _changeStuNum, _gotostart, _help };
-            _othersOption = new List<string> { _leaveOrReadmission, _scholarship, _gotostart, _help };
-            _helpOptionsList = new List<string> { _introduction, _requestInformationCorrection, _contactMaster, _convertLanguage, _gotostart };
-
 
             //모든 정보를 언어에 따라 다르게 주기 위해서
             //for diffrent reply from language select
@@ -146,26 +132,20 @@ namespace my_first_chatbot.Helper
             //RootDialog + General
             _getStudentNumMessage = 
                                     $"Please enter your student ID for personalized information\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n" +
                                     $"For example: 12345678.\n";
             _getStudentNumUpdateMessage = 
                                     $"Student number info updated\n" +
-                                    $"Updated Student number is : ";
-            _getStudentNumFail =    
-                                    $"Wrong Format.\n" +
-                                    $"What is your Student ID(e.g. '60131937') ?";
-            _welcomeMessage = 
-                                    $"Myongji University AAR.\n" +
-                                    $"Please select one of the list number or type -in your questions to be answered..\n" +
-                                    $"Credits management entry requires student number\n" +
-                                    $" '한국어'를 입력하시면 한국어 채팅이 가능합니다 :D\n";
-            _invalidSelectionMessage = $"You have chosen the wrong option.";
+                                    $"Updated Student number is : \n";
+            _getStudentNumFail =
+                                    $"What you have entered is an invalid number.\n" +
+                                    $"Please Try again(e.g. '60131937').\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n";
+
+
             _goToButton = "Goto Info";
 
             //aboutCourseRegistration
-            _courseRegistrationSelected = 
-                                    $"You have selected to enroll.\n" +
-                                    $"Please select the details.";
-            
             _reply_HowToDoIt = 
                                     $"Instructions on how to enroll\n" +
                                     $"This links to the desktop site, which does not exist on the mobile page.\n";
@@ -185,10 +165,6 @@ namespace my_first_chatbot.Helper
             _reply_Terms = $"This is a guide to information about course registration.\n";
 
             //aboutCourseInfo
-            _courseInfoSelected = 
-                                    $"You have selected lecture information.\n" +
-                                    $"Please select details.";
-
             _reply_openedLiberalArts = $"This is a guide for this semester opened LiberalArts.\n";
 
             _reply_OpenedMajorCourses = $"This is a guide for this semester opened Major.\n";
@@ -213,11 +189,6 @@ namespace my_first_chatbot.Helper
 
 
             //aboutCredits
-            _creditsOptionSelected = 
-                                    $"You have selected credit management.\n" +
-                                    $"Please select the details.";
-
-
             _reply_CurrentCredits = 
                                     $"Guide to my credits.\n" +
                                     $"Total credits earned are : ";
@@ -239,11 +210,6 @@ namespace my_first_chatbot.Helper
 
 
             //aboutOthers
-            _otherOptionSelected = 
-                                    $"You have selected other information.\n" +
-                                    $"Please select the details.";
-
-
             _reply_leaveOrReadmission = $"This is information about the leave and returning information. \n";
 
 
@@ -251,9 +217,6 @@ namespace my_first_chatbot.Helper
 
 
             //aboutHelp
-            _helpOptionSelected = $"AAR3 help, what can I do for you?";
-
-
             _reply_Introduction =
                             $"A guide to AAR3\n" +
                             $"AAR3 can help you to get informations of enrollment and manage your credit.\n" +

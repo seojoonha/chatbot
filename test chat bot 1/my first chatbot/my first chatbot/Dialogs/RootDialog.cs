@@ -31,7 +31,6 @@ namespace my_first_chatbot.Dialogs
             try
             {
                 var value = await result;
-                if (value.Text.ToString() == "English") _storedvalues = new StoredValues_en();      //if you choose english at first keyboard convert to english
 
                 await ShowWelcomeOptions(context);
             }
@@ -39,54 +38,16 @@ namespace my_first_chatbot.Dialogs
             {
                 string msg = ee.Message;
             }
-            //await ShowWelcomeOptions(context);
         }
 
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
             var activity = context.MakeMessage();
             activity.Text = _storedvalues._typePleaseWelcome;
-
-            //activity.Attachments.Add(new HeroCard
-            //{
-            //    Title = "",
-            //    Subtitle = "",          //Location of information in MJU homepage
-            //    Text = "",
-            //    Images = new List<CardImage> { new CardImage("http://dynamicscrmcoe.com/wp-content/uploads/2016/08/chatbot-icon.png") },
-            //    Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
-            //                                    "관련 페이지로 이동",
-            //                                    value: "https://github.com/MJUKJE/chatbot/blob/dev/README.md") }
-            //}.ToAttachment());
-
             await context.PostAsync(activity);
             context.Call(new LuisDialog(), LuisDialogResumeAfter);
 
-
-            //버튼방식
-            //PromptDialog.Choice<string>(
-            //    context,
-            //    HandleWelcomeOptionSelected,
-            //    _storedvalues._welcomeOptionsList,
-            //    _storedvalues._welcomeMessage,                          //선택시 출력되는 메시지 정의
-            //    _storedvalues._invalidSelectionMessage + "[ERROR] : showWelcomeOptions",    //오류시 표시될 메시지 정의
-            //    1,
-            //    PromptStyle.Auto);
         }
-
-
-        //버튼방식
-        //public static async Task HandleWelcomeOptionSelected(IDialogContext context, IAwaitable<string> result)
-        //{
-        //    var value = await result;
-
-        //    if (value.ToString() == _storedvalues._courseRegistration) await aboutCourseRegistration.CourseRegistraionOptionSelected(context);
-        //    else if (value.ToString() == _storedvalues._courseInformation) await aboutCourseInfo.CourseInfoOptionSelected(context);
-        //    else if (value.ToString() == _storedvalues._credits) await aboutCredits.CreditsOptionSelected(context);
-        //    else if (value.ToString() == _storedvalues._others) await aboutOthers.OtherOptionSelected(context);
-        //    else if (value.ToString() == _storedvalues._help) await aboutHelp.HelpOptionSelected(context);
-        //    else await ForUnimplementedOptions(context, value);
-        //}
-
 
 
         public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
