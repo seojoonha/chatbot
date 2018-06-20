@@ -36,11 +36,11 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _majorCredits;
         public string _liberalArtsCredits;
         public string _changeStuNum;
-        
+
         // 기타 정보 선택시 메뉴     others options
         public string _leaveOrReadmission;         //웹 연결
         public string _scholarship;            //웹 연결
-        
+
         // 직접 입력 메뉴     typeself options
         public string _typePleaseWelcome;
         public string _typePleaseCourseRegistration;
@@ -49,13 +49,14 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _typePleaseOthers;
         public string _typePleaseHelp;
         public string _sorryMessage;
-        
+        public string _askAgain;
+
         // 도움말 선택시 메뉴       help options
         public string _introduction;
         public string _requestInformationCorrection;
         public string _contactMaster;
         public string _convertLanguage;
-        
+
         // 처음으로 혹은 도움말      goto start and help
         public string _gotostart;
         public string _help;
@@ -100,6 +101,6 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _reply_Introduction;
         public string _reply_RequestInformationCorrection;
         public string _reply_ContactMaster;
-        
+
     }
 }

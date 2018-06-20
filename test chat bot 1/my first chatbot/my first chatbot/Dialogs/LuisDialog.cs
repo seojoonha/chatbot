@@ -12,7 +12,8 @@ using my_first_chatbot.Helper;
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
-    [LuisModel("00f80fdf-2018-411d-82e8-ce60e1629787", "a843d7ded45b4e179a29189763122065")]
+    [LuisModel("659e8d9a-f239-440e-9f87-eecf3fc9ed7b", "4699e3db033744a4823425c6050abbcb",
+                domain: "eastasia.api.cognitive.microsoft.com")]
     public class LuisDialog : LuisDialog<Activity>
     {
 
@@ -34,7 +35,7 @@ namespace my_first_chatbot.Dialogs
             context.Done(activity);
         }
 
-        
+
         [LuisIntent("Information")]
         public async Task InformationIntent(IDialogContext context, LuisResult result)
         {
@@ -91,6 +92,52 @@ namespace my_first_chatbot.Dialogs
                             break;
                     }
                 }
+                //텍스트가 LUIS Entity 중 여러개로 예측되면 
+                //예측된 Entity를 출력해주고 다시 입력하게 함
+                else if (result.Entities.Count >= 2)
+                {
+                    var activity = context.MakeMessage();
+                    string str;
+                    string strSum = null;
+                    foreach (var s in result.Entities)
+                    {
+                        str = s.Type;
+                        switch (str)
+                        {
+                            //기본 메뉴
+                            case "_courseRegistration": strSum += "*" + RootDialog._storedvalues._courseRegistration + "\n"; break;
+                            case "_courseInformation": strSum += "*" + RootDialog._storedvalues._courseInformation + "\n"; break;
+                            case "_credits": strSum += "*" + RootDialog._storedvalues._credits + "\n"; break;
+                            case "_others": strSum += "*" + RootDialog._storedvalues._others + "\n"; break;
+                            //수강신청 메뉴
+                            case "_courseRegistration::_howToDoIt": strSum += "*" + RootDialog._storedvalues._howToDoIt + "\n"; break;
+                            case "_courseRegistration::_schedule": strSum += "*" + RootDialog._storedvalues._schedule + "\n"; break;
+                            case "_courseRegistration::_regulation": strSum += "*" + RootDialog._storedvalues._regulation + "\n"; break;
+                            case "_courseRegistration::_terms": strSum += "*" + RootDialog._storedvalues._terms + "\n"; break;
+                            //과목정보 메뉴
+                            case "_courseInformation::_openedMajorCourses": strSum += "*" + RootDialog._storedvalues._openedMajorCourses + "\n"; break;
+                            case "_courseInformation::_openedLiberalArts": strSum += "*" + RootDialog._storedvalues._openedLiberalArts + "\n"; break;
+                            case "_courseInformation::_syllabus": strSum += "*" + RootDialog._storedvalues._syllabus + "\n"; break;
+                            case "_courseInformation::_lecturerInfo": strSum += "*" + RootDialog._storedvalues._lecturerInfo + "\n"; break;
+                            case "_courseInformation::_mandatorySubject": strSum += "*" + RootDialog._storedvalues._mandatorySubject + "\n"; break;
+                            case "_courseInformation::_prerequisite": strSum += "*" + RootDialog._storedvalues._prerequisite + "\n"; break;
+                            //학점관리 메뉴
+                            case "_credits::_currentCredits": strSum += "*" + RootDialog._storedvalues._currentCredits + "\n"; break;
+                            case "_credits::_majorCredits": strSum += "*" + RootDialog._storedvalues._majorCredits + "\n"; break;
+                            case "_credits::_liberalArtsCredits": strSum += "*" + RootDialog._storedvalues._liberalArtsCredits + "\n"; break;
+                            case "_credits::_changeStuNum": strSum += "*" + RootDialog._storedvalues._changeStuNum + "\n"; break;
+                            //기타 메뉴
+                            case "_others::_leaveOrReadmission": strSum += "*" + RootDialog._storedvalues._leaveOrReadmission + "\n"; break;
+                            case "_others::_scholarship": strSum += "*" + RootDialog._storedvalues._scholarship + "\n"; break;
+                        }
+                    }
+                    activity.Text = $"\n{strSum}\n" +
+                                    $"{RootDialog._storedvalues._askAgain}";
+
+                    context.PostAsync(activity.Text);
+                    context.Call(new LuisDialog(), RootDialog.LuisDialogResumeAfter);
+
+                }
 
                 //텍스트를 특정한 메뉴로 알아듣지 못한 경우(Entity가 없으면)
                 //정해진 메시지를 내보냄
@@ -120,7 +167,7 @@ namespace my_first_chatbot.Dialogs
                 case "_help::_introduction": await aboutHelp.Reply_introduction(context); break;
                 case "_help::_requestInformationCorrection": await aboutHelp.Reply_requestInformationCorrection(context); break;
                 case "_help::_contactMaster": await aboutHelp.Reply_contactMaster(context); break;
-                
+
                 //for debug
                 default:
                     {

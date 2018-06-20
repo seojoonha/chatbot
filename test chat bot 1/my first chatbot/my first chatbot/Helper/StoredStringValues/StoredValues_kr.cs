@@ -112,9 +112,16 @@ namespace my_first_chatbot.Helper
                                     $"3. 관리자 연결\n" +
                                     $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
 
+
             _sorryMessage =
                                     $"말씀을 이해하지 못했어요.\n" +
                                     $"다음에는 이해할 수 있도록 열심히 학습하겠습니다.\n";
+
+
+            _askAgain =
+                                    $"혹시 찾으시는 메뉴가 이 중에 있나요?\n" +
+                                    $"원하는 메뉴를 다시 한 번 입력해 주세요.\n" +
+                                    $"처음으로 돌아가시려면 '취소'를 입력해주세요.";
 
 
             // 도움말 선택시 메뉴       help options
@@ -145,9 +152,9 @@ namespace my_first_chatbot.Helper
                                     $"변경된 학번 : \n";
             _getStudentNumFail =
                                     $"잘못된 형식입니다.\n" +
-                                    $"학번을 다시 입력해 주세요.(e.g. '12345678')\n"+
+                                    $"학번을 다시 입력해 주세요.(e.g. '12345678')\n" +
                                     $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
-           
+
 
             _goToButton = $"정보로 이동";
 
@@ -218,7 +225,7 @@ namespace my_first_chatbot.Helper
 
 
             //aboutOthers
-             _reply_leaveOrReadmission = $"휴학 및 복학정보에 대한 안내입니다.\n";
+            _reply_leaveOrReadmission = $"휴학 및 복학정보에 대한 안내입니다.\n";
 
 
             _reply_Scholarship = $"장학금 관련정보에 대한 안내입니다.\n";

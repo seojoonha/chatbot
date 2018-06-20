@@ -46,7 +46,7 @@ namespace my_first_chatbot.Helper
             _scholarship = "Scholarship";            //웹 연결
 
             // 직접 입력하기 선택시 메뉴     typeself options
-            _typePleaseWelcome = 
+            _typePleaseWelcome =
                                     $"Hi! This is AAR chat service. \n" +
                                     $"Please enter the number of the menu or your question. \n\n" +
                                     $"1. Course Registration Information \n" +
@@ -110,9 +110,17 @@ namespace my_first_chatbot.Helper
                                     $"3. Contact to Master\n\n" +
                                     $"Please enter 'cancel' to go back to the main menu.\n";
 
+
             _sorryMessage =
                                     $"I didn't understand your words.\n" +
                                     $"We will work hard to help you with your inquiries next time.\n";
+
+
+            _askAgain =
+                                    $"Are there any menus you are looking for?\n" +
+                                    $"Please re-enter the menu you are looking for.\n" +
+                                    $"Please enter 'cancel' to go back to the main menu.\n\n";
+
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR Guidance";
@@ -130,11 +138,11 @@ namespace my_first_chatbot.Helper
             //for diffrent reply from language select
 
             //RootDialog + General
-            _getStudentNumMessage = 
+            _getStudentNumMessage =
                                     $"Please enter your student ID for personalized information\n" +
                                     $"Please enter 'cancel' to go back to the main menu.\n" +
                                     $"For example: 12345678.\n";
-            _getStudentNumUpdateMessage = 
+            _getStudentNumUpdateMessage =
                                     $"Student number info updated\n" +
                                     $"Updated Student number is : \n";
             _getStudentNumFail =
@@ -146,17 +154,17 @@ namespace my_first_chatbot.Helper
             _goToButton = "Goto Info";
 
             //aboutCourseRegistration
-            _reply_HowToDoIt = 
+            _reply_HowToDoIt =
                                     $"Instructions on how to enroll\n" +
                                     $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_Schedule = 
+            _reply_Schedule =
                                     $"Instructions for the course registration.\n" +
                                     $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_Regulation = 
+            _reply_Regulation =
                                     $"Instructions for course registration\n" +
                                     $"Please check page 3, section 5, article 26 of this page.\n" +
                                     $"This links to the desktop site, which does not exist on the mobile page.\n";
@@ -170,13 +178,13 @@ namespace my_first_chatbot.Helper
             _reply_OpenedMajorCourses = $"This is a guide for this semester opened Major.\n";
 
 
-            _reply_Syllabus = 
+            _reply_Syllabus =
                                     $"This is a guide for syllabus.\n" +
                                     $"This is information in Myiweb, so login is required.\n" +
                                     $"This links to the desktop site, which does not exist on the mobile page.\n";
 
 
-            _reply_LecturerInfo = 
+            _reply_LecturerInfo =
                                     $"This is a guide for LecturerInfo.\n" +
                                     $"This is information in Myiweb, so login is required.\n" +
                                     $"This links to the desktop site, which does not exist on the mobile page.\n";
@@ -189,22 +197,22 @@ namespace my_first_chatbot.Helper
 
 
             //aboutCredits
-            _reply_CurrentCredits = 
+            _reply_CurrentCredits =
                                     $"Guide to my credits.\n" +
                                     $"Total credits earned are : ";
 
 
-            _reply_MajorCredits = 
+            _reply_MajorCredits =
                                     $"Guide to major credit.\n" +
                                     $"Specialization credits for the undergraduate courses are : ";
 
 
-            _reply_LiberalArtsCredits = 
+            _reply_LiberalArtsCredits =
                                     $"Guidance on Liberal Arts credits.\n" +
                                     $"Liberal Arts credits are : ";
 
 
-            _reply_ChangeStuNum = 
+            _reply_ChangeStuNum =
                                     $"Please enter the student number you wish to reset\n" +
                                     $"The current student number is : ";
 
@@ -224,14 +232,14 @@ namespace my_first_chatbot.Helper
                             $"If you want to go back to the beginning of the selection, please enter 'go to start'.\n";
 
 
-            _reply_RequestInformationCorrection = 
+            _reply_RequestInformationCorrection =
                             $"You can request to modify the information.\n" +
                             $"Github Page\n" +
                             $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
                             $"▶ Administrator Email\n" +
                             $"Email : jasen0324@gmail.com\n";
 
-            _reply_ContactMaster = 
+            _reply_ContactMaster =
                             $"You can ask for a consultation with the administrator.\n" +
                             $"Github Page\n" +
                             $"▶ https://github.com/MJUKJE/chatbot/blob/dev/README.md \n" +
