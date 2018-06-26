@@ -44,7 +44,6 @@ namespace my_first_chatbot.MessageReply
                 case "2": await Reply_majorCredits(context); break;
                 case "3": await Reply_liberalArtsCredits(context); break;
                 case "4": await Reply_changeStuNum(context); break;
-                case "5": await aboutHelp.HelpOptionSelected(context); break;
                 default:
                     {
                         await context.PostAsync(message);

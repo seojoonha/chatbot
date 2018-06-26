@@ -166,7 +166,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalMessageHandlerModule.cs" />
-    <Compile Include="Helper\LUIS.cs" />
     <Compile Include="Helper\StoredStringValues\StoredStringValuesMaster.cs" />
     <Compile Include="Helper\StoredStringValues\StoredValues_kr.cs" />
     <Compile Include="Helper\StoredStringValues\StoredValues_en.cs" />

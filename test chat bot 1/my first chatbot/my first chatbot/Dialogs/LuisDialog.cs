@@ -31,7 +31,7 @@ namespace my_first_chatbot.Dialogs
         public async Task Menu(IDialogContext context, LuisResult result)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"메뉴를 불러옵니다.\n";
+            activity.Text = "";
             context.Done(activity);
         }
 
@@ -60,7 +60,6 @@ namespace my_first_chatbot.Dialogs
                         case "_courseRegistration": await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
                         case "_courseInformation": await aboutCourseInfo.CourseInfoOptionSelected(context); break;
                         case "_credits": await aboutCredits.CreditsOptionSelected(context); break;
-                        case "_others": await aboutOthers.OtherOptionSelected(context); break;
                         //수강신청 메뉴
                         case "_courseRegistration::_howToDoIt": await aboutCourseRegistration.Reply_howToDoIt(context); break;
                         case "_courseRegistration::_schedule": await aboutCourseRegistration.Reply_schedule(context); break;
@@ -129,6 +128,10 @@ namespace my_first_chatbot.Dialogs
                             //기타 메뉴
                             case "_others::_leaveOrReadmission": strSum += "*" + RootDialog._storedvalues._leaveOrReadmission + "\n"; break;
                             case "_others::_scholarship": strSum += "*" + RootDialog._storedvalues._scholarship + "\n"; break;
+                            //도움말
+                            case "_help::introduction": strSum += "*" + RootDialog._storedvalues._introduction + "\n"; break;
+                            case "_help::_requestInformationCorrection": strSum += "*" + RootDialog._storedvalues._requestInformationCorrection + "\n"; break;
+                            case "_help::_contactMaster": strSum += "*" + RootDialog._storedvalues._contactMaster + "\n"; break;
                         }
                     }
                     activity.Text = $"\n{strSum}\n" +
@@ -209,7 +212,8 @@ namespace my_first_chatbot.Dialogs
         [LuisIntent("meal")]
         public async Task meal(IDialogContext context, LuisResult result)
         {
-
+            
         }
+
     }
 }

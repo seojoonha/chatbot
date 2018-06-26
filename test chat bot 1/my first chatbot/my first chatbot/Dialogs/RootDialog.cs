@@ -98,8 +98,9 @@ namespace my_first_chatbot.Dialogs
                     case 1: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
                     case 2: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
                     case 3: await aboutCredits.CreditsOptionSelected(context); break;
-                    case 4: await aboutOthers.OtherOptionSelected(context); break;
-                    case 5: await aboutHelp.HelpOptionSelected(context); break;
+                    case 4: await aboutOthers.Reply_leaveOrReadmission(context); break;
+                    case 5: await aboutOthers.Reply_scholarship(context); break;
+                    case 6: await aboutHelp.HelpOptionSelected(context); break;
                     default:
                         {
                             await context.PostAsync(_storedvalues._sorryMessage);
