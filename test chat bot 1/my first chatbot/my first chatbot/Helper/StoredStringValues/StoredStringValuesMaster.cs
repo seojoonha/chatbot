@@ -13,33 +13,31 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _courseRegistration;
         public string _courseInformation;
         public string _credits;
-        public string _others;
-        public string _typeself;
+        public string _leaveOrReadmission;      
+        public string _scholarship;
+        public string _help;
 
         // 수강 신청 선택시 메뉴     course registration options
-        public string _howToDoIt;             //웹 연결
-        public string _schedule;              //웹 연결
-        public string _regulation;            //웹 연결
-        public string _terms;                 //우리가 정의? 혹은 웹 연결?
+        public string _howToDoIt;          
+        public string _schedule;          
+        public string _regulation;      
+        public string _terms;       
 
         // 과목 정보 선택시 메뉴     course info options
         public string _openedMajorCourses;
-        public string _openedLiberalArts;   //myiweb에 있는데 우짜지..
-        public string _syllabus;                //이것도..
-        public string _lecturerInfo;             //이것도..
-        public string _mandatorySubject;      //이건 어떻게 가능
-        public string _prerequisite;          //이것도 탐색
+        public string _openedLiberalArts;
+        public string _syllabus;            
+        public string _lecturerInfo;        
+        public string _mandatorySubject; 
+        public string _prerequisite;     
 
         //_liberalArtsCredits
         // 학점 관리 선택시 메뉴     credit options
-        public string _currentCredits;        //개인별 정보 필요
+        public string _currentCredits;        
         public string _majorCredits;
         public string _liberalArtsCredits;
         public string _changeStuNum;
 
-        // 기타 정보 선택시 메뉴     others options
-        public string _leaveOrReadmission;         //웹 연결
-        public string _scholarship;            //웹 연결
 
         // 직접 입력 메뉴     typeself options
         public string _typePleaseWelcome;
@@ -55,11 +53,8 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _introduction;
         public string _requestInformationCorrection;
         public string _contactMaster;
-        public string _convertLanguage;
 
-        // 처음으로 혹은 도움말      goto start and help
-        public string _gotostart;
-        public string _help;
+        // 처음으로
         public string _cancelMessage;
 
 

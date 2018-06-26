@@ -17,38 +17,34 @@ namespace my_first_chatbot.Helper
             _courseRegistration = "수강 신청";
             _courseInformation = "과목 정보";
             _credits = "학점 관리";
-            _others = "기타 정보";
-            _typeself = "직접 입력하기";
+            _leaveOrReadmission = "휴학 및 복학";  
+            _scholarship = "장학금";
+            _help = "도움말";
 
             // 수강 신청 선택시 메뉴     course registration options
-            _howToDoIt = "수강신청 방법";             //웹 연결
-            _schedule = "수강신청 일정";              //웹 연결
-            _regulation = "수강신청 규정";            //웹 연결
-            _terms = "수강신청 용어";                 //우리가 정의? 혹은 웹 연결?
+            _howToDoIt = "수강신청 방법";      
+            _schedule = "수강신청 일정";       
+            _regulation = "수강신청 규정";  
+            _terms = "수강신청 용어";             
 
             // 과목 정보 선택시 메뉴     course info options
             _openedMajorCourses = "이번학기 개설전공";
-            _openedLiberalArts = "이번학기 개설교양";   //myiweb에 있는데 우짜지..
-            _syllabus = "강의계획서";                //이것도..
-            _lecturerInfo = "강사 정보";             //이것도..
-            _mandatorySubject = "필수과목 정보";      //이건 어떻게 가능
-            _prerequisite = "선수과목 정보";          //이것도 탐색
+            _openedLiberalArts = "이번학기 개설교양";
+            _syllabus = "강의계획서";           
+            _lecturerInfo = "강사 정보";      
+            _mandatorySubject = "필수과목 정보"; 
+            _prerequisite = "선수과목 정보";     
 
             // 학점 관리 선택시 메뉴     credit options
-            _currentCredits = "나의 이수학점";        //개인별 정보 필요
+            _currentCredits = "나의 이수학점";   
             _majorCredits = "전공 학점";
             _liberalArtsCredits = "교양 학점";
             _changeStuNum = "학번 재설정";
-
-            // 학사 정보 선택시 메뉴     others options
-            _leaveOrReadmission = "휴학 및 복학";         //웹 연결
-            _scholarship = "장학금";            //웹 연결
 
             // 도움말 선택시 메뉴       help options
             _introduction = "AAR안내";
             _requestInformationCorrection = "정보수정요청";
             _contactMaster = "관리자 연결";
-            _convertLanguage = "English";
 
 
             // 직접 입력하기 선택시 메뉴     typeself options
@@ -119,9 +115,7 @@ namespace my_first_chatbot.Helper
 
 
 
-            // 처음으로 혹은 도움말      goto start and help
-            _gotostart = "처음으로";
-            _help = "도움말";
+            // 처음으로
             _cancelMessage = "초기 메뉴로 돌아갑니다. 아무 키나 눌러주세요.";
 
 

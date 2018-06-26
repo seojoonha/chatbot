@@ -30,6 +30,7 @@ namespace my_first_chatbot.MessageReply
                 case "2": await Reply_schedule(context); break;
                 case "3": await Reply_regulation(context); break;
                 case "4": await Reply_terms(context); break;
+                case "": await RootDialog.ShowWelcomeOptions(context); break;
                 default:
                     {
                         await context.PostAsync(message);

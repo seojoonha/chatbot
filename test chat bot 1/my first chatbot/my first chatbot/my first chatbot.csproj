@@ -171,7 +171,6 @@
     <Compile Include="Helper\StoredStringValues\StoredValues_en.cs" />
     <Compile Include="Helper\StudentInfo.cs" />
     <Compile Include="Helper\StudentInfoService.cs" />
-    <Compile Include="MessageReply\aboutTypeSelf.cs" />
     <Compile Include="MessageReply\aboutHelp.cs" />
     <Compile Include="MessageReply\aboutOthers.cs" />
     <Compile Include="MessageReply\aboutCredits.cs" />

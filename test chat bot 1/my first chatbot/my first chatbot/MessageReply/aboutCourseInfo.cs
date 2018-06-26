@@ -32,7 +32,7 @@ namespace my_first_chatbot.MessageReply
                 case "4": await Reply_lecturerInfo(context); break;
                 case "5": await Reply_mandatorySubject(context); break;
                 case "6": await Reply_prerequisite(context); break;
-                case "7": await aboutHelp.HelpOptionSelected(context); break;
+                case "": await RootDialog.ShowWelcomeOptions(context); break;
                 
                 default:
                     {
@@ -93,7 +93,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "강의계획서",
                 Subtitle = "강의별 강의계획서",
-                Text = "강의계획서 열람 정보\n",
+                Text = "강의계획서 열람 방법\n",
                 //Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
@@ -112,7 +112,7 @@ namespace my_first_chatbot.MessageReply
             {
                 Title = "교수 정보",
                 Subtitle = "교수 홈페이지 검색",
-                Text = "교수 정보\n",
+                Text = "교수 홈페이지 검색 페이지\n",
                 //Images = new List<CardImage> { new CardImage("http://www.kimaworld.net/data/file/char/3076632059_6ySVa5o9_EBAA85ECA7801.jpg") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl,
                                                 RootDialog._storedvalues._goToButton,
