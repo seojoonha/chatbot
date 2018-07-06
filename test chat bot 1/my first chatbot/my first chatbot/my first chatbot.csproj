@@ -166,6 +166,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalMessageHandlerModule.cs" />
+    <Compile Include="Helper\LiberalArts.cs" />
+    <Compile Include="Helper\LiberalArtsService.cs" />
+    <Compile Include="Helper\POPInfo.cs" />
+    <Compile Include="Helper\POPInfoService.cs" />
     <Compile Include="Helper\StoredStringValues\StoredStringValuesMaster.cs" />
     <Compile Include="Helper\StoredStringValues\StoredValues_kr.cs" />
     <Compile Include="Helper\StoredStringValues\StoredValues_en.cs" />
@@ -186,8 +190,11 @@
     <Content Include="apiapp.json" />
     <Content Include="data\studentinfo_active.csv" />
     <Content Include="data\studentinfo_inactive.csv" />
+    <Content Include="data\count\Subject_Popularity.csv" />
+    <Content Include="data\LiberalArts\LiberalArts.csv" />
     <None Include="Properties\PublishProfiles\aar2testbot - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\aar3 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\aarbot - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

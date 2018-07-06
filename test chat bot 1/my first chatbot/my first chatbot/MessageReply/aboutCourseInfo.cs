@@ -32,8 +32,10 @@ namespace my_first_chatbot.MessageReply
                 case "4": await Reply_lecturerInfo(context); break;
                 case "5": await Reply_mandatorySubject(context); break;
                 case "6": await Reply_prerequisite(context); break;
+                case "7": await LiberalOptionSelected(context, null); break;
+                case "8": await PopularOptionSelected(context); break;
                 case "": await RootDialog.ShowWelcomeOptions(context); break;
-                
+
                 default:
                     {
                         await context.PostAsync(message);
@@ -42,7 +44,44 @@ namespace my_first_chatbot.MessageReply
             }
         }
 
+        public static async Task PopularOptionSelected(IDialogContext context)
+        {
+            PromptDialog.Choice<string>(
+                context,
+                Reply_popular,
+                RootDialog._storedvalues._popularOptionsList,
+                RootDialog._storedvalues._popularOptionSelected,                                                                                 //Course Registration
+                RootDialog._storedvalues._sorryMessage + "[ERROR] : CourseInfoOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                3,
+                PromptStyle.Auto);
+        }
+        public static async Task LiberalOptionSelected(IDialogContext context, IAwaitable<object> result)
+        {
+            if (RootDialog.stuNum == 0)
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
+                context.Call(new GetInfoDialog(), LiberalOptionSelected);                //get student number
+            }
+            else
+            {
 
+                PromptDialog.Choice<string>(
+                context,
+                Reply_liberalSubject,
+                RootDialog._storedvalues._liberalOptionsList,
+                $"{RootDialog._storedvalues._liberalOptionSelected}\n" +
+                                $"▶현재 설정된 학번: " +
+                                $"{RootDialog.stuNum}\n",
+                RootDialog._storedvalues._sorryMessage + "[ERROR] : CreditOptionSelected",          //Ooops, what you wrote is not a valid option, please try again
+                1,
+                PromptStyle.Auto);
+
+            }
+        }
+        public static async Task HandleLiberalOptionSelection(IDialogContext context, IAwaitable<object> result)
+        {
+
+        }
         //================================================================================================================================================
         //Last Phase Option
 
@@ -156,6 +195,37 @@ namespace my_first_chatbot.MessageReply
                                                 RootDialog._storedvalues._goToButton,
                                                 value: "http://www.mju.ac.kr/mbs/mjukr/images/editor/1406095802964_img_2017.jpg") }
             }.ToAttachment());
+
+            await context.PostAsync(activity);
+        }
+        public static async Task Reply_popular(IDialogContext context, IAwaitable<string> result)
+        {
+
+            var message = await result;
+            var activity = context.MakeMessage();
+
+            if (message == RootDialog._storedvalues.a) { activity.Text = RootDialog.popinfo.totalpopularity(0); }
+            else if (message == RootDialog._storedvalues.b) { activity.Text = RootDialog.popinfo.totalpopularity(1); }
+            else if (message == RootDialog._storedvalues.c) { activity.Text = RootDialog.popinfo.totalpopularity(2); }
+            else if (message == RootDialog._storedvalues.d) { activity.Text = RootDialog.popinfo.totalpopularity(3); }
+            else if (message == RootDialog._storedvalues.e) { activity.Text = RootDialog.popinfo.totalpopularity(4); }
+            else if (message == RootDialog._storedvalues.f) { activity.Text = RootDialog.popinfo.totalpopularity(5); }
+            else if (message == RootDialog._storedvalues.g) { activity.Text = RootDialog.popinfo.totalpopularity(6); }
+            else if (message == RootDialog._storedvalues.h) { activity.Text = RootDialog.popinfo.totalpopularity(7); }
+
+            await context.PostAsync(activity);
+
+        }
+        public static async Task Reply_liberalSubject(IDialogContext context, IAwaitable<string> result)
+        {
+            var message = await result;
+            var activity = context.MakeMessage();
+
+            if (message == RootDialog._storedvalues.a) { activity.Text = RootDialog.popinfo.totalpopularity(0); }
+            else if (message == RootDialog._storedvalues.i) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 1); }
+            else if (message == RootDialog._storedvalues.j) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 2); }
+            else if (message == RootDialog._storedvalues.k) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 3); }
+            else if (message == RootDialog._storedvalues.l) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 4); }
 
             await context.PostAsync(activity);
         }

@@ -17,26 +17,64 @@ namespace my_first_chatbot.Helper
             _courseRegistration = "수강 신청";
             _courseInformation = "과목 정보";
             _credits = "학점 관리";
-            _leaveOrReadmission = "휴학 및 복학";  
+            _leaveOrReadmission = "휴학 및 복학";
             _scholarship = "장학금";
             _help = "도움말";
 
             // 수강 신청 선택시 메뉴     course registration options
-            _howToDoIt = "수강신청 방법";      
-            _schedule = "수강신청 일정";       
-            _regulation = "수강신청 규정";  
-            _terms = "수강신청 용어";             
+            _howToDoIt = "수강신청 방법";
+            _schedule = "수강신청 일정";
+            _regulation = "수강신청 규정";
+            _terms = "수강신청 용어";
 
             // 과목 정보 선택시 메뉴     course info options
             _openedMajorCourses = "이번학기 개설전공";
             _openedLiberalArts = "이번학기 개설교양";
-            _syllabus = "강의계획서";           
-            _lecturerInfo = "강사 정보";      
-            _mandatorySubject = "필수과목 정보"; 
-            _prerequisite = "선수과목 정보";     
+            _syllabus = "강의계획서";
+            _lecturerInfo = "강사 정보";
+            _mandatorySubject = "필수과목 정보";
+            _prerequisite = "선수과목 정보";
+            _LiberalSubject = "교양과목 정보";
+            _popular = "인기과목 정보";
 
-            // 학점 관리 선택시 메뉴     credit options
-            _currentCredits = "나의 이수학점";   
+            //인기과목 선택시 메뉴
+            /// 1. 공통교양 (구 필수교양)
+            /// 2. 학문기초교양 (구 기초교양)
+            /// 3. 전공1단계
+            /// 4. 핵심교양 (구 선택교양)
+            /// 5. 일반교양 (구 균형교양)
+            /// 6. 자유선택
+            /// 7. 복수전공
+            /// 8. 부전공
+            a = "공통교양(구 필수교양)";
+            b = "학문기초교양(구 기초교양)";
+            c = "전공1단계";
+            d = "핵심교양(구 선택교양)";
+            e = "일반교양(구 균형교양)";
+            f = "자유선택";
+            g = "복수전공";
+            h = "부전공";
+            _popularOptionsList = new List<string> { a, b, c, d, e, f, g, h };
+            _popularOptionSelected =      
+                                    $"인기과목 메뉴를 선택하셨습니다.\n" +
+                                    $"원하시는 정보를 선택해주세요.";
+
+            //교양과목 선택시 메뉴
+            ///1. 공통교양
+            ///2. 일반교양
+            ///3. 학문기초교양
+            ///4. 핵심교양
+            i = "1. 공통교양";
+            j = "2. 일반교양";
+            k = "3. 학문기초교양";
+            l = "4. 핵심교양";
+            _liberalOptionsList = new List<string> { i, j, k, l };
+            _liberalOptionSelected =
+                                    $"교양과목 메뉴를 선택하셨습니다.\n" +
+                                    $"원하시는 정보를 선택해주세요.\n";
+
+        // 학점 관리 선택시 메뉴     credit options
+        _currentCredits = "나의 이수학점";
             _majorCredits = "전공 학점";
             _liberalArtsCredits = "교양 학점";
             _changeStuNum = "학번 재설정";
@@ -54,8 +92,8 @@ namespace my_first_chatbot.Helper
                                     $"1. 수강신청정보\n" +
                                     $"2. 과목정보\n" +
                                     $"3. 학점관리\n" +
-                                    $"4. 휴학 및 복학\n"+
-                                    $"5. 장학금\n"+
+                                    $"4. 휴학 및 복학\n" +
+                                    $"5. 장학금\n" +
                                     $"6. 도움말\n";
             //+
             //$"Please type in 'English' if you wish to chat in English. \n\n" +
@@ -82,7 +120,9 @@ namespace my_first_chatbot.Helper
                                     $"3. 강의계획서\n" +
                                     $"4. 강사 정보\n" +
                                     $"5. 필수과목 정보\n" +
-                                    $"6. 선수과목 정보\n\n" +
+                                    $"6. 선수과목 정보\n" +
+                                    $"7. 교양과목 정보\n" +
+                                    $"8. 인기과목 정보\n" +
                                     $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
 
             _typePleaseCredits =
@@ -124,15 +164,16 @@ namespace my_first_chatbot.Helper
 
             //RootDialog + General
             _getStudentNumMessage =
-                                    $"학점 정보 메뉴입니다.\n" +
+                                    $"학번입력이 필요한 메뉴입니다.\n" +
                                     $"학번을 입력해 주세요.\n" +
-                                    $"학번 입력 예시 : 12345678.\n";
+                                    $"학번은 8자리 숫자로 되어 있습니다. (e.g. '12345678')\n";
             _getStudentNumUpdateMessage =
                                     $"학번 정보가 변경되었습니다.\n" +
-                                    $"변경된 학번 : \n";
+                                    $"변경된 학번 :";
             _getStudentNumFail =
-                                    $"잘못된 형식입니다.\n" +
-                                    $"학번을 다시 입력해 주세요.(e.g. '12345678')\n" +
+                                    $"잘못 입력하셨습니다.\n"+
+                                    $"학번을 다시 입력해 주세요.\n" +
+                                    $"학번은 8자리 숫자로 되어 있습니다. (e.g. '12345678')\n" +
                                     $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
 
 
@@ -154,7 +195,7 @@ namespace my_first_chatbot.Helper
                                     $"아래 링크는 데스크탑 사이트로 연결됩니다.\n";
 
 
-            _reply_Terms = 
+            _reply_Terms =
                                     $"수강신청관련 용어정보에 대한 안내입니다.\n";
 
 
@@ -167,7 +208,7 @@ namespace my_first_chatbot.Helper
 
             _reply_Syllabus =
                                     $"강의계획서에 대한 안내입니다.\n";
-                                    
+
 
 
             _reply_LecturerInfo =

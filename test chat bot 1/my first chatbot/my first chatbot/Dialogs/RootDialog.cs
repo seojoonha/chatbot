@@ -17,6 +17,8 @@ namespace my_first_chatbot.Dialogs
         public static int stuNum = 0;
         public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
         public static StudentInfoService studentinfo = new StudentInfoService();
+        public static POPInfoService popinfo = new POPInfoService();
+        public static LiberalArtsService LAService = new LiberalArtsService();
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -49,43 +51,6 @@ namespace my_first_chatbot.Dialogs
 
         }
 
-
-        public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
-        {
-            try
-            {
-                stuNum = await result;
-
-                await aboutCredits.CreditsOptionSelected(context);
-            }
-            catch (TooManyAttemptsException)
-            {
-                await context.PostAsync("I'm sorry, I'm having issues understanding you. Let's try again.");
-
-                await ShowWelcomeOptions(context);
-            }
-        }
-
-        public static async Task GetInfoDialogAfterResettingStudentNumber(IDialogContext context, IAwaitable<int> result)
-        {
-            try
-            {
-                stuNum = await result;
-
-                await context.PostAsync(_storedvalues._getStudentNumUpdateMessage + stuNum);
-                await aboutCredits.CreditsOptionSelected(context);
-            }
-            catch (TooManyAttemptsException)
-            {
-                await context.PostAsync(
-                    $"I'm sorry, I'm having issues understanding you. Let's try again.\n" +
-                    $"{ _storedvalues._printLine}");
-
-                await ShowWelcomeOptions(context);
-            }
-        }
-
-
         //LUIS 결과 메시지 출력부분
         public static async Task LuisDialogResumeAfter(IDialogContext context, IAwaitable<Activity> result)
         {
@@ -97,7 +62,7 @@ namespace my_first_chatbot.Dialogs
                 {
                     case 1: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
                     case 2: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                    case 3: await aboutCredits.CreditsOptionSelected(context); break;
+                    case 3: await aboutCredits.CreditsOptionSelected(context, null); break;
                     case 4: await aboutOthers.Reply_leaveOrReadmission(context); break;
                     case 5: await aboutOthers.Reply_scholarship(context); break;
                     case 6: await aboutHelp.HelpOptionSelected(context); break;
@@ -120,11 +85,10 @@ namespace my_first_chatbot.Dialogs
 
 
         //구현하지 않은 메뉴에 넣을 더미
-        private static async Task ForUnimplementedOptions(IDialogContext context, string selectedOption)       //그 외 말을 했을 때
+        public static async Task ForUnimplementedOptions(IDialogContext context)       //그 외 말을 했을 때
         {
             var activity = context.MakeMessage();
-            activity.Text = $"요청하신 정보는 " + selectedOption + "입니다.\n" +          //"You said: " + selectedOption
-                            $"추후 추가예정 입니다.\n";                                   //"Thanks for using AAR!!!. See u soon"
+            activity.Text = $"추후 추가예정 입니다.\n";
             await context.PostAsync(activity);
         }
 

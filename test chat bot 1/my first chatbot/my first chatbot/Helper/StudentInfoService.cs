@@ -89,5 +89,15 @@ namespace my_first_chatbot.Helper
             double mycredit = studentinfo.Sum(item => item.Credit);
             return mycredit;
         }
+        public List<StudentInfo> totalElectiveListen(int studentID)
+        {
+            var studentinfo = from b in studentInfoList
+                              where b.StudentNumber == studentID.ToString() && b.CourseType.Contains("교양")
+                              select b;
+
+            List<StudentInfo> std = new List<StudentInfo>();
+            std.AddRange(studentinfo);
+            return std;
+        }
     }
 }

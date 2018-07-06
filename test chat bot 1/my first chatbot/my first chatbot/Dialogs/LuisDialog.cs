@@ -12,7 +12,7 @@ using my_first_chatbot.Helper;
 namespace my_first_chatbot.Dialogs
 {
     [Serializable]
-    [LuisModel("659e8d9a-f239-440e-9f87-eecf3fc9ed7b", "4699e3db033744a4823425c6050abbcb",
+    [LuisModel("659e8d9a-f239-440e-9f87-eecf3fc9ed7b", "d392904c4dee4c41bb5985a5f466d472",
                 domain: "eastasia.api.cognitive.microsoft.com")]
     public class LuisDialog : LuisDialog<Activity>
     {
@@ -53,13 +53,13 @@ namespace my_first_chatbot.Dialogs
                 //텍스트가 LUIS Entity 중 하나로 예측되면 메뉴이동으로 판단함
                 if (result.Entities.Count == 1)
                 {
-                    this.GoToMenu(context, result);
+                    await this.GoToMenu(context, result);
                 }
                 //텍스트가 LUIS Entity 중 여러개로 예측되면 
                 //예측된 Entity를 출력해주고 다시 입력하게 함
                 else if (result.Entities.Count >= 2)
                 {
-                    this.AskAgain(context, result);
+                    await this.AskAgain(context, result);
                 }
 
                 //텍스트를 특정한 메뉴로 알아듣지 못한 경우(Entity가 없으면)
@@ -106,11 +106,10 @@ namespace my_first_chatbot.Dialogs
                 //기본 메뉴
                 case "_courseRegistration": await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
                 case "_courseInformation": await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                case "_credits": await aboutCredits.CreditsOptionSelected(context); break;
+                case "_credits": await aboutCredits.CreditsOptionSelected(context, null); break;
                 case "_others::_leaveOrReadmission": await aboutOthers.Reply_leaveOrReadmission(context); break;
                 case "_others::_scholarship": await aboutOthers.Reply_scholarship(context); break;
                 case "_help": await aboutHelp.HelpOptionSelected(context); break;
-
                 //수강신청 메뉴
                 case "_courseRegistration::_howToDoIt": await aboutCourseRegistration.Reply_howToDoIt(context); break;
                 case "_courseRegistration::_schedule": await aboutCourseRegistration.Reply_schedule(context); break;
@@ -123,6 +122,8 @@ namespace my_first_chatbot.Dialogs
                 case "_courseInformation::_lecturerInfo": await aboutCourseInfo.Reply_lecturerInfo(context); break;
                 case "_courseInformation::_mandatorySubject": await aboutCourseInfo.Reply_mandatorySubject(context); break;
                 case "_courseInformation::_prerequisite": await aboutCourseInfo.Reply_prerequisite(context); break;
+                case "_courseInformation::_popular": await aboutCourseInfo.PopularOptionSelected(context); break;
+                case "_courseInformation::_liberalSubject": await aboutCourseInfo.LiberalOptionSelected(context, null); break;
                 //학점관리 메뉴
                 case "_credits::_currentCredits": await aboutCredits.Reply_currentCredits(context); break;
                 case "_credits::_majorCredits": await aboutCredits.Reply_majorCredits(context); break;
@@ -172,6 +173,8 @@ namespace my_first_chatbot.Dialogs
                     case "_courseInformation::_lecturerInfo": strSum += "*" + RootDialog._storedvalues._lecturerInfo + "\n"; break;
                     case "_courseInformation::_mandatorySubject": strSum += "*" + RootDialog._storedvalues._mandatorySubject + "\n"; break;
                     case "_courseInformation::_prerequisite": strSum += "*" + RootDialog._storedvalues._prerequisite + "\n"; break;
+                    case "_courseInformation::_popular": strSum += "*" + RootDialog._storedvalues._popular + "\n"; break; ;
+                    case "_courseInformation::_liberalSubject": strSum += "*" + RootDialog._storedvalues._LiberalSubject + "\n"; break; ; break;
                     //학점관리 메뉴
                     case "_credits::_currentCredits": strSum += "*" + RootDialog._storedvalues._currentCredits + "\n"; break;
                     case "_credits::_majorCredits": strSum += "*" + RootDialog._storedvalues._majorCredits + "\n"; break;

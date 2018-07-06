@@ -13,25 +13,58 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _courseRegistration;
         public string _courseInformation;
         public string _credits;
-        public string _leaveOrReadmission;      
+        public string _leaveOrReadmission;
         public string _scholarship;
         public string _help;
 
         // 수강 신청 선택시 메뉴     course registration options
-        public string _howToDoIt;          
-        public string _schedule;          
-        public string _regulation;      
-        public string _terms;       
+        public string _howToDoIt;
+        public string _schedule;
+        public string _regulation;
+        public string _terms;
 
         // 과목 정보 선택시 메뉴     course info options
         public string _openedMajorCourses;
         public string _openedLiberalArts;
-        public string _syllabus;            
-        public string _lecturerInfo;        
-        public string _mandatorySubject; 
-        public string _prerequisite;     
+        public string _syllabus;
+        public string _lecturerInfo;
+        public string _mandatorySubject;
+        public string _prerequisite;
+        public string _LiberalSubject;
+        public string _popular;
 
-        //_liberalArtsCredits
+        //인기과목 선택시 메뉴
+        /// 1. 공통교양 (구 필수교양)
+        /// 2. 학문기초교양 (구 기초교양)
+        /// 3. 전공1단계
+        /// 4. 핵심교양 (구 선택교양)
+        /// 5. 일반교양 (구 균형교양)
+        /// 6. 자유선택
+        /// 7. 복수전공
+        /// 8. 부전공
+        public string a;
+        public string b;
+        public string c;
+        public string d;
+        public string e;
+        public string f;
+        public string g;
+        public string h;
+        public List<string> _popularOptionsList = new List<string>();
+        public string _popularOptionSelected;
+
+        //교양과목 선택시 메뉴
+        ///1. 공통교양
+        ///2. 일반교양
+        ///3. 학문기초교양
+        ///4. 핵심교양
+        public string i;
+        public string j;
+        public string k;
+        public string l;
+        public List<string> _liberalOptionsList = new List<string>();
+        public string _liberalOptionSelected;
+
         // 학점 관리 선택시 메뉴     credit options
         public string _currentCredits;        
         public string _majorCredits;
