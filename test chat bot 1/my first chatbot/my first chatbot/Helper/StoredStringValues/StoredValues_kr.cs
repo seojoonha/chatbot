@@ -68,7 +68,8 @@ namespace my_first_chatbot.Helper
             j = "2. 일반교양";
             k = "3. 학문기초교양";
             l = "4. 핵심교양";
-            _liberalOptionsList = new List<string> { i, j, k, l };
+            m = "5. 학번 재설정";
+            _liberalOptionsList = new List<string> { i, j, k, l, m };
             _liberalOptionSelected =
                                     $"교양과목 메뉴를 선택하셨습니다.\n" +
                                     $"원하시는 정보를 선택해주세요.\n";

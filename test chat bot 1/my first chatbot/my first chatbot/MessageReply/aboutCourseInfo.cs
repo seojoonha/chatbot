@@ -226,8 +226,13 @@ namespace my_first_chatbot.MessageReply
             else if (message == RootDialog._storedvalues.j) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 2); }
             else if (message == RootDialog._storedvalues.k) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 3); }
             else if (message == RootDialog._storedvalues.l) { activity.Text = RootDialog.LAService.LiberalArtsGetList(RootDialog.stuNum, 4); }
-
+            else if (message == RootDialog._storedvalues.m) { await Reply_changeStuNum(context); }
             await context.PostAsync(activity);
+        }
+        public static async Task Reply_changeStuNum(IDialogContext context)         //학번 재설정
+        {
+            await context.PostAsync(RootDialog._storedvalues._reply_ChangeStuNum + RootDialog.stuNum);            //메시지를 보낸다.
+            context.Call(new GetInfoDialog(), LiberalOptionSelected);     //바로 학번입력으로 간다.
         }
     }
 }

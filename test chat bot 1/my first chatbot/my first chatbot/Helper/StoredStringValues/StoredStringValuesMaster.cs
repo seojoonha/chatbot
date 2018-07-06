@@ -62,6 +62,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string j;
         public string k;
         public string l;
+        public string m;
         public List<string> _liberalOptionsList = new List<string>();
         public string _liberalOptionSelected;
 
