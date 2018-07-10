@@ -174,7 +174,7 @@ namespace my_first_chatbot.Dialogs
                     case "_courseInformation::_mandatorySubject": strSum += "*" + RootDialog._storedvalues._mandatorySubject + "\n"; break;
                     case "_courseInformation::_prerequisite": strSum += "*" + RootDialog._storedvalues._prerequisite + "\n"; break;
                     case "_courseInformation::_popular": strSum += "*" + RootDialog._storedvalues._popular + "\n"; break; ;
-                    case "_courseInformation::_liberalSubject": strSum += "*" + RootDialog._storedvalues._LiberalSubject + "\n"; break; ; break;
+                    case "_courseInformation::_liberalSubject": strSum += "*" + RootDialog._storedvalues._LiberalSubject + "\n"; break;
                     //학점관리 메뉴
                     case "_credits::_currentCredits": strSum += "*" + RootDialog._storedvalues._currentCredits + "\n"; break;
                     case "_credits::_majorCredits": strSum += "*" + RootDialog._storedvalues._majorCredits + "\n"; break;
@@ -189,7 +189,7 @@ namespace my_first_chatbot.Dialogs
             activity.Text = $"\n{strSum}\n" +
                             $"{RootDialog._storedvalues._askAgain}";
 
-            context.PostAsync(activity.Text);
+            await context.PostAsync(activity.Text);
             context.Call(new LuisDialog(), RootDialog.LuisDialogResumeAfter);
         }
     }
