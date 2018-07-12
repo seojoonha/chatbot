@@ -78,8 +78,7 @@ namespace my_first_chatbot.Dialogs
         public async Task GreetingIntent(IDialogContext context, LuisResult result)
         {
             var activity = context.MakeMessage();
-            activity.Text = $"인사해주셔서 감사해요." +
-                            $"좋은하루 되시길 바랄게요 :)\n";
+            activity.Text = $"인사해 주셔서 감사해요. 좋은 하루 되시길 바랄게요!\n\n";
 
             context.Done(activity);
         }
