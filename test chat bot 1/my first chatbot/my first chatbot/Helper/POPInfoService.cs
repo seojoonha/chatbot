@@ -131,13 +131,13 @@ namespace my_first_chatbot.Helper
                         Reply = Top3("자유선택");
                         break;
 
-                    case 6:
-                        Reply = Top3("복수전공");
-                        break;
+                    //case 6:
+                    //    Reply = Top3("복수전공");
+                    //    break;
 
-                    case 7:
-                        Reply = Top3("부전공");
-                        break;
+                    //case 7:
+                    //    Reply = Top3("부전공");
+                    //    break;
 
                     default:
                         Reply = "시스템 오류로 인하여 목록을 \n불러올 수 없었습니다.\n\n이 문제가 반복된다면 관리자에게 알려주세요.\n\n";

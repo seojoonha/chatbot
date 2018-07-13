@@ -19,7 +19,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);                //get student number
+                context.Call(new GetInfoDialog(), CreditsOptionSelected);
             }
             else
             {
@@ -63,7 +63,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);                 //get student number
+                context.Call(new GetInfoDialog(), CreditsOptionSelected);
             }
             else
             {
@@ -79,7 +79,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);                  //get student number
+                context.Call(new GetInfoDialog(), CreditsOptionSelected);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);               //get student number
+                context.Call(new GetInfoDialog(), CreditsOptionSelected);
             }
             else
             {

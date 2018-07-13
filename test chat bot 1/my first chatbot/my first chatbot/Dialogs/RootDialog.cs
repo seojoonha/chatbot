@@ -15,7 +15,7 @@ namespace my_first_chatbot.Dialogs
     public class RootDialog : IDialog<object>
     {
         public static int stuNum = 0;
-        public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
+        public static StoredStringValuesMaster _storedvalues = new StoredValues_kr();
         public static StudentInfoService studentinfo = new StudentInfoService();
         public static POPInfoService popinfo = new POPInfoService();
         public static LiberalArtsService LAService = new LiberalArtsService();
@@ -79,13 +79,12 @@ namespace my_first_chatbot.Dialogs
                 await context.PostAsync(message.Text);
                 await ShowWelcomeOptions(context);
             }
-
         }
 
 
 
         //구현하지 않은 메뉴에 넣을 더미
-        public static async Task ForUnimplementedOptions(IDialogContext context)       //그 외 말을 했을 때
+        public static async Task ForUnimplementedOptions(IDialogContext context)
         {
             var activity = context.MakeMessage();
             activity.Text = $"추후 추가예정 입니다.\n";

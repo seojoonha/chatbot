@@ -52,12 +52,13 @@ namespace my_first_chatbot.Helper
             d = "핵심교양(구 선택교양)";
             e = "일반교양(구 균형교양)";
             f = "자유선택";
-            g = "복수전공";
-            h = "부전공";
-            _popularOptionsList = new List<string> { a, b, c, d, e, f, g, h };
+            //g = "복수전공";
+            //h = "부전공";
+            //_popularOptionsList = new List<string> { a, b, c, d, e, f, g, h };
+            _popularOptionsList = new List<string> { a, b, c, d, e, f };
             _popularOptionSelected =      
                                     $"인기과목 메뉴를 선택하셨습니다.\n" +
-                                    $"원하시는 정보를 선택해주세요.";
+                                    $"원하시는 메뉴를 선택해주세요.";
 
             //교양과목 선택시 메뉴
             ///1. 공통교양
@@ -72,7 +73,7 @@ namespace my_first_chatbot.Helper
             _liberalOptionsList = new List<string> { i, j, k, l, m };
             _liberalOptionSelected =
                                     $"교양과목 메뉴를 선택하셨습니다.\n" +
-                                    $"원하시는 정보를 선택해주세요.\n";
+                                    $"원하시는 메뉴를 선택해주세요.\n";
 
         // 학점 관리 선택시 메뉴     credit options
         _currentCredits = "나의 이수학점";
@@ -110,7 +111,7 @@ namespace my_first_chatbot.Helper
                                     $"2. 수강신청 일정\n" +
                                     $"3. 수강신청 규정\n" +
                                     $"4. 수강신청 용어\n\n" +
-                                    $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
+                                    $"처음으로 돌아가시려면 '메뉴'를 입력해주세요.\n";
 
 
             _typePleaseCourseInfo =
@@ -124,7 +125,7 @@ namespace my_first_chatbot.Helper
                                     $"6. 선수과목 정보\n" +
                                     $"7. 교양과목 정보\n" +
                                     $"8. 인기과목 정보\n" +
-                                    $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
+                                    $"처음으로 돌아가시려면 '메뉴'를 입력해주세요.\n";
 
             _typePleaseCredits =
                                     $"학점관리 메뉴 입니다.\n" +
@@ -133,7 +134,7 @@ namespace my_first_chatbot.Helper
                                     $"2. 전공 학점\n" +
                                     $"3. 교양 학점\n" +
                                     $"4. 학번 재설정\n\n" +
-                                    $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
+                                    $"처음으로 돌아가시려면 '메뉴'를 입력해주세요.\n";
 
 
             _typePleaseHelp =
@@ -142,7 +143,7 @@ namespace my_first_chatbot.Helper
                                     $"1. AAR안내\n" +
                                     $"2. 정보수정 요청\n" +
                                     $"3. 관리자 연결\n" +
-                                    $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
+                                    $"처음으로 돌아가시려면 '메뉴'를 입력해주세요.\n";
 
 
             _sorryMessage =
@@ -172,10 +173,9 @@ namespace my_first_chatbot.Helper
                                     $"학번 정보가 변경되었습니다.\n" +
                                     $"변경된 학번 :";
             _getStudentNumFail =
-                                    $"잘못 입력하셨습니다.\n"+
+                                    $"잘못 입력하셨습니다.\n" +
                                     $"학번을 다시 입력해 주세요.\n" +
-                                    $"학번은 8자리 숫자로 되어 있습니다. (e.g. '12345678')\n" +
-                                    $"처음으로 돌아가시려면 '취소'를 입력해주세요.\n";
+                                    $"학번은 8자리 숫자로 되어 있습니다. (e.g. '12345678')\n";
 
 
             _goToButton = $"여기를 눌러주세요";
@@ -258,7 +258,7 @@ namespace my_first_chatbot.Helper
                                     $"AAR에 대한 안내입니다.\n" +
                                     $"AAR은 학생들의 수강신청 및 학점관리를 도울 수 있습니다.\n" +
                                     $"궁금하신 정보를 선택하시면 해당 정보페이지로 연결됩니다.\n" +
-                                    $"선택 도중에 처음으로 돌아가고 싶으시면 '취소'를 입력해 주세요.\n";
+                                    $"선택 도중에 처음으로 돌아가고 싶으시면 '메뉴'를 입력해 주세요.\n";
 
 
             _reply_RequestInformationCorrection =
