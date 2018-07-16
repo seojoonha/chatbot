@@ -15,19 +15,19 @@ namespace my_first_chatbot
     {
         protected void Application_Start()
         {
-            this.RegisterBotModules();
+            //this.RegisterBotModules();
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
 
         //Module 추가
-        private void RegisterBotModules()
-        {
-            Conversation.UpdateContainer(builder =>
-            {
-                builder.RegisterModule(new ReflectionSurrogateModule());
-                builder.RegisterModule<GlobalMessageHandlerModule>();
-            });
-        }
+        //private void RegisterBotModules()
+        //{
+        //    Conversation.UpdateContainer(builder =>
+        //    {
+        //        builder.RegisterModule(new ReflectionSurrogateModule());
+        //        builder.RegisterModule<GlobalMessageHandlerModule>();
+        //    });
+        //}
     }
 }

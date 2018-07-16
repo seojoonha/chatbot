@@ -30,7 +30,7 @@ namespace my_first_chatbot.Dialogs
         public async Task Menu(IDialogContext context, LuisResult result)
         {
             var activity = context.MakeMessage();
-            activity.Text = "";
+            activity.Text = "menu";
             context.Done(activity);
         }
 
@@ -39,7 +39,6 @@ namespace my_first_chatbot.Dialogs
         public async Task InformationIntent(IDialogContext context, LuisResult result)
         {
             //입력받은 메시지가 숫자(번호메뉴)인 경우
-            //
             int number;
             if (Int32.TryParse(result.Query, out number))
             {
@@ -53,7 +52,9 @@ namespace my_first_chatbot.Dialogs
                 //텍스트가 LUIS Entity 중 하나로 예측되면 메뉴이동으로 판단함
                 if (result.Entities.Count == 1)
                 {
-                    await this.GoToMenu(context, result);
+                    var activity = context.MakeMessage();
+                    activity.Text = result.Entities[0].Type;
+                    context.Done(activity);
                 }
                 //텍스트가 LUIS Entity 중 여러개로 예측되면 
                 //예측된 Entity를 출력해주고 다시 입력하게 함
@@ -98,51 +99,7 @@ namespace my_first_chatbot.Dialogs
             activity.Text = $"\nChanged Language settings. \n";
             context.Done(activity);
         }
-        public async Task GoToMenu(IDialogContext context, LuisResult result)
-        {
-            switch (result.Entities[0].Type)
-            {
-                //기본 메뉴
-                case "_courseRegistration": await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
-                case "_courseInformation": await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                case "_credits": await aboutCredits.CreditsOptionSelected(context, null); break;
-                case "_others::_leaveOrReadmission": await aboutOthers.Reply_leaveOrReadmission(context); break;
-                case "_others::_scholarship": await aboutOthers.Reply_scholarship(context); break;
-                case "_help": await aboutHelp.HelpOptionSelected(context); break;
-                //수강신청 메뉴
-                case "_courseRegistration::_howToDoIt": await aboutCourseRegistration.Reply_howToDoIt(context); break;
-                case "_courseRegistration::_schedule": await aboutCourseRegistration.Reply_schedule(context); break;
-                case "_courseRegistration::_regulation": await aboutCourseRegistration.Reply_regulation(context); break;
-                case "_courseRegistration::_terms": await aboutCourseRegistration.Reply_terms(context); break;
-                //과목정보 메뉴
-                case "_courseInformation::_openedMajorCourses": await aboutCourseInfo.Reply_openedMajorCourses(context); break;
-                case "_courseInformation::_openedLiberalArts": await aboutCourseInfo.Reply_openedLiberalArts(context); break;
-                case "_courseInformation::_syllabus": await aboutCourseInfo.Reply_syllabus(context); break;
-                case "_courseInformation::_lecturerInfo": await aboutCourseInfo.Reply_lecturerInfo(context); break;
-                case "_courseInformation::_mandatorySubject": await aboutCourseInfo.Reply_mandatorySubject(context); break;
-                case "_courseInformation::_prerequisite": await aboutCourseInfo.Reply_prerequisite(context); break;
-                case "_courseInformation::_popular": await aboutCourseInfo.PopularOptionSelected(context); break;
-                case "_courseInformation::_liberalSubject": await aboutCourseInfo.LiberalOptionSelected(context, null); break;
-                //학점관리 메뉴
-                case "_credits::_currentCredits": await aboutCredits.Reply_currentCredits(context); break;
-                case "_credits::_majorCredits": await aboutCredits.Reply_majorCredits(context); break;
-                case "_credits::_liberalArtsCredits": await aboutCredits.Reply_liberalArtsCredits(context); break;
-                case "_credits::_changeStuNum": break;
-                //도움말
-                case "_help::_introduction": await aboutHelp.Reply_introduction(context); break;
-                case "_help::_requestInformationCorrection": await aboutHelp.Reply_requestInformationCorrection(context); break;
-                case "_help::_contactMaster": await aboutHelp.Reply_contactMaster(context); break;
 
-                //for debug
-                default:
-                    {
-                        var activity = context.MakeMessage();
-                        activity.Text = $"Information intent error.\n";
-                        context.Done(activity);
-                    }
-                    break;
-            }
-        }
         public async Task AskAgain(IDialogContext context, LuisResult result)
         {
             var activity = context.MakeMessage();

@@ -31,10 +31,9 @@ namespace my_first_chatbot.MessageReply
                 case "1": await Reply_introduction(context); break;
                 case "2": await Reply_requestInformationCorrection(context); break;
                 case "3": await Reply_contactMaster(context); break;
-                case "": await RootDialog.ShowWelcomeOptions(context); break;
                 default:
                     {
-                        await context.PostAsync(message);
+                        await RootDialog.GoToMenu(context, result);
                     }
                     break;
             }

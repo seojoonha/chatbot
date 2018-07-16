@@ -34,11 +34,10 @@ namespace my_first_chatbot.MessageReply
                 case "6": await Reply_prerequisite(context); break;
                 case "7": await LiberalOptionSelected(context, null); break;
                 case "8": await PopularOptionSelected(context); break;
-                case "": await RootDialog.ShowWelcomeOptions(context); break;
 
                 default:
                     {
-                        await context.PostAsync(message);
+                        await RootDialog.GoToMenu(context, result);
                     }
                     break;
             }
