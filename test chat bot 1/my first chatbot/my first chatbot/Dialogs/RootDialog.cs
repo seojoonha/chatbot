@@ -15,7 +15,7 @@ namespace my_first_chatbot.Dialogs
     public class RootDialog : IDialog<object>
     {
         public static int stuNum = 0;
-        public static StoredStringValuesMaster _storedvalues;                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
+        public static StoredStringValuesMaster _storedvalues = new StoredValues_kr();                           //StoredValues의 마스터를 만들어 둔다. 디폴트는 한국어로 되어있다.
         public static StudentInfoService studentinfo = new StudentInfoService();
         public static POPInfoService popinfo = new POPInfoService();
         public static LiberalArtsService LAService = new LiberalArtsService();
@@ -42,9 +42,7 @@ namespace my_first_chatbot.Dialogs
 
         public static async Task ShowWelcomeOptions(IDialogContext context)
         {
-            var activity = context.MakeMessage();
-            activity.Text = _storedvalues._typePleaseWelcome;
-            await context.PostAsync(activity);
+            await context.PostAsync(_storedvalues._typePleaseWelcome);
             context.Call(new LuisDialog(), LuisDialogResumeAfter);
         }
 
@@ -59,7 +57,7 @@ namespace my_first_chatbot.Dialogs
                 {
                     case 1: await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
                     case 2: await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                    case 3: await aboutCredits.CreditsOptionSelected(context, null); break;
+                    case 3: await aboutCredits.CreditsOptionSelected(context); break;
                     case 4: await aboutOthers.Reply_leaveOrReadmission(context); break;
                     case 5: await aboutOthers.Reply_scholarship(context); break;
                     case 6: await aboutHelp.HelpOptionSelected(context); break;
@@ -85,7 +83,7 @@ namespace my_first_chatbot.Dialogs
                 case "menu": await ShowWelcomeOptions(context); break;
                 case "_courseRegistration": await aboutCourseRegistration.CourseRegistraionOptionSelected(context); break;
                 case "_courseInformation": await aboutCourseInfo.CourseInfoOptionSelected(context); break;
-                case "_credits": await aboutCredits.CreditsOptionSelected(context, null); break;
+                case "_credits": await aboutCredits.CreditsOptionSelected(context); break;
                 case "_others::_leaveOrReadmission": await aboutOthers.Reply_leaveOrReadmission(context); break;
                 case "_others::_scholarship": await aboutOthers.Reply_scholarship(context); break;
                 case "_help": await aboutHelp.HelpOptionSelected(context); break;
@@ -102,7 +100,7 @@ namespace my_first_chatbot.Dialogs
                 case "_courseInformation::_mandatorySubject": await aboutCourseInfo.Reply_mandatorySubject(context); break;
                 case "_courseInformation::_prerequisite": await aboutCourseInfo.Reply_prerequisite(context); break;
                 case "_courseInformation::_popular": await aboutCourseInfo.PopularOptionSelected(context); break;
-                case "_courseInformation::_liberalSubject": await aboutCourseInfo.LiberalOptionSelected(context, null); break;
+                case "_courseInformation::_liberalSubject": await aboutCourseInfo.LiberalOptionSelected(context); break;
                 //학점관리 메뉴
                 case "_credits::_currentCredits": await aboutCredits.Reply_currentCredits(context); break;
                 case "_credits::_majorCredits": await aboutCredits.Reply_majorCredits(context); break;

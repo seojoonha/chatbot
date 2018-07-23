@@ -12,14 +12,27 @@ namespace my_first_chatbot.MessageReply
 {
     public static class aboutCredits
     {
+        public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<bool> result)
+        {
+            
+            if(await result)
+            {
+                await CreditsOptionSelected(context);
+            }
+            else
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumFail);
 
-        public static async Task CreditsOptionSelected(IDialogContext context, IAwaitable<object> result)
+                await RootDialog.ShowWelcomeOptions(context);
+            }
+        }
+        public static async Task CreditsOptionSelected(IDialogContext context)
         {
             //설정된 학번이 없으면 새로 설정함
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);
+                context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);
             }
             else
             {
@@ -62,7 +75,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);
+                context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);
             }
             else
             {
@@ -78,7 +91,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);
+                context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);
             }
             else
             {
@@ -94,7 +107,7 @@ namespace my_first_chatbot.MessageReply
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), CreditsOptionSelected);
+                context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);
             }
             else
             {
@@ -108,7 +121,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_changeStuNum(IDialogContext context)         //학번 재설정
         {
             await context.PostAsync(RootDialog._storedvalues._reply_ChangeStuNum + RootDialog.stuNum);            //메시지를 보낸다.
-            context.Call(new GetInfoDialog(), CreditsOptionSelected);     //바로 학번입력으로 간다.
+            context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);     //바로 학번입력으로 간다.
         }
     }
 }

@@ -58,7 +58,7 @@ namespace my_first_chatbot.Helper
             _popularOptionsList = new List<string> { a, b, c, d, e, f };
             _popularOptionSelected =      
                                     $"인기과목 메뉴를 선택하셨습니다.\n" +
-                                    $"원하시는 메뉴를 선택해주세요.";
+                                    $"원하시는 메뉴를 선택해주세요.\n";
 
             //교양과목 선택시 메뉴
             ///1. 공통교양
@@ -124,7 +124,7 @@ namespace my_first_chatbot.Helper
                                     $"5. 필수과목 정보\n" +
                                     $"6. 선수과목 정보\n" +
                                     $"7. 교양과목 정보\n" +
-                                    $"8. 인기과목 정보\n" +
+                                    $"8. 인기과목 정보\n\n" +
                                     $"처음으로 돌아가시려면 '메뉴'를 입력해주세요.\n";
 
             _typePleaseCredits =
@@ -142,13 +142,13 @@ namespace my_first_chatbot.Helper
                                     $"문의 내용의 번호를 선택하시거나 질문을 입력해주세요.\n\n" +
                                     $"1. AAR안내\n" +
                                     $"2. 정보수정 요청\n" +
-                                    $"3. 관리자 연결\n" +
+                                    $"3. 관리자 연결\n\n" +
                                     $"처음으로 돌아가시려면 '메뉴'를 입력해주세요.\n";
 
 
             _sorryMessage =
                                     $"말씀을 이해하지 못했어요.\n" +
-                                    $"다음에는 이해할 수 있도록 열심히 학습하겠습니다.\n";
+                                    $"다음에는 이해할 수 있도록 열심히 학습하겠습니다.\n\n";
 
 
             _askAgain =
@@ -158,7 +158,7 @@ namespace my_first_chatbot.Helper
 
 
             // 처음으로
-            _cancelMessage = "초기 메뉴로 돌아갑니다. 아무 키나 눌러주세요.";
+            //_cancelMessage = "초기 메뉴로 돌아갑니다. 아무 키나 눌러주세요.";
 
 
             //모든 정보를 언어에 따라 다르게 주기 위해서
@@ -172,11 +172,13 @@ namespace my_first_chatbot.Helper
             _getStudentNumUpdateMessage =
                                     $"학번 정보가 변경되었습니다.\n" +
                                     $"변경된 학번 :";
-            _getStudentNumFail =
+            _getStudentNumRetry =
                                     $"잘못 입력하셨습니다.\n" +
                                     $"학번을 다시 입력해 주세요.\n" +
                                     $"학번은 8자리 숫자로 되어 있습니다. (e.g. '12345678')\n";
-
+            _getStudentNumFail =
+                                    $"학번을 입력받지 못했습니다.\n" +
+                                    $"다음에 다시 시도해 주세요.\n\n";
 
             _goToButton = $"여기를 눌러주세요";
 

@@ -127,8 +127,7 @@ namespace my_first_chatbot.Helper
 
 
             // 처음으로 혹은 도움말      goto start and help
-
-            _cancelMessage = "We will stop this conversation and go back to beginning.";
+            //_cancelMessage = "We will stop this conversation and go back to beginning.";
 
 
             //모든 정보를 언어에 따라 다르게 주기 위해서
@@ -142,11 +141,13 @@ namespace my_first_chatbot.Helper
             _getStudentNumUpdateMessage =
                                     $"Student number info updated\n" +
                                     $"Updated Student number is : \n";
-            _getStudentNumFail =
+            _getStudentNumRetry =
                                     $"What you have entered is an invalid number.\n" +
                                     $"Please Try again(e.g. '60131937').\n" +
                                     $"Please enter 'cancel' to go back to the main menu.\n";
-
+            _getStudentNumFail =
+                                    $"Your message was not valid.\n" +
+                                    $"Please Try again later.\n\n";
 
             _goToButton = "Goto Info";
 

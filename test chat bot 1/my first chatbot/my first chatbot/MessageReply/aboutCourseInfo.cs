@@ -12,6 +12,19 @@ namespace my_first_chatbot.MessageReply
 {
     public static class aboutCourseInfo
     {
+        public static async Task GetInfoDialogResumeAfter(IDialogContext context, IAwaitable<bool> result)
+        {
+            if(await result)
+            {
+                await LiberalOptionSelected(context);
+            }
+            else
+            {
+                await context.PostAsync(RootDialog._storedvalues._getStudentNumFail);
+
+                await RootDialog.ShowWelcomeOptions(context);
+            }
+        }
         public static async Task CourseInfoOptionSelected(IDialogContext context)
         {
 
@@ -32,7 +45,7 @@ namespace my_first_chatbot.MessageReply
                 case "4": await Reply_lecturerInfo(context); break;
                 case "5": await Reply_mandatorySubject(context); break;
                 case "6": await Reply_prerequisite(context); break;
-                case "7": await LiberalOptionSelected(context, null); break;
+                case "7": await LiberalOptionSelected(context); break;
                 case "8": await PopularOptionSelected(context); break;
 
                 default:
@@ -54,12 +67,12 @@ namespace my_first_chatbot.MessageReply
                 3,
                 PromptStyle.Auto);
         }
-        public static async Task LiberalOptionSelected(IDialogContext context, IAwaitable<object> result)
+        public static async Task LiberalOptionSelected(IDialogContext context)
         {
             if (RootDialog.stuNum == 0)
             {
                 await context.PostAsync(RootDialog._storedvalues._getStudentNumMessage);
-                context.Call(new GetInfoDialog(), LiberalOptionSelected);                //get student number
+                context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);                //get student number
             }
             else
             {
@@ -231,7 +244,7 @@ namespace my_first_chatbot.MessageReply
         public static async Task Reply_changeStuNum(IDialogContext context)         //학번 재설정
         {
             await context.PostAsync(RootDialog._storedvalues._reply_ChangeStuNum + RootDialog.stuNum);            //메시지를 보낸다.
-            context.Call(new GetInfoDialog(), LiberalOptionSelected);     //바로 학번입력으로 간다.
+            context.Call(new GetInfoDialog(), GetInfoDialogResumeAfter);     //바로 학번입력으로 간다.
         }
     }
 }

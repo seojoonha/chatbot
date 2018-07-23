@@ -89,7 +89,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         public string _contactMaster;
 
         // 처음으로
-        public string _cancelMessage;
+        //public string _cancelMessage;
 
 
 
@@ -99,6 +99,7 @@ namespace my_first_chatbot.Helper.StoredStringValues
         //RootDialog + General
         public string _getStudentNumMessage;
         public string _getStudentNumUpdateMessage;
+        public string _getStudentNumRetry;
         public string _getStudentNumFail;
         public string _goToButton;
 

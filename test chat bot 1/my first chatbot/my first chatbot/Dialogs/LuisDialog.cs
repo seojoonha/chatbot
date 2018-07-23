@@ -87,7 +87,7 @@ namespace my_first_chatbot.Dialogs
         [LuisIntent("ChangeLanguage")]
         public async Task ChangeLanguage(IDialogContext context, LuisResult result)
         {
-            if (result.Query.Contains("한국") || result.Query.Contains("korea"))
+            if (result.Query.Contains("한국") || result.Query.Contains("kor"))
             {
                 RootDialog._storedvalues = new StoredValues_kr();
             }   //convert en to kr
